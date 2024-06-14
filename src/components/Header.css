@@ -1,0 +1,27 @@
+.header {
+    background-color: #FFA500;
+    padding: 10px 20px;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .nav-link {
+    color: #fff !important;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .navbar-toggler {
+    border: none;
+  }
+  
+  .navbar-toggler-icon {
+    color: #fff;
+  }
+  

@@ -1,0 +1,21 @@
+.hero-section {
+    background-color: #FFA500;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .hero-buttons .btn {
+    margin: 0 10px;
+  }
+  
