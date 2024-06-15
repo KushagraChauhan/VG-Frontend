@@ -1,18 +1,20 @@
 import React from 'react';
+import {BrowserRouter as Router, Routes, Route, useRoutes} from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import Features from './components/Features';
-import Footer from './components/Footer';
+import LoginOrRegisterPage from './pages/LoginOrRegisterPage';
+import Home from './pages/Home';
+
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <HeroSection />
-      <Features />
-      <Footer />
+      <Router>
+        <Routes>
+          <Route path = "/" element = {<Home />}></Route>
+          <Route path = "/welcome" element = {<LoginOrRegisterPage />} ></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
