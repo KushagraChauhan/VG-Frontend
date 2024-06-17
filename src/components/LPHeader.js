@@ -2,10 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const handleLogout = () => {
-  localStorage.removeItem('access_token');
-};
-
 const Header = () => {
   return (
     <header className="header">
@@ -27,9 +23,12 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Contact</a>
-            </li>      
+            </li>
             <li className="nav-item">
-              <Link className="btn btn-primary" to="/welcome" onSubmit={handleLogout}>Sign Out</Link>
+              <Link className="nav-link" to="/welcome">Login</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="btn btn-primary" to="/welcome">Join Us</Link>
             </li>
           </ul>
         </div>

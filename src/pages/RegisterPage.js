@@ -43,7 +43,8 @@ const RegisterPage = () => {
             });
             if(response.data.token_type = 'bearer'){
               console.log("Login Success")
-              navigate(`/?email=${email}`);
+              localStorage.setItem('access_token', response.data.access_token);
+              navigate(`/home?email=${email}`);
             }
             else{
               console.log("Email found")
