@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -9,6 +11,7 @@ const LoginPage = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() =>{
         const params = new URLSearchParams(location.search);
@@ -19,7 +22,7 @@ const LoginPage = () => {
     }, [location]);
 
     const handlePasswordChange = (event) => {
-        setEmail(event.target.value);
+        setPassword(event.target.value);
     };
 
     const handleSubmit = async (event) => {
@@ -27,7 +30,24 @@ const LoginPage = () => {
         setIsLoading(true);
         setErrorMessage('');
     
-        // Will add the logic later 
+        try{
+            const response = await axios.post(`http://127.0.0.1:8000/api/v1/login`, {
+                email: email,
+                password: password
+            });
+            if(response.data.token_type = 'bearer'){
+              console.log("Login Success")
+              navigate(`/?email=${email}`);
+            }
+            else{
+              console.log("Email not found")
+              navigate(`/register?email=${email}`);
+            }
+          } catch(errorMessage){
+            setErrorMessage('Failed to Login. Please try again with correct password');
+          } finally {
+            setIsLoading(false);
+          }
     
         setIsLoading(false);
       };
@@ -39,6 +59,7 @@ const LoginPage = () => {
             <h1>Login now</h1>
             <p>Hi, Welcome back 👋</p>
           </div>
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="email">Email</label>
@@ -51,16 +72,16 @@ const LoginPage = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
-                placeholder="Enter your password"
-                required
-              />
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    placeholder="Enter your password"
+                    required
+                    />
             </div>
             <div className="form-group form-check">
               <input type="checkbox" className="form-check-input" id="rememberMe" />
