@@ -1,0 +1,78 @@
+.register-page {
+    background-color: #FFA500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .register-container {
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .register-header h1 {
+    margin-bottom: 20px;
+  }
+  
+  .btn-google {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .btn-google img {
+    margin-right: 10px;
+  }
+  
+  .separator {
+    margin: 20px 0;
+    position: relative;
+    text-align: center;
+    color: #777;
+  }
+  
+  .separator span {
+    background-color: #fff;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .separator:before {
+    content: '';
+    height: 1px;
+    background-color: #ccc;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 0;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+  }
+  
+  .register-image img {
+    margin-top: 20px;
+    max-width: 100%;
+  }
+  
