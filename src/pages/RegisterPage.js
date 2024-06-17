@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 import './RegisterPage.css';
 
 const RegisterPage = () => {
@@ -7,8 +9,10 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [fullName, setFullName] = useState('');
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -17,6 +21,10 @@ const RegisterPage = () => {
             setEmail(emailParam);
         }
     }, [location]);
+    
+    const handleFullNameChange = (event) =>{
+        setFullName(event.target.value);
+    };
 
     const handlePasswordChange = (event) =>{
         setPassword(event.target.value);
@@ -27,7 +35,25 @@ const RegisterPage = () => {
         setIsLoading(true);
         setErrorMessage('');
 
-        // Will add the Register logic later
+        try{
+            const response = await axios.post(`http://127.0.0.1:8000/api/v1/register`, {
+                email: email,
+                password: password,
+                full_name: fullName
+            });
+            if(response.data.token_type = 'bearer'){
+              console.log("Login Success")
+              navigate(`/?email=${email}`);
+            }
+            else{
+              console.log("Email found")
+              navigate(`/login?email=${email}`);
+            }
+          } catch(errorMessage){
+            setErrorMessage('Failed to Create Account. Please try again.');
+          } finally {
+            setIsLoading(false);
+          }
 
         setIsLoading(false);
     };
@@ -39,6 +65,7 @@ const RegisterPage = () => {
                     <h1>Join Us Now</h1>
                     <p>hey There,👋</p>
                 </div>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
@@ -51,6 +78,17 @@ const RegisterPage = () => {
                         />
                     </div>
                     <div className="form-group">
+                        <label htmlFor="fullName">Full Name</label>
+                        <input
+                            className="form-control"
+                            id="fullName"
+                            value={fullName}
+                            onChange={handleFullNameChange}
+                            placeholder="Enter your Full Name"
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input
                             type="password"
@@ -60,8 +98,8 @@ const RegisterPage = () => {
                             onChange={handlePasswordChange}
                             placeholder="Enter your password"
                             required
-                            />
-                    </div>
+                        />
+                    </div>                    
                     <div className="form-group form-check">
                         <input type="checkbox" className="form-check-input" id="rememberMe" />
                         <label className="form-check-label" htmlFor="rememberMe">Remember Me</label>
