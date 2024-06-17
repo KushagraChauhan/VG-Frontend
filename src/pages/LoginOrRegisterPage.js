@@ -7,7 +7,7 @@ const LoginOrRegisterPage = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -20,12 +20,15 @@ const LoginOrRegisterPage = () => {
 
     try{
       const response = await axios.get(`http://127.0.0.1:8000/api/v1/check-email?email=${(email)}`)
-      console.log(response.data);
+      //console.log(response.data);
+      //console.log(response.status);
       if(response.data.email_registered){
-        history.push(`/login?email=${encodeURIComponent(email)}`);
+        console.log("Email Found")
+        navigate(`/login?email=${email}`);
       }
       else{
-        history.push(`/register?email=${encodeURIComponent(email)}`)
+        console.log("Email not found")
+        navigate(`/register?email=${email}`);
       }
     } catch(errorMessage){
       setErrorMessage('Failed to check email. Please try again.');
