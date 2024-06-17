@@ -1,9 +1,9 @@
 import React from 'react';
-import {Navigate } from 'react-router-dom';
-import Home from '../pages/Home';
+import { Outlet, Navigate } from 'react-router-dom';
 
-const PrivateWrapper = ({ auth: { isAuthenticated } }) => {
-    return isAuthenticated ? <Home /> : <Navigate to="/welcome" />;
-  };
+const PrivateRoute = () => {
+  const token = localStorage.getItem('access_token');
+  return token ? <Outlet /> : <Navigate to="/welcome" replace />;
+};
 
-export default PrivateWrapper;
+export default PrivateRoute;

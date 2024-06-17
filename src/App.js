@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import LandingPage from './pages/LandingPage';
-
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -18,8 +18,10 @@ function App() {
           <Route path = "/welcome" element = {<LoginOrRegisterPage />} ></Route>
           <Route path='/login' element = {<LoginPage />}></Route>
           <Route path='/register' element = {<RegisterPage />}></Route>
-          {/* Add a private route here to restrict the access of Home Page*/}
-          <Route path='/home' element = {<Home />}></Route> 
+          {/* Private Route to Home */}
+          <Route path="/" element={<PrivateRoute />}>
+          <Route path="home" element={<Home />} />
+          </Route>
           {/* <Navigate from='/' to='/home' /> */}
         </Routes>
       </Router>
