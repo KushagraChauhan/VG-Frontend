@@ -1,21 +1,176 @@
-.online-education-section {
-    padding: 50px 0;
+.top-courses-section {
+  padding: 50px 0;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h3 {
+  color: #007bff;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.section-header h2 {
+  color: #333;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  color: #666;
+  font-size: 18px;
+}
+
+.courses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.course-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: calc(50% - 10px); /* Adjust width for 2 columns with gap */
+  transition: transform 0.3s;
+}
+
+.course-card:hover {
+  transform: translateY(-10px);
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #ff6347;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.course-content {
+  padding: 20px;
+}
+
+.course-content h4 {
+  color: #007bff;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.course-content h3 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.course-content p {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.course-info {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.course-info li {
+  font-size: 14px;
+  color: #666;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.course-info li i {
+  margin-right: 5px;
+  color: #007bff;
+}
+
+.course-price {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.original-price {
+  font-size: 14px;
+  color: #999;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+.discounted-price {
+  font-size: 18px;
+  color: #28a745;
+}
+
+.learn-more {
+  font-size: 16px;
+  color: #007bff;
+  text-decoration: none;
+  border-bottom: 1px solid #007bff;
+}
+
+.learn-more:hover {
+  color: #0056b3;
+  border-bottom-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .course-card {
+    width: calc(100% - 20px); /* Full width for single column layout */
   }
-  
-  .online-education-section h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
+
+  .section-header h2 {
+    font-size: 28px;
   }
-  
-  .online-education-section p {
+
+  .section-header p {
+    font-size: 16px;
+  }
+
+  .course-content h3 {
     font-size: 18px;
-    margin-bottom: 40px;
   }
-  
-  .product-cards {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
+
+  .course-content p {
+    font-size: 14px;
   }
-  
+
+  .course-info li {
+    font-size: 12px;
+  }
+
+  .course-price {
+    font-size: 16px;
+  }
+}

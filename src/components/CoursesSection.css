@@ -21,26 +21,16 @@
   flex: 1;
 }
 
-.image-left {
+.image {
   position: absolute;
-  left: 0;
+  left: 5%;
   top: 50%;
   transform: translateY(-50%);
-  width: 200px;
+  width: 80%;
   height: auto;
   border-radius: 10px;
+  max-width: 400px; /* To ensure the image doesn't get too large on wider screens */
 }
-
-.image-right {
-  position: absolute;
-  left: 50px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 200px;
-  height: auto;
-  border-radius: 10px;
-}
-
 .courses-text {
   flex: 1;
   padding-left: 250px;
@@ -68,4 +58,29 @@
 .learn-more:hover {
   color: #0056b3;
   border-bottom-color: #0056b3;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .image {
+    left: 5%;
+    width: 90%;
+    max-width: 350px; /* Adjust the maximum width */
+  }
+}
+
+@media (max-width: 768px) {
+  .image {
+    left: 10%;
+    width: 80%;
+    max-width: 300px; /* Adjust the maximum width */
+  }
+}
+
+@media (max-width: 480px) {
+  .image {
+    left: 5%;
+    width: 90%;
+    max-width: 250px; /* Adjust the maximum width */
+  }
 }

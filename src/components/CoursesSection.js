@@ -9,7 +9,7 @@ const CoursesSection = () => {
         <div className="courses-content">
           <div className="courses-images">
             {/* <img src="" alt="Course 1" className="image-left"/> */}
-            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/SampleCourses.png" alt="Course 2" className="image-right"/>
+            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/SampleCourses.png" alt="Course 2" className="img-fluid.max-width: 80%"/>
           </div>
           <div className="courses-text">
             <h3>Watch our Courses</h3>
