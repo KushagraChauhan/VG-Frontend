@@ -7,8 +7,10 @@ import Footer from '../components/Footer';
 const useAuth = () => {
     useEffect(() => {
       const token = localStorage.getItem('access_token');
-      if (token) {
-        console.log('User is logged in with token:', token);
+      const email = localStorage.getItem('email');
+      if (token, email) {
+        //console.log('User is logged in with token:', token);
+        console.log('User is logged in');
       }
     }, []);
   };

@@ -38,7 +38,8 @@ const LoginPage = () => {
             if(response.data.token_type = 'bearer'){
               console.log("Login Success")
               localStorage.setItem('access_token', response.data.access_token);
-              navigate(`/home?email=${email}`);
+              localStorage.setItem('email', response.data.email)
+              navigate(`/home`);
             }
             else{
               console.log("Email not found")

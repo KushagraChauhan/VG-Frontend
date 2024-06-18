@@ -4,6 +4,7 @@ import './Header.css';
 
 const handleLogout = () => {
   localStorage.removeItem('access_token');
+  localStorage.removeItem('email');
 };
 
 const Header = () => {

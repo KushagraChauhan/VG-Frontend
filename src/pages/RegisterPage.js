@@ -44,6 +44,7 @@ const RegisterPage = () => {
             if(response.data.token_type = 'bearer'){
               console.log("Login Success")
               localStorage.setItem('access_token', response.data.access_token);
+              localStorage.setItem('email', response.data.email);
               navigate(`/home?email=${email}`);
             }
             else{
