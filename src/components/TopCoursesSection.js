@@ -1,6 +1,6 @@
 import React from 'react';
 //import TopCourses from './TopCourses';
-import './TopCoursesSection.css';
+import './css/TopCoursesSection.css';
 
 const TopCoursesSection = () => {
   return (

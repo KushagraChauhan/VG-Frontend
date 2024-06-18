@@ -1,5 +1,5 @@
 import React from 'react';
-import './TopCourses.css';
+import './css/TopCourses.css';
 
 const TopCourses = () => {
   const products = [

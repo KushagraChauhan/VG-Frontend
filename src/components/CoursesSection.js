@@ -1,5 +1,5 @@
 import React from 'react';
-import './CoursesSection.css';
+import './css/CoursesSection.css';
 // import SampleCourses from './assets/images/SampleCourses.png';
 
 const CoursesSection = () => {
