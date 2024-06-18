@@ -3,6 +3,9 @@ import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import Features from '../components/Features';
 import Footer from '../components/Footer';
+import CoursesSection from '../components/CoursesSection';
+import TopCoursesSection from '../components/TopCoursesSection';
+import UserTestimonials from '../components/UserTestimonials';
 
 const useAuth = () => {
     useEffect(() => {
@@ -23,6 +26,9 @@ const Home = () => {
       <Header />
       <HeroSection />
       <Features />
+      <CoursesSection />
+      <TopCoursesSection />
+      <UserTestimonials />
       <Footer />
     </div>
   );
