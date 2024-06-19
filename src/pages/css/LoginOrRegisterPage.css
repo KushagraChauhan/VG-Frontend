@@ -1,4 +1,4 @@
-.login-page {
+.welcome-page {
     background-color: #FFA500;
     display: flex;
     justify-content: center;
@@ -6,7 +6,7 @@
     height: 100vh;
   }
   
-  .login-container {
+  .welcome-container {
     background-color: #fff;
     padding: 20px 40px;
     border-radius: 8px;
@@ -16,7 +16,7 @@
     max-width: 500px;
   }
   
-  .login-header h1 {
+  .welcome-header h1 {
     margin-bottom: 20px;
   }
   
@@ -75,4 +75,13 @@
     margin-top: 20px;
     max-width: 100%;
   }
+
+  .cascading-right {
+    margin-right: -50px;
+  }
   
+  @media (max-width: 900px) {
+    .cascading-right {
+      margin-right: 0;
+    }
+  }

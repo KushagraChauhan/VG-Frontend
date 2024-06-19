@@ -45,7 +45,7 @@ const RegisterPage = () => {
               console.log("Login Success")
               localStorage.setItem('access_token', response.data.access_token);
               localStorage.setItem('email', response.data.email);
-              navigate(`/home?email=${email}`);
+              navigate(`/home`);
             }
             else{
               console.log("Email found")
@@ -111,7 +111,7 @@ const RegisterPage = () => {
                     </button>
                 </form>
                 <div className="register-image">
-                    <img src="https://via.placeholder.com/400x300" alt="Register Illustration" />
+                    <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Register Illustration" />
                 </div>
             </div>
         </div>

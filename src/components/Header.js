@@ -30,7 +30,7 @@ const Header = () => {
               <a className="nav-link" href="#">Contact</a>
             </li>      
             <li className="nav-item">
-              <Link className="btn btn-primary" to="/welcome" onSubmit={handleLogout}>Sign Out</Link>
+              <Link className="btn btn-primary" to="/welcome" onClick={handleLogout}>Sign Out</Link>
             </li>
           </ul>
         </div>
