@@ -7,9 +7,8 @@ const TopCoursesSection = () => {
     <section className="top-courses-section">
       <div className="container">
         <div className="section-header">
-          <h3>Practice Advice</h3>
           <h2>Make online education accessible</h2>
-          <p>Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
         <div className="courses">
           <div className="course-card">
@@ -19,8 +18,8 @@ const TopCoursesSection = () => {
             </div>
             <div className="course-content">
               <h4>English Department</h4>
-              <h3>Graphic Design</h3>
-              <p>We focus on ergonomics and meeting you where you work. It's only a keystroke away.</p>
+              <h3>Lorem ipsum</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               <ul className="course-info">
                 <li><i className="fas fa-users"></i> 15 Sales</li>
                 <li><i className="fas fa-clock"></i> 22h</li>
@@ -41,8 +40,8 @@ const TopCoursesSection = () => {
             </div>
             <div className="course-content">
               <h4>English Department</h4>
-              <h3>Graphic Design</h3>
-              <p>We focus on ergonomics and meeting you where you work. It's only a keystroke away.</p>
+              <h3>Lorem ipsum</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               <ul className="course-info">
                 <li><i className="fas fa-users"></i> 15 Sales</li>
                 <li><i className="fas fa-clock"></i> 22h</li>

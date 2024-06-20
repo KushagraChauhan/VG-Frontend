@@ -31,6 +31,7 @@
   border-radius: 10px;
   max-width: 400px; /* To ensure the image doesn't get too large on wider screens */
 }
+
 .courses-text {
   flex: 1;
   padding-left: 250px;
@@ -62,6 +63,10 @@
 
 /* Media Queries */
 @media (max-width: 1200px) {
+  .courses-text {
+    padding-left: 150px; /* Reduce padding on smaller screens */
+  }
+
   .image {
     left: 5%;
     width: 90%;
@@ -70,8 +75,22 @@
 }
 
 @media (max-width: 768px) {
+  .courses-content {
+    flex-direction: column; /* Stack the elements vertically */
+    align-items: center;
+  }
+
+  .courses-text {
+    padding-left: 0;
+    text-align: center; /* Center the text */
+    margin-top: 20px; /* Add margin to separate from the image */
+  }
+
   .image {
-    left: 10%;
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
     width: 80%;
     max-width: 300px; /* Adjust the maximum width */
   }
@@ -79,8 +98,19 @@
 
 @media (max-width: 480px) {
   .image {
-    left: 5%;
-    width: 90%;
+    width: 80%;
     max-width: 250px; /* Adjust the maximum width */
+  }
+
+  .courses-text h3 {
+    font-size: 28px; /* Adjust font size for smaller screens */
+  }
+
+  .courses-text p {
+    font-size: 16px; /* Adjust font size for smaller screens */
+  }
+
+  .learn-more {
+    font-size: 14px; /* Adjust font size for smaller screens */
   }
 }

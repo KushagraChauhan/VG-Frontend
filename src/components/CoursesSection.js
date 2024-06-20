@@ -1,22 +1,26 @@
 import React from 'react';
 import './css/CoursesSection.css';
-// import SampleCourses from './assets/images/SampleCourses.png';
 
 const CoursesSection = () => {
   return (
-    <section className="courses-section">
+    <section className="courses-section py-5">
       <div className="container">
-        <div className="courses-content">
-          <div className="courses-images">
-            {/* <img src="" alt="Course 1" className="image-left"/> */}
-            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/SampleCourses.png" alt="Course 2" className="img-fluid.max-width: 80%"/>
+        <div className="row align-items-center">
+          <div className="col-md-6 mb-4 mb-md-0">
+            <img
+              src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/SampleCourses.png"
+              alt="Sample Course"
+              className="img-fluid rounded"
+            />
           </div>
-          <div className="courses-text">
+          <div className="col-md-6">
             <h3>Watch our Courses</h3>
             <p>
-              Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
-            <a href="#" className="learn-more">Learn More</a>
+            <a href="#" className="btn btn-primary">
+              Learn More
+            </a>
           </div>
         </div>
       </div>
@@ -25,3 +29,4 @@ const CoursesSection = () => {
 };
 
 export default CoursesSection;
+

@@ -3,7 +3,7 @@
     padding: 10px 20px;
   }
   
-  .navbar-brand {
+  .navbar-light .navbar-brand {
     font-weight: bold;
     color: #fff;
   }
