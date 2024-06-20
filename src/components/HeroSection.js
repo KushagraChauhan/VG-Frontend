@@ -8,8 +8,6 @@ const HeroSection = () => {
                 <h1>Come Learn With Us</h1>
                 <p>Delve into the unkowns of Sanatan With Us</p>
                 <div className="hero-buttons">
-                    <a className="btn btn-primary" href="#"> Join Us                    
-                    </a>
                     <a className="btn btn-outline-primary" href="#">Learn More</a>
                 </div>
             </div>
