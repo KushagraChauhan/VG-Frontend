@@ -41,11 +41,9 @@ const CourseDetailsPage = () => {
 
     return(
         <div>
-            <div className="row">
-                {isAuthenticated ? <Header /> : <LPHeader />}
-                <CourseDetails course={course} />
-                <Footer />
-            </div>
+            {isAuthenticated ? <Header /> : <LPHeader />}
+            <CourseDetails course={course} />
+            <Footer />
         </div>
     );
 }

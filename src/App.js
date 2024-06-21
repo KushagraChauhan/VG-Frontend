@@ -29,7 +29,7 @@ function App() {
             <Route path="home" element={<Home />} />
           </Route>
           {/* All Courses Page Route */}
-          <Route path="all-courses" element={<AllCoursesPage />} />
+          <Route path="courses" element={<AllCoursesPage />} />
           <Route path="courses/:id" element={<CourseDetailsPage />} />
           {/* Redirect to home if path is not recognized */}
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
