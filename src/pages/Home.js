@@ -11,9 +11,9 @@ const useAuth = () => {
     useEffect(() => {
       const token = localStorage.getItem('access_token');
       const email = localStorage.getItem('email');
-      if (token, email) {
+      if (token && email) {
         //console.log('User is logged in with token:', token);
-        console.log('User is logged in');
+        //console.log('User is logged in');
       }
     }, []);
   };

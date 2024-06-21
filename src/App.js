@@ -16,21 +16,21 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          {/* Public Routes to pages */}
+          {/* Public Routes */}
           <Route path="/" element={<PublicRoute />}>
-            <Route path = "/" element = {<LandingPage />}></Route>
-            <Route path = "/welcome" element = {<LoginOrRegisterPage />} ></Route>
-            <Route path='/login' element = {<LoginPage />}></Route>
-            <Route path='/register' element = {<RegisterPage />}></Route>
+            <Route index element={<LandingPage />} />
+            <Route path="welcome" element={<LoginOrRegisterPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
           </Route>
-          {/* Private Route to Home */}
+          {/* Private Routes */}
           <Route path="/" element={<PrivateRoute />}>
-          <Route path="home" element={<Home />} />
+            <Route path="home" element={<Home />} />
           </Route>
-          {/* <Navigate from='/' to='/home' /> */}
-        </Routes>
-        <Routes>
-        <Route path='/all-courses' element = {<AllCoursesPage />}></Route>
+          {/* All Courses Page Route */}
+          <Route path="all-courses" element={<AllCoursesPage />} />
+          {/* Redirect to home if path is not recognized */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
     </div>

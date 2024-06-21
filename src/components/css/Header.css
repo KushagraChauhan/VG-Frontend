@@ -1,6 +1,14 @@
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1000;
     background-color: #FFA500;
     padding: 10px 20px;
+    
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   }
   
   .navbar-light .navbar-brand {
@@ -23,5 +31,10 @@
   
   .navbar-toggler-icon {
     color: #fff;
+  }
+
+  .nav-link:hover {
+    /* color: #0056b3;  */
+    text-decoration: underline; 
   }
   
