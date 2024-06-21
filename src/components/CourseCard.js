@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/CourseCard.css';
+import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
     return(
@@ -12,7 +13,7 @@ const CourseCard = ({ course }) => {
                     <p className="card-text">{course.description}</p>
                     <p className="card-text"><strong>{course.price}</strong></p>
                     <p className="card-text">{course.learnings}</p>
-                    <a href="#" className="btn btn-primary">Learn More</a>
+                    <Link to={`/courses/${course._id}`} className="btn btn-primary">View Course</Link>
                 </div>
             </div>
         </div>

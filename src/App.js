@@ -10,6 +10,7 @@ import LandingPage from './pages/LandingPage';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import AllCoursesPage from './pages/AllCoursesPage';
+import CourseDetailsPage from './pages/CourseDetailsPage';
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
           </Route>
           {/* All Courses Page Route */}
           <Route path="all-courses" element={<AllCoursesPage />} />
+          <Route path="courses/:id" element={<CourseDetailsPage />} />
           {/* Redirect to home if path is not recognized */}
-          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>
       </Router>
     </div>
