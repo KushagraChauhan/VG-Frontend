@@ -9,7 +9,7 @@ const UserTestimonials = () => {
         <div className="row justify-content-md-center">
           <div className="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
             <h2 className="fs-6 text-secondary mb-2 text-uppercase text-center">Happy Customers</h2>
-            <p className="display-5 mb-4 mb-md-5 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p className="display-5 mb-4 mb-md-5 text-center">Lorem ipsum dolor sit amet</p>
             
           </div>
         </div>
@@ -21,7 +21,7 @@ const UserTestimonials = () => {
             <div className="card border-0 border-bottom border-primary shadow-sm">
               <div className="card-body p-4 p-xxl-5">
                 <figure>
-                  <img className="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="./assets/img/testimonial-img-1.jpg" alt=""/>
+                  <img className="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/SampleCourses.png" alt=""/>
                   <figcaption>
                     <div className="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
                     <blockquote className="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. className aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</blockquote>
@@ -36,7 +36,7 @@ const UserTestimonials = () => {
             <div className="card border-0 border-bottom border-primary shadow-sm">
               <div className="card-body p-4 p-xxl-5">
                 <figure>
-                  <img className="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="./assets/img/testimonial-img-2.jpg" alt=""/>
+                  <img className="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/SampleCourses.png" alt=""/>
                   <figcaption>
                     <div className="bsb-ratings text-warning mb-3" data-bsb-star="4" data-bsb-star-off="1"></div>
                     <blockquote className="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. className aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</blockquote>
@@ -51,7 +51,7 @@ const UserTestimonials = () => {
             <div className="card border-0 border-bottom border-primary shadow-sm">
               <div className="card-body p-4 p-xxl-5">
                 <figure>
-                  <img className="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="./assets/img/testimonial-img-4.jpg" alt=""/>
+                  <img className="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/SampleCourses.png" alt=""/>
                   <figcaption>
                     <div className="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
                     <blockquote className="bsb-blockquote-icon mb-4">Nam ultricies, ex lacinia dapibus faucibus, sapien ipsum euismod massa, at aliquet erat turpis quis diam. className aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</blockquote>

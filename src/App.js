@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage';
 import LandingPage from './pages/LandingPage';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import AllCoursesPage from './pages/AllCoursesPage';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           <Route path="home" element={<Home />} />
           </Route>
           {/* <Navigate from='/' to='/home' /> */}
+        </Routes>
+        <Routes>
+        <Route path='/all-courses' element = {<AllCoursesPage />}></Route>
         </Routes>
       </Router>
     </div>

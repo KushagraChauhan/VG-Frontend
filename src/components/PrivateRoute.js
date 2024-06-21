@@ -12,7 +12,7 @@ const PrivateRoute = () => {
     return true;
   };
 
-  return validateSession() ? <Outlet /> : <Navigate to="/welcome" replace />;
+  return validateSession() ? <Outlet /> : <Navigate to="/" replace />;
 };
 
 export default PrivateRoute;
