@@ -7,7 +7,21 @@
     color: #333;
     margin-bottom: 20px;
   }
+
+  .sticky-card {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 20px; 
+  }
+  .card-text {
+    font-size: 1rem;
+    color: #202020;
+  }
   
+  .card-heading {   
+    color: #000;
+  }
+
   .course-image {
     width: 100%;
     max-width: 500px;
@@ -22,6 +36,10 @@
   .course-info strong {
     display: block;
     margin-bottom: 5px;
+  }
+
+  h4 {
+    color: #da0909;
   }
   
   .course-sections {
