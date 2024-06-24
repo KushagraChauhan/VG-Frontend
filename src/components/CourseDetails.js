@@ -14,6 +14,9 @@ const CourseDetails = ( {course} ) => {
     const email = localStorage.getItem('email');
 
     const checkEnrollmentStatus = async () => {
+        if(!token){
+            return;
+        }
         try {
             const response = await axios.get(`http://127.0.0.1:8000/api/v1/check-enroll`, {
                 params: { user_email: email , course_id: id},
@@ -53,9 +56,7 @@ const CourseDetails = ( {course} ) => {
                 setEnrollmentStatus("You have successfully enrolled in the course!! Thanks");
                 setIsEnrolled(true);
             }
-            // else if (response.status == 401){
-            //     setEnrollmentStatus("Please Login First!! Thanks");
-            // }
+            
         }
         catch(error){
             setEnrollmentStatus("Sorry, there was an error enrolling in the course. Please try again later")
@@ -114,7 +115,8 @@ const CourseDetails = ( {course} ) => {
           <div className="col-md-8">
               <h1 className="display-4">{course.title}</h1>
               {/* <img src={course.preview_image} className="img-fluid rounded mb-4" alt={course.title} />    */}
-              <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />        
+              <VideoJS options={videoJsOptions} onReady={handlePlayerReady} /> 
+              <br></br>       
               <div className="mb-4">
                   {formattedText(text)}
               </div>
@@ -141,16 +143,16 @@ const CourseDetails = ( {course} ) => {
       <div className="row">
           <div className="col-12">
               <h2>Sections</h2>
-              <ul className="list-group">
+              <ul className="list-group list-group-light">
                   {course.sections.map((section, index) => (
-                      <li key={index} className="list-group-item">
-                          <h5>{section.heading}</h5>
+                      <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                          <a href={section.videos.length > 0 ? section.videos[0].url : "#"} className='fw-bold'>{section.heading}</a>
                           <p className="text-muted">Duration: {section.duration} minutes</p>
-                          <ul className="list-unstyled">
+                          {/* <ul className="list-unstyled">
                               {section.videos.map((video, vIndex) => (
-                                  <li key={vIndex}>{video.title} - {video.duration} minutes</li>
+                                  <li key={vIndex}>{video.url}</li>
                               ))}
-                          </ul>
+                          </ul> */}
                       </li>
                   ))}
               </ul>

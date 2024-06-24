@@ -21,6 +21,17 @@ export const VideoJS = (props) => {
       const player = playerRef.current = videojs(videoElement, options, () => {
         videojs.log('player is ready');
         onReady && onReady(player);
+        
+        // Load the saved time from localStorage
+        const savedTime = localStorage.getItem(`video-${options.sources[0].src}`);
+        if (savedTime) {
+          player.currentTime(savedTime);
+        }
+        // Save the current time to localStorage on timeupdate
+        player.on('timeupdate', () => {
+          localStorage.setItem(`video-${options.sources[0].src}`, player.currentTime());
+        });
+
       });
 
     // You could update an existing player in the `else` block here
