@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import VideoJS from './VideoJS';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/CourseDetails.css';
@@ -146,7 +146,9 @@ const CourseDetails = ( {course} ) => {
               <ul className="list-group list-group-light">
                   {course.sections.map((section, index) => (
                       <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                          <a href={section.videos.length > 0 ? section.videos[0].url : "#"} className='fw-bold'>{section.heading}</a>
+                          {/* <a href={section.videos.length > 0 ? section.videos[0].url : "#"} className='fw-bold'>{section.heading}</a> */}
+                          <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold'>{section.heading}</Link>
+
                           <p className="text-muted">Duration: {section.duration} minutes</p>
                           {/* <ul className="list-unstyled">
                               {section.videos.map((video, vIndex) => (
@@ -158,7 +160,7 @@ const CourseDetails = ( {course} ) => {
               </ul>
           </div>
       </div>
-  </div>
+    </div>
   </div>
     );
 }

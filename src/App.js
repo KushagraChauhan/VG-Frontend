@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import AllCoursesPage from './pages/AllCoursesPage';
 import CourseDetailsPage from './pages/CourseDetailsPage';
+import CourseSectionsPage from './pages/CourseSectionPage';
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
           </Route>
           {/* All Courses Page Route */}
           <Route path="courses" element={<AllCoursesPage />} />
-          <Route path="courses/:id" element={<CourseDetailsPage />} />
+          <Route path="courses/:id/*" element={<CourseDetailsPage />} />
+          <Route path="courses/:id/section/:sectionId" element={<CourseSectionsPage />} />
           {/* Redirect to home if path is not recognized */}
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>

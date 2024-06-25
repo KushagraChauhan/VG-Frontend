@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, Route, Routes } from 'react-router-dom';
 import axios from "axios";
 import CourseDetails from "../components/CourseDetails";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "../components/Footer";
 import Header from '../components/Header';
 import LPHeader from '../components/LPHeader';
+import CourseSectionPage from "./CourseSectionPage";
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

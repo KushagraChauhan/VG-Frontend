@@ -1,7 +1,7 @@
 import React from 'react';
-import './css/CoursesSection.css';
+import './css/HomeCourses.css';
 
-const CoursesSection = () => {
+const HomeCourses = () => {
   return (
     <section className="courses-section py-5">
       <div className="container">
@@ -28,5 +28,5 @@ const CoursesSection = () => {
   );
 };
 
-export default CoursesSection;
+export default HomeCourses;
 

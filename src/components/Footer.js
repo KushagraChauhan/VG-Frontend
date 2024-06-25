@@ -21,6 +21,7 @@ const Footer = () => {
           </div>
           <div className="col-md-4">
             <h5>Contact Us</h5>
+            <p>Have more topic suggestions?<br></br> Want to discuss with our team? <br></br>Want to join and vibe together? <br></br><strong>Oops! </strong>any mistakes done?</p>
             <p>Email: info@vibegurukul.com</p>
             <p>Phone: +1 234 567 890</p>
           </div>
