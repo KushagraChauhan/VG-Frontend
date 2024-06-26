@@ -25,7 +25,10 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Contact</a>
-            </li>      
+            </li>    
+            <li className="nav-item">
+              <a className="nav-link" href="/profile">Profile</a>
+            </li>     
             <li className="nav-item">
               <Link className="btn btn-primary" to="/" onClick={handleLogout}>Sign Out</Link>
             </li>

@@ -12,6 +12,7 @@ import PublicRoute from './components/PublicRoute';
 import AllCoursesPage from './pages/AllCoursesPage';
 import CourseDetailsPage from './pages/CourseDetailsPage';
 import CourseSectionsPage from './pages/CourseSectionPage';
+import UserProfilePage from './pages/UserProfilePage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           {/* Private Routes */}
           <Route path="/" element={<PrivateRoute />}>
             <Route path="home" element={<Home />} />
+            <Route path="profile" element={<UserProfilePage/>} />
           </Route>
           {/* All Courses Page Route */}
           <Route path="courses" element={<AllCoursesPage />} />
