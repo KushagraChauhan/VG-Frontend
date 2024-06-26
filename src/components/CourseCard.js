@@ -32,7 +32,9 @@ const CourseCard = ({ course }) => {
                     <p className="card-text">{course.description}</p>             
                     {formattedText(text)}
                     <p className="card-text"><strong>Price: {course.price} </strong></p>
-                    <Link to={`/courses/${course._id}`} className="btn btn-primary">View Course</Link>
+                    <div className="go-to-course">
+                      <Link to={`/courses/${course._id}`}>View Course</Link>
+                    </div>
                 </div>
             </div>
         </div>

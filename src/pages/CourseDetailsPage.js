@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "../components/Footer";
 import Header from '../components/Header';
 import LPHeader from '../components/LPHeader';
-import CourseSectionPage from "./CourseSectionPage";
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

@@ -1,28 +1,92 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React ,{ useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import VideoJS from './VideoJS';
+import './css/CourseSections.css';
 
-const CourseSections = ( course ) => {
-    const {sectionId} = useParams();
-    const section = course.sections.find((sec) => sec.id === sectionId);
-    console.log(section);
-    if (!section){
-        return <div> Section Not Found </div>;
+const CourseSections = () => {
+    const { id, sectionId } = useParams();
+    const [course, setCourse] = useState(null);
+    const [videoJsOptions, setVideoJsOptions] = useState(null);
+    const playerRef = React.useRef(null);
+
+    useEffect(() => {
+        const fetchCourse = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/v1/courses/${id}`);
+                setCourse(response.data);
+            } catch (error) {
+                console.error('Error fetching course data:', error);
+            }
+        };
+
+        fetchCourse();
+    }, [id]);
+
+    useEffect(() => {
+        if (course) {
+            const section = course.sections.find(section => section.id === sectionId);
+            if (section) {
+                setVideoJsOptions({
+                    autoplay: false,
+                    controls: true,
+                    responsive: true,
+                    fluid: true,
+                    sources: [{
+                        src: section.videos[0].url,
+                        type: 'video/mp4'
+                    }]
+                });
+            }
+        }
+    }, [course, sectionId]);
+   
+    const token = localStorage.getItem('access_token');
+    const email = localStorage.getItem('email');
+
+    if(!token){
+        return <div className='course-section-container'>Please login first</div>
+    }
+    if (!course) {
+        return <div className='course-section-container'>Loading...</div>;
     }
 
+    const section = course.sections.find(section => section.id === sectionId);
+
+    if (!section) {
+        return <div className='course-section-container'>Section not found</div>;
+    }
+
+    const handlePlayerReady = (player) => {
+        playerRef.current = player;
+    
+        // You can handle player events here, for example:
+        player.on('waiting', () => {
+          console.log('player is waiting');
+        });
+    
+        player.on('dispose', () => {
+          console.log('player will dispose');
+        });
+      };
+
     return (
-        <div className="section-details-container">
-            <h1>{section.heading}</h1>
+        <div className='course-section-container'>
+        <div className="container mt-4">
+            <h1 className='ourse-section-heading'>{section.heading}</h1>
             <p>Duration: {section.duration} minutes</p>
-            <ul className="list-unstyled">
-                {section.videos.map((video, index) => (
-                    <li key={index}>
-                        <a href={video.url} target="_blank" rel="noopener noreferrer">
-                            {video.title} - {video.duration} minutes
-                        </a>
-                    </li>
-                ))}
-            </ul>
+            <div className="section-video-container">
+                {videoJsOptions && <VideoJS options={videoJsOptions} onReady={handlePlayerReady} /> }
+            </div>
+            <div className="section-details">
+                <h4>Section Details</h4>
+                <p>{section.description}</p>
+            </div>
+            <div className="back-to-course">
+                <a href={`/courses/${id}`}>Back to Course Details</a>
+            </div>
         </div>
+    </div>
     );
 }
 

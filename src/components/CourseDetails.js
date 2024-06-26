@@ -129,7 +129,7 @@ const CourseDetails = ( {course} ) => {
                     {!isEnrolled && (
                         <div>                          
                             <h5 className="card-title">Try the course now...</h5>
-                            <button className="btn btn-primary mb-3" onClick={handleEnroll}>
+                            <button className="btn-enroll" onClick={handleEnroll}>
                                 Enroll Now
                             </button>
                         </div>
@@ -146,15 +146,12 @@ const CourseDetails = ( {course} ) => {
               <ul className="list-group list-group-light">
                   {course.sections.map((section, index) => (
                       <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-                          {/* <a href={section.videos.length > 0 ? section.videos[0].url : "#"} className='fw-bold'>{section.heading}</a> */}
+                        {isEnrolled ? (
                           <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold'>{section.heading}</Link>
-
+                        ) : (
+                            <span className='fw-bold'>{section.heading}</span>
+                        )}
                           <p className="text-muted">Duration: {section.duration} minutes</p>
-                          {/* <ul className="list-unstyled">
-                              {section.videos.map((video, vIndex) => (
-                                  <li key={vIndex}>{video.url}</li>
-                              ))}
-                          </ul> */}
                       </li>
                   ))}
               </ul>
