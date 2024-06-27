@@ -30,11 +30,12 @@ function App() {
           <Route path="/" element={<PrivateRoute />}>
             <Route path="home" element={<Home />} />
             <Route path="profile" element={<UserProfilePage/>} />
+            <Route path="courses/:id/section/:sectionId" element={<CourseSectionsPage />} />
           </Route>
           {/* All Courses Page Route */}
           <Route path="courses" element={<AllCoursesPage />} />
           <Route path="courses/:id/*" element={<CourseDetailsPage />} />
-          <Route path="courses/:id/section/:sectionId" element={<CourseSectionsPage />} />
+          
           {/* Redirect to home if path is not recognized */}
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>

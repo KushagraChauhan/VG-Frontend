@@ -103,7 +103,7 @@ const RegisterPage = () => {
                         />
                     </div>                    
                     <div className="form-group form-check">
-                        <input type="checkbox" className="form-check-input" id="rememberMe" />
+                        <input type="checkbox" className="form-check" id="rememberMe" />
                         <label className="form-check-label" htmlFor="rememberMe">Remember Me</label>
                     </div>
                     <button type="submit" className="btn btn-primary" disabled={isLoading}>

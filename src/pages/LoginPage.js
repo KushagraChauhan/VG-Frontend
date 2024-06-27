@@ -86,7 +86,7 @@ const LoginPage = () => {
                     />
             </div>
             <div className="form-group form-check">
-              <input type="checkbox" className="form-check-input" id="rememberMe" />
+              <input type="checkbox" className="form-check" id="rememberMe" />
               <label className="form-check-label" htmlFor="rememberMe">Remember Me</label>
               <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
             </div>
