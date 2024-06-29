@@ -36,7 +36,7 @@ const RegisterPage = () => {
         setErrorMessage('');
 
         try{
-            const response = await axios.post(`http://127.0.0.1:8000/api/v1/register`, {
+            const response = await axios.post(`http://3.106.139.89/api/v1/register`, {
                 email: email,
                 password: password,
                 full_name: fullName

@@ -19,7 +19,7 @@ const CourseDetails = ( {course} ) => {
             return;
         }
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/v1/check-enroll`, {
+            const response = await axios.get(`http://3.106.139.89/api/v1/check-enroll`, {
                 params: { user_email: email , course_id: id},
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -33,7 +33,7 @@ const CourseDetails = ( {course} ) => {
 
     const fetchCourseProgress = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/v1/users/progress/${id}`, {
+            const response = await axios.get(`http://3.106.139.89/api/v1/users/progress/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const progress = response.data.reduce((acc, item) => {
@@ -58,7 +58,7 @@ const CourseDetails = ( {course} ) => {
         }
 
         try{
-            const response = await axios.post(`http://127.0.0.1:8000/api/v1/enroll`, {
+            const response = await axios.post(`http://3.106.139.89/api/v1/enroll`, {
                 course_id: id,
                 user_email: email
             },

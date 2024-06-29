@@ -19,7 +19,7 @@ const LoginOrRegisterPage = () => {
     setErrorMessage('');
 
     try{
-      const response = await axios.get(`http://127.0.0.1:8000/api/v1/check-email?email=${(email)}`)
+      const response = await axios.get(`http://3.106.139.89/api/v1/check-email?email=${(email)}`)
       //console.log(response.data);
       //console.log(response.status);
       if(response.data.email_registered){

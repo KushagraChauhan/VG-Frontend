@@ -28,7 +28,7 @@ const CourseDetailsPage = () => {
     const isAuthenticated = useAuth();
 
     useEffect(() =>{
-        axios.get(`http://127.0.0.1:8000/api/v1/courses/${id}`)
+        axios.get(`http://3.106.139.89/api/v1/courses/${id}`)
             .then(response => {
                 setCourse(response.data);
             })

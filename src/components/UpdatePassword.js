@@ -19,7 +19,7 @@ const UpdatePassword = () =>{
         }
 
         try{
-            const response = await axios.put(`http://127.0.0.1:8000/api/v1/users/me/password`, {
+            const response = await axios.put(`http://3.106.139.89/api/v1/users/me/password`, {
                 token: token,
                 current_password: currentPassword,
                 new_password: newPassword

@@ -31,7 +31,7 @@ const LoginPage = () => {
         setErrorMessage('');
     
         try{
-            const response = await axios.post(`http://127.0.0.1:8000/api/v1/login`, {
+            const response = await axios.post(`http://3.106.139.89/api/v1/login`, {
                 email: email,
                 password: password
             });

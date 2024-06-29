@@ -13,7 +13,7 @@ const CourseSections = () => {
     useEffect(() => {
         const fetchCourse = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/v1/courses/${id}`);
+                const response = await axios.get(`http://3.106.139.89/api/v1/courses/${id}`);
                 setCourse(response.data);
             } catch (error) {
                 console.error('Error fetching course data:', error);
@@ -59,7 +59,7 @@ const CourseSections = () => {
 
     const updateSectionProgress = async (progress) => {
         try{
-            await axios.put(`http://127.0.0.1:8000/api/v1/users/progress/${id}/${sectionId}`,{
+            await axios.put(`http://3.106.139.89/api/v1/users/progress/${id}/${sectionId}`,{
                 progress: progress,
                 token: token
             });
