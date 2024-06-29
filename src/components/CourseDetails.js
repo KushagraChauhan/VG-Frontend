@@ -8,6 +8,7 @@ import './css/CourseDetails.css';
 const CourseDetails = ( {course} ) => {
     const [enrollmentStatus, setEnrollmentStatus] = useState('');
     const [isEnrolled, setIsEnrolled] = useState(false);
+    const [progressData, setProgressData] = useState({});
     const {id} = useParams();
 
     const token = localStorage.getItem('access_token');
@@ -30,10 +31,25 @@ const CourseDetails = ( {course} ) => {
         }
     };
 
+    const fetchCourseProgress = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/v1/users/progress/${id}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const progress = response.data.reduce((acc, item) => {
+                acc[item.section_id] = item.progress;
+                return acc;
+            }, {});
+            setProgressData(progress);
+        } catch (error) {
+            console.error('Error fetching course progress:', error);
+        }
+    };
+
     useEffect(() => {
         checkEnrollmentStatus();
+        fetchCourseProgress();
     }, [id]);
-
 
     const handleEnroll = async () => {
         if (!token) {
@@ -136,9 +152,7 @@ const CourseDetails = ( {course} ) => {
                     )}
                 </div>
             </div>
-            
         </div>
-
       </div>
       <div className="row">
           <div className="col-12">
@@ -152,6 +166,9 @@ const CourseDetails = ( {course} ) => {
                             <span className='fw-bold'>{section.heading}</span>
                         )}
                           <p className="text-muted">Duration: {section.duration} minutes</p>
+                          {isEnrolled && (
+                                        <p>Progress: {progressData[section.id] || 0}%</p>
+                                    )}
                       </li>
                   ))}
               </ul>

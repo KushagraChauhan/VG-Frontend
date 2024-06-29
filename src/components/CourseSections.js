@@ -57,16 +57,29 @@ const CourseSections = () => {
         return <div className='course-section-container'>Section not found</div>;
     }
 
+    const updateSectionProgress = async (progress) => {
+        try{
+            await axios.put(`http://127.0.0.1:8000/api/v1/users/progress/${id}/${sectionId}`,{
+                progress: progress,
+                token: token
+            });
+        }catch(error){
+            console.error('Error Updating Section Progress: ', error)
+        }
+    };
+
     const handlePlayerReady = (player) => {
         playerRef.current = player;
     
-        // You can handle player events here, for example:
-        player.on('waiting', () => {
-          console.log('player is waiting');
+        player.on('pause', () => {
+            const currentTime = player.currentTime();
+            const duration = player.duration();
+            const progress = (currentTime / duration) * 100;
+            updateSectionProgress(progress);
         });
     
-        player.on('dispose', () => {
-          console.log('player will dispose');
+        player.on('ended', () => {
+            updateSectionProgress(100);
         });
       };
 
