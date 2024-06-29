@@ -18,7 +18,7 @@ const UpdateMobile = () =>{
         }
 
         try{
-            const response = await axios.put(`http://3.106.139.89/api/v1/users/me/mobile`, {
+            const response = await axios.put(`https://3.106.139.89/api/v1/users/me/mobile`, {
                 token: token,
                 new_mobile: mobileNumber,
         });

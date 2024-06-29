@@ -36,7 +36,7 @@ const RegisterPage = () => {
         setErrorMessage('');
 
         try{
-            const response = await axios.post(`http://3.106.139.89/api/v1/register`, {
+            const response = await axios.post(`https://3.106.139.89/api/v1/register`, {
                 email: email,
                 password: password,
                 full_name: fullName
@@ -111,7 +111,7 @@ const RegisterPage = () => {
                     </button>
                 </form>
                 <div className="register-image">
-                    <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Register Illustration" />
+                    <img src="httpss://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Register Illustration" />
                 </div>
             </div>
         </div>

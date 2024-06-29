@@ -31,7 +31,7 @@ const LoginPage = () => {
         setErrorMessage('');
     
         try{
-            const response = await axios.post(`http://3.106.139.89/api/v1/login`, {
+            const response = await axios.post(`https://3.106.139.89/api/v1/login`, {
                 email: email,
                 password: password
             });
@@ -95,7 +95,7 @@ const LoginPage = () => {
             </button>
           </form>
           <div className="login-image">
-            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
+            <img src="httpss://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
           </div>
         </div>
       </div>
