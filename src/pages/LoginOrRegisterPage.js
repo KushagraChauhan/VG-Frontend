@@ -19,7 +19,7 @@ const LoginOrRegisterPage = () => {
     setErrorMessage('');
 
     try{
-      const response = await axios.get(`httpss://3.106.139.89/api/v1/check-email?email=${(email)}`)
+      const response = await axios.get(`https://3.106.139.89/api/v1/check-email?email=${(email)}`)
       //console.log(response.data);
       //console.log(response.status);
       if(response.data.email_registered){
@@ -43,7 +43,7 @@ const LoginOrRegisterPage = () => {
           <h1>Login or Create an account</h1>
         </div>
         <button className="btn btn-google">
-          <img src="httpss://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />
+          <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />
           Login with Google
         </button>
         <div className="separator">
@@ -68,7 +68,7 @@ const LoginOrRegisterPage = () => {
           </button>
         </form>
         <div className="login-image">
-          <img src="httpss://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
+          <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
         </div>
       </div>
     </div>
