@@ -95,7 +95,7 @@ const LoginPage = () => {
             </button>
           </form>
           <div className="login-image">
-            <img src="httpss://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
+            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
           </div>
         </div>
       </div>

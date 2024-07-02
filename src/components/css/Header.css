@@ -37,4 +37,16 @@
     /* color: #0056b3;  */
     text-decoration: underline; 
   }
+
+  .btn-cart {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.btn-cart:hover {
+    background-color: #ff3b2f;
+}
   

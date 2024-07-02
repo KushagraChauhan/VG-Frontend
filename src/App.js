@@ -13,6 +13,7 @@ import AllCoursesPage from './pages/AllCoursesPage';
 import CourseDetailsPage from './pages/CourseDetailsPage';
 import CourseSectionsPage from './pages/CourseSectionPage';
 import UserProfilePage from './pages/UserProfilePage';
+import CartPage from './pages/Cartpage';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
           {/* All Courses Page Route */}
           <Route path="courses" element={<AllCoursesPage />} />
           <Route path="courses/:id/*" element={<CourseDetailsPage />} />
-          
+          <Route path="cart" element={<CartPage />} />
           {/* Redirect to home if path is not recognized */}
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>

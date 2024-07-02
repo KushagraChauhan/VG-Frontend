@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/Header.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const handleLogout = () => {
   localStorage.removeItem('access_token');
@@ -28,7 +30,12 @@ const Header = () => {
             </li>    
             <li className="nav-item">
               <a className="nav-link" href="/profile">Profile</a>
-            </li>     
+            </li> 
+            <li className='nav-item'>
+              <Link className="btn btn-cart" to="/cart">
+                <FontAwesomeIcon icon={faShoppingCart} /> Cart
+              </Link>
+            </li>             
             <li className="nav-item">
               <Link className="btn btn-primary" to="/" onClick={handleLogout}>Sign Out</Link>
             </li>

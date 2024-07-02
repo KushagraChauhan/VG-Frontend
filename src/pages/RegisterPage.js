@@ -111,7 +111,7 @@ const RegisterPage = () => {
                     </button>
                 </form>
                 <div className="register-image">
-                    <img src="httpss://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Register Illustration" />
+                    <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Register Illustration" />
                 </div>
             </div>
         </div>
