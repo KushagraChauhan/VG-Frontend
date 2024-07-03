@@ -31,7 +31,7 @@ const UserProfilePage = () => {
                 {showUpdateMobile && <UpdateMobile />}
                 {showUpdatePassword && <UpdatePassword />}
             </div>
-            <Footer />
+            
         </div>
     );
 };
