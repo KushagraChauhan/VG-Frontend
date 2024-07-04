@@ -79,6 +79,27 @@ const CourseDetails = ( {course} ) => {
         }
     }
 
+    const handleAddToCart = async () => {
+        if (!token) {
+            setEnrollmentStatus('Please log in to add the course to your cart.');
+            return;
+        }
+    
+        try {
+            const response = await axios.post(
+                'https://3.106.139.89/api/v1/users/cart/add',
+                { course_id: id, price: course.price },
+                { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
+            );
+            if (response.status === 200) {
+                setEnrollmentStatus('Course added to cart!');
+            }
+        } catch (error) {
+            setEnrollmentStatus('Error adding course to cart. Please try again later.');
+            console.error('Error adding course to cart:', error);
+        }
+    };
+
     const text = [course.description, course.learnings, course.usp];
     const headings = ['Description:', 'Learnings:', 'USP:'];
 
@@ -147,6 +168,9 @@ const CourseDetails = ( {course} ) => {
                             <h5 className="card-title">Try the course now...</h5>
                             <button className="btn-enroll" onClick={handleEnroll}>
                                 Enroll Now
+                            </button>
+                            <button className="btn-add-to-cart" onClick={handleAddToCart}>
+                                Add to Cart
                             </button>
                         </div>
                     )}

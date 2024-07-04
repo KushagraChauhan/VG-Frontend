@@ -83,4 +83,22 @@
  .btn-enroll:hover {
       background-color: #da971a;
   }
+
+  .btn-add-to-cart {
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff6f61;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+    border: none;
+  }
+
+
+ .btn-add-to-cart:hover {
+      background-color: #ff3b2f;
+  }
   

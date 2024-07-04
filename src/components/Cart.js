@@ -46,6 +46,21 @@ const Cart = () => {
             console.error('Error removing item from cart:', error);
         }
     }
+
+    const clearCart = async () => {
+        try{
+            const response = await axios.delete('https://3.106.139.89/api/v1/users/cart/clear', 
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+            if (response.status === 200) {
+                setCartItems([]);
+            }
+        }catch (error) {
+            console.error('Error clearing cart:', error);
+        }
+    }
     if (loading) {
         return <div className="container mt-4">Loading...</div>;
     }
@@ -55,7 +70,11 @@ const Cart = () => {
     }
 
     if (cartItems.length === 0) {
-        return <div className="cart-page container mt-4"><h1>Your cart is empty.</h1></div>;
+        return <div className="cart-page container mt-4"><h1>Your cart is empty.</h1>
+            <div className="go-to-course">
+                <a href="/courses">View Courses</a>
+            </div>
+        </div>;
     }
 
     const calculateTotal = (cartItems) => {
@@ -127,6 +146,7 @@ const Cart = () => {
                         </div>             
                     </div>
                     ))}
+                    
             
     
             <div className="col-xl-4">
@@ -167,6 +187,11 @@ const Cart = () => {
                 
                 </div>
             
+            </div>
+            <div className="col-md-5">                                                                                                           
+                <button className="btn btn-danger" onClick={() => clearCart()}>
+                    Clear Cart
+                </button>                                            
             </div>
         </div>
 
