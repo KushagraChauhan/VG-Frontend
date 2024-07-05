@@ -36,7 +36,7 @@ const RegisterPage = () => {
         setErrorMessage('');
 
         try{
-            const response = await axios.post(`https://3.106.139.89/api/v1/register`, {
+            const response = await axios.post(`https://dev.vibegurukul.in/api/v1/register`, {
                 email: email,
                 password: password,
                 full_name: fullName

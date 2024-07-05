@@ -28,7 +28,7 @@ const CourseDetailsPage = () => {
     const isAuthenticated = useAuth();
 
     useEffect(() =>{
-        axios.get(`https://3.106.139.89/api/v1/courses/${id}`)
+        axios.get(`https://dev.vibegurukul.in/api/v1/courses/${id}`)
             .then(response => {
                 setCourse(response.data);
             })

@@ -14,7 +14,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                const response = await axios.get(`https://3.106.139.89/api/v1/users/cart`, {
+                const response = await axios.get(`https://dev.vibegurukul.in/api/v1/users/cart`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setCartItems(response.data);
@@ -33,7 +33,7 @@ const Cart = () => {
 
     const handleRemoveItem = async (courseId) => {
         try{
-            const response = await axios.post('https://3.106.139.89/api/v1/users/cart/remove', 
+            const response = await axios.post('https://dev.vibegurukul.in/api/v1/users/cart/remove', 
                 { course_id: courseId },
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -49,7 +49,7 @@ const Cart = () => {
 
     const clearCart = async () => {
         try{
-            const response = await axios.delete('https://3.106.139.89/api/v1/users/cart/clear', 
+            const response = await axios.delete('https://dev.vibegurukul.in/api/v1/users/cart/clear', 
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
