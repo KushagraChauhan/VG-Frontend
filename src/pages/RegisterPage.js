@@ -35,6 +35,13 @@ const RegisterPage = () => {
         setIsLoading(true);
         setErrorMessage('');
 
+        // Check password strength
+        if (password.length < 8) {
+            setErrorMessage('Password must be at least 8 characters long.');
+            setIsLoading(false);
+            return;
+        }
+
         try{
             const response = await axios.post(`https://dev.vibegurukul.in/api/v1/register`, {
                 email: email,
@@ -65,7 +72,7 @@ const RegisterPage = () => {
             <div className="register-container">
                 <div className="register-header">
                     <h1>Join Us Now</h1>
-                    <p>hey There,👋</p>
+                    <p>Hey There,👋</p>
                 </div>
                 {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <form onSubmit={handleSubmit}>
