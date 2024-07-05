@@ -18,7 +18,7 @@ const HomeCourses = () => {
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
-            <a href="#" className="btn btn-primary">
+            <a href="/courses" className="btn btn-primary">
               Learn More
             </a>
           </div>
