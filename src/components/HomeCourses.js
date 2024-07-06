@@ -16,7 +16,7 @@ const HomeCourses = () => {
           <div className="col-md-6">
             <h3>Watch our Courses</h3>
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Vibe Gurukul welcomes all seekers of knowledge and we promise to enhance your thinking from the day you take our courses.
             </p>
             <a href="/courses" className="btn btn-primary">
               Learn More
