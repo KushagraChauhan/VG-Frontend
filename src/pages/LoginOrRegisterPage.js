@@ -53,17 +53,21 @@ const LoginOrRegisterPage = () => {
   }, []);
   
 
-  const handleCredentialResponse = (response) => {
+  const handleCredentialResponse = async (response) => {
     console.log("Encoded JWT ID token: " + response.credential);
-    // Send the ID token to the backend for verification
-    // axios.post('https://your-backend-api.com/api/auth/google', {
-    //   credential: response.credential
-    // }).then(response => {
-    //   console.log('Login successful:', response);
-    //   // Handle successful login
-    // }).catch(error => {
-    //   console.error('Login failed:', error);
-    // });
+    //Send the ID token to the backend for verification
+    const result = await axios.post('https://dev.vibegurukul.in/api/v1/auth/google', {
+      token: response.credential
+    }).then(result => {
+      console.log('Login successful:', result);
+      if (result.data.token) {
+        localStorage.setItem('access_token', result.data.token);
+        localStorage.setItem('email', response.data.email);
+        navigate(`/home`);
+      }
+    }).catch(error => {
+      console.error('Login failed:', error);
+    });
   };
   return(
       <div className="login-page">
