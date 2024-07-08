@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import './css/LoginOrRegisterPage.css';
@@ -36,16 +36,46 @@ const LoginOrRegisterPage = () => {
       setIsLoading(false);
     }
   };
+
+  
+  
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: '106156762669-v00tgt7jmbpihh2c64id3fk0nqi41vjb.apps.googleusercontent.com',
+      callback: handleCredentialResponse
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById('googleSignInBtn'),
+      { theme: 'outline', size: 'large' }  // customization attributes
+    );
+  }, []);
+  
+
+  const handleCredentialResponse = (response) => {
+    console.log("Encoded JWT ID token: " + response.credential);
+    // Send the ID token to the backend for verification
+    // axios.post('https://your-backend-api.com/api/auth/google', {
+    //   credential: response.credential
+    // }).then(response => {
+    //   console.log('Login successful:', response);
+    //   // Handle successful login
+    // }).catch(error => {
+    //   console.error('Login failed:', error);
+    // });
+  };
   return(
       <div className="login-page">
       <div className="login-container">
         <div className="login-header">
           <h1>Login or Create an account</h1>
         </div>
-        <button className="btn btn-google">
+        <button className="btn btn-google" id="googleSignInBtn">
           <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />
           Login with Google
         </button>
+        
         <div className="separator">
           <span>or Login with Email</span>
         </div>
