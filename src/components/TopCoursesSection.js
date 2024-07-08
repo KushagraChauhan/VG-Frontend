@@ -13,7 +13,7 @@ const TopCoursesSection = () => {
         <div className="courses">
           <div className="course-card">
             <div className="image-container">
-              <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/Course1.jpg" alt="Course 1" />
+              <img src="https://vibegurukul-frontend.s3.ap-southeast-2.amazonaws.com/itihas-of-bharat.svg" alt="Course 1" />
               <span className="badge">Sale</span>
             </div>
             <div className="course-content">
@@ -35,7 +35,7 @@ const TopCoursesSection = () => {
           </div>
           <div className="course-card">
             <div className="image-container">
-              <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/Course2.jpg" alt="Course 2" />
+              <img src="https://vibegurukul-frontend.s3.ap-southeast-2.amazonaws.com/itihas-of-bharat.svg" alt="Course 2" />
               <span className="badge">Sale</span>
             </div>
             <div className="course-content">
