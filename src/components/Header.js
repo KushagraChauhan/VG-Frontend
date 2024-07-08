@@ -13,7 +13,9 @@ const Header = () => {
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg navbar-light">
-        <a className="navbar-brand" href="/home">Vibe Gurukul</a>
+        <a className="navbar-brand" href="/home">
+          <img src='/vibeindian-logo.png' alt="Vibe Gurukul Logo" className="logo" />Vibe Gurukul
+        </a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
