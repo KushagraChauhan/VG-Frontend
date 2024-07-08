@@ -62,7 +62,7 @@ const LoginOrRegisterPage = () => {
       console.log('Login successful:', result);
       if (result.data.token) {
         localStorage.setItem('access_token', result.data.token);
-        localStorage.setItem('email', response.data.email);
+        localStorage.setItem('email', response.data.user_email);
         navigate(`/home`);
       }
     }).catch(error => {
