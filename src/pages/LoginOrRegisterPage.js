@@ -59,10 +59,10 @@ const LoginOrRegisterPage = () => {
     const result = await axios.post('https://dev.vibegurukul.in/api/v1/auth/google', {
       token: response.credential
     }).then(result => {
-      //console.log('Login successful:', result);
+      console.log('Login successful:', result);
       if (result.data.token) {
         localStorage.setItem('access_token', result.data.token);
-        //localStorage.setItem('email', response.data.user_email);
+        localStorage.setItem('email', result.data.email);
         navigate(`/home`);
       }
     }).catch(error => {
