@@ -1,0 +1,24 @@
+.terms-container {
+    max-width: 800px;
+    margin: 40px auto;
+    margin-top: 80px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .terms-container h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .terms-container h2 {
+    color: #FFA500;
+    margin-top: 30px;
+  }
+  
+  .terms-container p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
