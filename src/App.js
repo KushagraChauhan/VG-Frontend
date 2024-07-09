@@ -14,6 +14,8 @@ import CourseDetailsPage from './pages/CourseDetailsPage';
 import CourseSectionsPage from './pages/CourseSectionPage';
 import UserProfilePage from './pages/UserProfilePage';
 import CartPage from './pages/Cartpage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsAndConditionsPage from './pages/TermsAndConditionsPage';
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
           <Route path="courses" element={<AllCoursesPage />} />
           <Route path="courses/:id/*" element={<CourseDetailsPage />} />
           <Route path="cart" element={<CartPage />} />
+          <Route path="privacypolicy" element={<PrivacyPolicyPage />} />
+          <Route path='termsconditions' element={<TermsAndConditionsPage />} />
           {/* Redirect to home if path is not recognized */}
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>

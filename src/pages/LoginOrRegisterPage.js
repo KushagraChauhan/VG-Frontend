@@ -13,10 +13,23 @@ const LoginOrRegisterPage = () => {
     setEmail(event.target.value);
   };
 
+  const isValidEmail = (email) => {
+    // Basic regex for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
     setErrorMessage('');
+
+    if (!isValidEmail(email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+    
+    setIsLoading(true);
+    
 
     try{
       const response = await axios.get(`https://dev.vibegurukul.in/api/v1/check-email?email=${(email)}`)
@@ -54,12 +67,10 @@ const LoginOrRegisterPage = () => {
   
 
   const handleCredentialResponse = async (response) => {
-    //console.log("Encoded JWT ID token: " + response.credential);
     //Send the ID token to the backend for verification
     const result = await axios.post('https://dev.vibegurukul.in/api/v1/auth/google', {
       token: response.credential
     }).then(result => {
-      console.log('Login successful:', result);
       if (result.data.token) {
         localStorage.setItem('access_token', result.data.token);
         localStorage.setItem('email', result.data.email);
