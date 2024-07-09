@@ -9,7 +9,7 @@ const AllCourses = () => {
 
     useEffect(() => {
         // Fetch data from the API using Axios
-        axios.get('https://3.106.139.89/api/v1/courses') 
+        axios.get('https://dev.vibegurukul.in/api/v1/courses') 
           .then(response => setCourses(response.data))
           .catch(error => console.error('Error fetching data:', error));
       }, []);

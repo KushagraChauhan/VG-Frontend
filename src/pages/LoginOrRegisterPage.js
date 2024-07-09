@@ -32,7 +32,7 @@ const LoginOrRegisterPage = () => {
     
 
     try{
-      const response = await axios.get(`https://3.106.139.89/api/v1/check-email?email=${(email)}`)
+      const response = await axios.get(`https://dev.vibegurukul.in/api/v1/check-email?email=${(email)}`)
       //console.log(response.data);
       //console.log(response.status);
       if(response.data.email_registered){

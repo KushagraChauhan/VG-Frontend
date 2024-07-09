@@ -14,7 +14,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                const response = await axios.get(`https://3.106.139.89/api/v1/users/cart`, {
+                const response = await axios.get(`https://dev.vibegurukul.in/api/v1/users/cart`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setCartItems(response.data);
@@ -33,7 +33,7 @@ const Cart = () => {
 
     const handleRemoveItem = async (courseId) => {
         try{
-            const response = await axios.post('https://3.106.139.89/api/v1/users/cart/remove', 
+            const response = await axios.post('https://dev.vibegurukul.in/api/v1/users/cart/remove', 
                 { course_id: courseId },
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -49,7 +49,7 @@ const Cart = () => {
 
     const clearCart = async () => {
         try{
-            const response = await axios.delete('https://3.106.139.89/api/v1/users/cart/clear', 
+            const response = await axios.delete('https://dev.vibegurukul.in/api/v1/users/cart/clear', 
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
@@ -93,11 +93,11 @@ const Cart = () => {
             
                                 <div className="d-flex align-items-start border-bottom pb-3">
                                     <div className="me-4">
-                                        <img src="https://www.bootdey.com/image/380x380/008B8B/000000" alt="" className="avatar-lg rounded"></img>
+                                        <img src={item.preview_image} alt="Course-Preview-Image" className="avatar-lg rounded"></img>
                                     </div>
                                     <div className="flex-grow-1 align-self-center overflow-hidden">
                                         <div>
-                                            <h5 className="text-truncate font-size-18">Course name: {item.title}</h5>
+                                            <h5 className="text-truncate font-size-18">{item.course_title}</h5>
                                             <p className="text-muted mb-0">
                                                 <i className="bx bxs-star text-warning"></i>
                                                 <i className="bx bxs-star text-warning"></i>

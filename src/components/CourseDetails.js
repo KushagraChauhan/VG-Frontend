@@ -22,7 +22,7 @@ const CourseDetails = ( {course} ) => {
             return;
         }
         try {
-            const response = await axios.get(`https://3.106.139.89/api/v1/check-enroll`, {
+            const response = await axios.get(`https://dev.vibegurukul.in/api/v1/check-enroll`, {
                 params: { user_email: email , course_id: id},
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -35,8 +35,9 @@ const CourseDetails = ( {course} ) => {
     };
 
     const fetchCourseProgress = async () => {
+        if (!isEnrolled) return;
         try {
-            const response = await axios.get(`https://3.106.139.89/api/v1/users/progress/${id}`, {
+            const response = await axios.get(`https://dev.vibegurukul.in/api/v1/users/progress/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const progress = response.data.reduce((acc, item) => {
@@ -45,14 +46,32 @@ const CourseDetails = ( {course} ) => {
             }, {});
             setProgressData(progress);
         } catch (error) {
-            console.error('Error fetching course progress:', error);
+            if (error.response && error.response.status === 404) {
+                console.log('Course progress not found. User may not have started the course.');
+            } else {
+                console.log('An unexpected error occurred while fetching course progress.');
+            }
         }
     };
 
     useEffect(() => {
         checkEnrollmentStatus();
-        fetchCourseProgress();
+    }, []);
+
+    useEffect(() => {
+        if (isEnrolled) {
+            // Fetch progress initially if the user is enrolled
+            fetchCourseProgress();
+        }
     }, [isEnrolled]);
+
+    const handleSectionClick = async (sectionId) => {
+        if (isEnrolled) {
+            await fetchCourseProgress();
+        } else {
+            setEnrollmentStatus('Please enroll in the course to view progress.');
+        }
+    };
 
     const handleAddToCart = async () => {
         if (!token) {
@@ -62,8 +81,8 @@ const CourseDetails = ( {course} ) => {
     
         try {
             const response = await axios.post(
-                'https://3.106.139.89/api/v1/users/cart/add',
-                { course_id: id, price: course.price },
+                'https://dev.vibegurukul.in/api/v1/users/cart/add',
+                { course_id: id, price: course.price, course_title: course.title, preview_image: course.preview_image },
                 { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
             );
             if (response.status === 200) {
@@ -92,7 +111,7 @@ const CourseDetails = ( {course} ) => {
         }
 
         try{
-            const response = await axios.post(`https://3.106.139.89/api/v1/enroll`, {
+            const response = await axios.post(`https://dev.vibegurukul.in/api/v1/enroll`, {
                 course_id: id,
                 user_email: email
             },
@@ -205,7 +224,7 @@ const CourseDetails = ( {course} ) => {
                   {course.sections.map((section, index) => (
                       <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                         {isEnrolled ? (
-                          <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold'>{section.heading}</Link>
+                          <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold' onClick={() => handleSectionClick(section.id)}>{section.heading}</Link>
                         ) : (
                             <span className='fw-bold'>{section.heading}</span>
                         )}
