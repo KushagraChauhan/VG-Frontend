@@ -93,11 +93,11 @@ const Cart = () => {
             
                                 <div className="d-flex align-items-start border-bottom pb-3">
                                     <div className="me-4">
-                                        <img src="https://www.bootdey.com/image/380x380/008B8B/000000" alt="" className="avatar-lg rounded"></img>
+                                        <img src={item.preview_image} alt="Course-Preview-Image" className="avatar-lg rounded"></img>
                                     </div>
                                     <div className="flex-grow-1 align-self-center overflow-hidden">
                                         <div>
-                                            <h5 className="text-truncate font-size-18">Course name: {item.title}</h5>
+                                            <h5 className="text-truncate font-size-18">{item.course_title}</h5>
                                             <p className="text-muted mb-0">
                                                 <i className="bx bxs-star text-warning"></i>
                                                 <i className="bx bxs-star text-warning"></i>
