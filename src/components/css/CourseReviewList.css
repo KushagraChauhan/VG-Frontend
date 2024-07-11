@@ -1,0 +1,29 @@
+.reviews-list {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+.reviews-list h3 {
+    margin-bottom: 1rem;
+}
+
+.reviews-list .review {
+    margin-bottom: 1rem;
+}
+
+.reviews-list .star-rating {
+    display: flex;
+    gap: 0.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.reviews-list .star {
+    font-size: 1.5rem;
+    color: #d3d3d3;
+}
+
+.reviews-list .star.filled {
+    color: #FFA500;
+}
