@@ -16,6 +16,8 @@ import UserProfilePage from './pages/UserProfilePage';
 import CartPage from './pages/Cartpage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsAndConditionsPage from './pages/TermsAndConditionsPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route path="welcome" element={<LoginOrRegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path='forgot-password' element={<ForgotPasswordPage />} />
+            <Route path='reset-password' element={<ResetPasswordPage />} />
           </Route>
           {/* Private Routes */}
           <Route path="/" element={<PrivateRoute />}>
