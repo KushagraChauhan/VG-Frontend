@@ -3,16 +3,24 @@ import CourseCard from "./CourseCard";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/AllCourses.css';
+import LoadingSpinner from "./Loading";
 
 const AllCourses = () => {
-    const [courses, setCourses] = useState([]);
+    const [courses, setCourses] = useState([]); 
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch data from the API using Axios
-        axios.get('https://dev.vibegurukul.in/api/v1/courses') 
-          .then(response => setCourses(response.data))
-          .catch(error => console.error('Error fetching data:', error));
-      }, []);
+        axios.get('https://dev.vibegurukul.in/api/v1/courses')
+            .then(response => {
+                setCourses(response.data);
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                setIsLoading(true); 
+            });
+    }, []);
+    if (isLoading) return <LoadingSpinner />;
 
     return (
         <div className="all-courses">

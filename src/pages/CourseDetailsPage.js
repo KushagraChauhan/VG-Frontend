@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "../components/Footer";
 import Header from '../components/Header';
 import LPHeader from '../components/LPHeader';
+import LoadingSpinner from "../components/Loading";
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -25,19 +26,22 @@ const useAuth = () => {
 const CourseDetailsPage = () => {
     const {id} = useParams();
     const [course, setCourse] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const isAuthenticated = useAuth();
 
     useEffect(() =>{
         axios.get(`https://dev.vibegurukul.in/api/v1/courses/${id}`)
             .then(response => {
                 setCourse(response.data);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error("There was an error fetching the data!!", error);
+                setIsLoading(true);
             });
     }, [id]);
 
-    if (!course) return <p>Loading...</p>;
+    if (isLoading) return <LoadingSpinner />;
 
     return(
         <div>

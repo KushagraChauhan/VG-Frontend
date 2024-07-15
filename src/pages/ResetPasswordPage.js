@@ -29,7 +29,7 @@ const ResetPasswordPage = () => {
         setErrorMessage('');
     
         try{
-            const response = await axios.post(`http://127.0.0.1:8000/api/v1/reset-password`, {
+            const response = await axios.post(`https://dev.vibegurukul.in/api/v1/reset-password`, {
                 token: resetToken,
                 new_password: newPassword
             });
