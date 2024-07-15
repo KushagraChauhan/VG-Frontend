@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import './css/LoginPage.css';
+import LoadingSpinner from "../components/Loading";
 
 const ForgotPasswordPage = () => {
     const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const ForgotPasswordPage = () => {
         setErrorMessage('');
     
         try{
-            const response = await axios.post(`http://127.0.0.1:8000/api/v1/forgot-password`, {
+            const response = await axios.post(`https://dev.vibegurukul.in/api/v1/forgot-password`, {
                 email: email
             });
             if(response.data.detail === "Success"){
@@ -39,11 +40,14 @@ const ForgotPasswordPage = () => {
       };
 
     return(
-        <div className="login-page">
+      <div className="login-page">
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
         <div className="login-container">
           <div className="login-header">
             <h1>Forgot Your Password?</h1>
-            <p>Worry not, just click the button below <br></br> We will handle the rest</p>
+            <p>Worry not, just click the button below <br /> We will handle the rest</p>
           </div>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           <form onSubmit={handleSubmit}>
@@ -57,7 +61,6 @@ const ForgotPasswordPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            
             <button type="submit" className="btn btn-primary" disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Send Reset Email'}
             </button>
@@ -66,8 +69,9 @@ const ForgotPasswordPage = () => {
             <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
           </div>
         </div>
-      </div>
-    );
+      )}
+    </div>
+  );
 }
 
 export default ForgotPasswordPage;
