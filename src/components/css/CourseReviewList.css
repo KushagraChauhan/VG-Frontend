@@ -27,3 +27,31 @@
 .reviews-list .star.filled {
     color: #FFA500;
 }
+
+
+.reviews-list .rating-counts {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.reviews-list .review {
+    margin-bottom: 1rem;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.reviews-list .average-rating {
+    margin-bottom: 1.5rem;
+    gap: 0.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.l-bg-orange-dark {
+    background: linear-gradient(to right,#fadbad, #FFA500) !important;
+    color: #fff;
+}
+

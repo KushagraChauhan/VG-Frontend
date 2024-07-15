@@ -81,41 +81,41 @@ const LoginOrRegisterPage = () => {
     });
   };
   return(
-      <div className="login-page">
-      <div className="login-container">
-        <div className="login-header">
-          <h1>Login or Create an account</h1>
-        </div>
-        <button className="btn btn-google" id="googleSignInBtn">
-          <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />
-          Login with Google
-        </button>
-        
-        <div className="separator">
-          <span>or Login with Email</span>
-        </div>
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Enter your email id"
-              required
-            />
+      <div className="welcome-page">
+        <div className="welcome-container">
+          <div className="welcome-header">
+            <h1>Login or Create an account</h1>
           </div>
-          <button type="submit" className="btn btn-primary" disabled={isLoading}>
-            {isLoading ? 'Loading...' : 'Continue with Email'}
+          <button className="btn btn-google" id="googleSignInBtn">
+            <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />
+            Login with Google
           </button>
-        </form>
-        <div className="login-image">
-          <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
+          
+          <div className="separator">
+            <span>or Login with Email</span>
+          </div>
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Enter your email id"
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary" disabled={isLoading}>
+              {isLoading ? 'Loading...' : 'Continue with Email'}
+            </button>
+          </form>
+          <div className="login-image">
+            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
+          </div>
         </div>
-      </div>
     </div>
   );
 };
