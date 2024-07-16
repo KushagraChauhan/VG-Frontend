@@ -49,14 +49,14 @@ const ReviewsList = ({ courseId }) => {
                     </div>
                 </div>
             </div> */}
-            <div class="col-xl-12 col-lg-6">
-                <div class="card l-bg-orange-dark">
-                    <div class="card-rating-3 p-4">
-                        <div class="mb-4">
-                            <h5 class="card-title mb-0">Average Rating: {averageRating.toFixed(1)}</h5>
+            <div className="col-xl-12 col-lg-6">
+                <div className="card l-bg-orange-dark">
+                    <div className="card-rating-3 p-4">
+                        <div className="mb-4">
+                            <h5 className="card-title mb-0">Average Rating: {averageRating.toFixed(1)}</h5>
                         </div>
-                        <div class="row align-items-center mb-2 d-flex">
-                            <div class="col-8">
+                        <div className="row align-items-center mb-2 d-flex">
+                            <div className="col-8">
                                 <div className="star-rating-average mb-3">
                                     {renderStars(Math.round(averageRating))}
                                 </div>
@@ -67,10 +67,10 @@ const ReviewsList = ({ courseId }) => {
             </div>
             {reviews.length > 0 ? (
                 reviews.map((review, index) => (
-                    <div class="col-xl-12 col-lg-6">
+                    <div className="col-xl-12 col-lg-6">
                         <div key={index} className="card mb-3">
                             <div className="card-body">
-                            <div class="row align-items-center mb-2 d-flex">
+                            <div className="row align-items-center mb-2 d-flex">
                                 <div className="text-center mb-2">
                                     {renderStars(review.rating)}
                                 </div>                               
