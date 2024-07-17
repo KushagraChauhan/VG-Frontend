@@ -9,7 +9,7 @@
   .welcome-container {
     background-color: #fff;
     height: auto;
-    /* margin-top: 20px; */
+    margin-top: 80px;
     max-height: fit-content;
     padding: 20px 40px;
     border-radius: 8px;
@@ -88,3 +88,5 @@
       margin-right: 0;
     }
   }
+
+  

@@ -3,27 +3,36 @@ import axios from 'axios';
 
 const useFacebookSDK = () => {
     useEffect(() => {
+        // Load the Facebook SDK script
+        if (!document.getElementById('facebook-jssdk')) {
+            const js = document.createElement('script');
+            js.id = 'facebook-jssdk';
+            js.src = 'https://connect.facebook.net/en_US/sdk.js';
+            document.body.appendChild(js);
+        }
+
+        // Initialize the Facebook SDK after it has loaded
         window.fbAsyncInit = function() {
             window.FB.init({
-                appId      : '467520316082991', 
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v20.0'
+                appId: '467520316082991', 
+                cookie: true,
+                xfbml: true,
+                version: 'v20.0'
             });
-            window.FB.AppEvents.logPageView();   
+            window.FB.AppEvents.logPageView();
+            console.log('Facebook SDK initialized');
         };
 
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        if (window.FB) {
+            window.fbAsyncInit();
+        } else {
+            console.log('Loading Facebook SDK...');
+        }
     }, []);
 };
 
 const FacebookLoginButton = ({ onLogin }) => {
+    
     useFacebookSDK();
 
     const handleLogin = () => {
@@ -37,7 +46,7 @@ const FacebookLoginButton = ({ onLogin }) => {
                     console.log('Good to see you, ' + fbResponse.name + '.');
 
                     try {
-                        const apiResponse = await axios.post('http://127.0.0.1:8000/api/v1/auth/fb/', {
+                        const apiResponse = await axios.post('https://dev.vibegurukul.in/api/v1/auth/fb/', {
                             token: accessToken
                         });
 
@@ -58,10 +67,32 @@ const FacebookLoginButton = ({ onLogin }) => {
         }, { scope: 'public_profile,email' });
     };
 
+    const buttonStyle = {
+        backgroundColor: '#4267B2',
+        color: '#fff',
+        border: 'none',
+        padding: '10px 20px',
+        fontSize: '16px',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '20px'
+    };
+
+    const iconStyle = {
+        marginRight: '10px',
+    };
+
+
     return (
-        <button onClick={handleLogin}>
-            Login with Facebook
-        </button>
+        <div id="fb-root">
+            <button style={buttonStyle} onClick={handleLogin}>
+                <i className="fab fa-facebook" style={iconStyle}></i>
+                    Login with Facebook
+            </button>
+        </div>
     );
 };
 
