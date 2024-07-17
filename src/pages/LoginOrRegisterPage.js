@@ -118,11 +118,12 @@ const LoginOrRegisterPage = () => {
             <button type="submit" className="btn btn-primary" disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Continue with Email'}
             </button>
-          </form>
+          </form>    
           <div className="login-image">
             <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
-          </div>
+          </div>    
         </div>
+       
     </div>
   );
 };
