@@ -158,6 +158,7 @@ const CourseDetails = ({ course }) => {
         controls: true,
         responsive: true,
         fluid: true,
+        playbackRates: [0.5, 1, 1.5, 2],
         sources: [{
             src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
             type: 'video/mp4'

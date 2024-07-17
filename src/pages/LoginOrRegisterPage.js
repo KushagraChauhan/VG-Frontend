@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import './css/LoginOrRegisterPage.css';
+import FacebookLoginButton from '../components/FBLoginButton';
 
 const LoginOrRegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -80,6 +81,11 @@ const LoginOrRegisterPage = () => {
       console.error('Login failed:', error);
     });
   };
+
+  const handleFacebookLogin = (userInfo) => {
+    console.log('User Info: ', userInfo);
+    navigate(`/home`);
+  };
   return(
       <div className="welcome-page">
         <div className="welcome-container">
@@ -90,6 +96,7 @@ const LoginOrRegisterPage = () => {
             <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />
             Login with Google
           </button>
+          <FacebookLoginButton onLogin={handleFacebookLogin} />
           
           <div className="separator">
             <span>or Login with Email</span>
@@ -111,11 +118,12 @@ const LoginOrRegisterPage = () => {
             <button type="submit" className="btn btn-primary" disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Continue with Email'}
             </button>
-          </form>
+          </form>    
           <div className="login-image">
             <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
-          </div>
+          </div>    
         </div>
+       
     </div>
   );
 };

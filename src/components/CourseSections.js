@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import VideoJS from './VideoJS';
 import './css/CourseSections.css';
+import LoadingSpinner from "./Loading";
 
 const CourseSections = () => {
     const { id, sectionId } = useParams();
     const [course, setCourse] = useState(null);
     const [videoJsOptions, setVideoJsOptions] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const playerRef = React.useRef(null);
 
     useEffect(() => {
@@ -15,14 +17,16 @@ const CourseSections = () => {
             try {
                 const response = await axios.get(`https://dev.vibegurukul.in/api/v1/courses/${id}`);
                 setCourse(response.data);
+                setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching course data:', error);
+                setIsLoading(false);
             }
         };
 
         fetchCourse();
     }, [id]);
-
+    
     useEffect(() => {
         if (course) {
             const section = course.sections.find(section => section.id === sectionId);
@@ -32,6 +36,7 @@ const CourseSections = () => {
                     controls: true,
                     responsive: true,
                     fluid: true,
+                    playbackRates: [0.5, 1, 1.5, 2],
                     sources: [{
                         src: section.videos[0].url,
                         type: 'video/mp4'
@@ -48,7 +53,7 @@ const CourseSections = () => {
         return <div className='course-section-container'>Please login first</div>
     }
     if (!course) {
-        return <div className='course-section-container'>Loading...</div>;
+        return <LoadingSpinner />;
     }
 
     const section = course.sections.find(section => section.id === sectionId);
@@ -56,6 +61,8 @@ const CourseSections = () => {
     if (!section) {
         return <div className='course-section-container'>Section not found</div>;
     }
+
+    
 
     const updateSectionProgress = async (progress) => {
         try{
