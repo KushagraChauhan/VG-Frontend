@@ -18,6 +18,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsAndConditionsPage from './pages/TermsAndConditionsPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import Payments from './components/Payments';
 
 function App() {
   return (
@@ -38,11 +39,13 @@ function App() {
             <Route path="home" element={<Home />} />
             <Route path="profile" element={<UserProfilePage/>} />
             <Route path="courses/:id/section/:sectionId" element={<CourseSectionsPage />} />
+            <Route path="cart" element={<CartPage />} />
+            <Route path='payments' element={<Payments />} />
           </Route>
           {/* All Courses Page Route */}
           <Route path="courses" element={<AllCoursesPage />} />
           <Route path="courses/:id/*" element={<CourseDetailsPage />} />
-          <Route path="cart" element={<CartPage />} />
+          
           <Route path="privacypolicy" element={<PrivacyPolicyPage />} />
           <Route path='termsconditions' element={<TermsAndConditionsPage />} />
           {/* Redirect to home if path is not recognized */}
