@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/Cart.css';
+import LoadingSpinner from "./Loading";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -64,7 +65,7 @@ const Cart = () => {
     }
 
     if (loading) {
-        return <div className="container mt-4">Loading...</div>;
+        return <LoadingSpinner />;
     }
 
     if (!token || !email) {
@@ -83,13 +84,16 @@ const Cart = () => {
         return cartItems.reduce((total, cartItems) => total + parseFloat(cartItems.price), 0).toFixed(2);
     };
 
+    const courseTitles = cartItems.map(item => item.course_title);
+
     const handleCheckout = async () => {
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/v1/payments/create-order', 
+            const courseIds = cartItems.map(item => item.course_id);
+            const response = await axios.post('https://dev.vibegurukul.in/api/v1/payments/create-order', 
                 {  
                     "amount": calculateTotal(cartItems),
-                    "currency": "INR"
-                   
+                    "currency": "INR",
+                    "course_id": courseIds
                 },
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -100,8 +104,8 @@ const Cart = () => {
                 const { order_id} = response.data;
                 const amount = calculateTotal(cartItems);
                 const currency = "INR";
-                
-                navigate('/payments', { state: { order_id, amount, currency } });
+                const courseTitle = courseTitles;
+                navigate('/payments', { state: { order_id, amount, currency, courseTitle } });
             } else {
                 console.error('Error fetching order details:', response.status);
             }
