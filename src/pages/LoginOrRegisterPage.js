@@ -83,7 +83,7 @@ const LoginOrRegisterPage = () => {
   };
 
   const handleFacebookLogin = (userInfo) => {
-    console.log('User Info: ', userInfo);
+    // console.log('User Info: ', userInfo);
     navigate(`/home`);
   };
   return(

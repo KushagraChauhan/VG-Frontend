@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/Cart.css';
+import LoadingSpinner from "./Loading";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
@@ -32,8 +34,8 @@ const Cart = () => {
     }, [token]);
 
     const handleRemoveItem = async (courseId) => {
-        try{
-            const response = await axios.post('https://dev.vibegurukul.in/api/v1/users/cart/remove', 
+        try {
+            const response = await axios.post('https://dev.vibegurukul.in/api/v1/users/cart/remove',
                 { course_id: courseId },
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -42,14 +44,14 @@ const Cart = () => {
             if (response.status === 200) {
                 setCartItems(cartItems.filter(item => item.course_id !== courseId));
             }
-        }catch (error) {
+        } catch (error) {
             console.error('Error removing item from cart:', error);
         }
     }
 
     const clearCart = async () => {
-        try{
-            const response = await axios.delete('https://dev.vibegurukul.in/api/v1/users/cart/clear', 
+        try {
+            const response = await axios.delete('https://dev.vibegurukul.in/api/v1/users/cart/clear',
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
@@ -57,12 +59,13 @@ const Cart = () => {
             if (response.status === 200) {
                 setCartItems([]);
             }
-        }catch (error) {
+        } catch (error) {
             console.error('Error clearing cart:', error);
         }
     }
+
     if (loading) {
-        return <div className="container mt-4">Loading...</div>;
+        return <LoadingSpinner />;
     }
 
     if (!token || !email) {
@@ -80,121 +83,148 @@ const Cart = () => {
     const calculateTotal = (cartItems) => {
         return cartItems.reduce((total, cartItems) => total + parseFloat(cartItems.price), 0).toFixed(2);
     };
-    
+
+    const courseTitles = cartItems.map(item => item.course_title);
+
+    const handleCheckout = async () => {
+        try {
+            const courseIds = cartItems.map(item => item.course_id);
+            const response = await axios.post('https://dev.vibegurukul.in/api/v1/payments/create-order', 
+                {  
+                    "amount": calculateTotal(cartItems),
+                    "currency": "INR",
+                    "course_id": courseIds
+                },
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+
+            if (response.status === 200) {
+                const { order_id} = response.data;
+                const amount = calculateTotal(cartItems);
+                const currency = "INR";
+                const courseTitle = courseTitles;
+                navigate('/payments', { state: { order_id, amount, currency, courseTitle } });
+            } else {
+                console.error('Error fetching order details:', response.status);
+            }
+        } catch (error) {
+            console.error('Error fetching order details:', error);
+        }
+    };
+
     return (
         <div className='cart-page'>
             <div className="container">
                 <h1>Your cart</h1>
                 <div className="row">
                     {cartItems.map((item) => (
-                    <div className="col-xl-8">
-                        <div className="card border shadow-none">
-                            <div className="card-body">
-            
-                                <div className="d-flex align-items-start border-bottom pb-3">
-                                    <div className="me-4">
-                                        <img src={item.preview_image} alt="Course-Preview-Image" className="avatar-lg rounded"></img>
-                                    </div>
-                                    <div className="flex-grow-1 align-self-center overflow-hidden">
-                                        <div>
-                                            <h5 className="text-truncate font-size-18">{item.course_title}</h5>
-                                            <p className="text-muted mb-0">
-                                                <i className="bx bxs-star text-warning"></i>
-                                                <i className="bx bxs-star text-warning"></i>
-                                                <i className="bx bxs-star text-warning"></i>
-                                                <i className="bx bxs-star text-warning"></i>
-                                                <i className="bx bxs-star-half text-warning"></i>
-                                            </p>
+                        <div className="col-xl-8" key={item.course_id}>
+                            <div className="card border shadow-none">
+                                <div className="card-body">
+
+                                    <div className="d-flex align-items-start border-bottom pb-3">
+                                        <div className="me-4">
+                                            <img src={item.preview_image} alt="Course-Preview-Image" className="avatar-lg rounded"></img>
                                         </div>
-                                    </div>
-                                    <div className="flex-shrink-0 ms-2">
-                                        <ul className="list-inline mb-0 font-size-16">
-                                            <li className="list-inline-item">
-                                                <a href="#" className="text-muted px-1">
-                                                    <i className="mdi mdi-trash-can-outline"></i>
-                                                </a>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <a href="#" className="text-muted px-1">
-                                                    <i className="mdi mdi-heart-outline"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-            
-                                <div>
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <div className="mt-3">
-                                                <p className="text-muted mb-2">Price</p>
-                                                <h5>Rs. {item.price}</h5>
+                                        <div className="flex-grow-1 align-self-center overflow-hidden">
+                                            <div>
+                                                <h5 className="text-truncate font-size-18">{item.course_title}</h5>
+                                                <p className="text-muted mb-0">
+                                                    <i className="bx bxs-star text-warning"></i>
+                                                    <i className="bx bxs-star text-warning"></i>
+                                                    <i className="bx bxs-star text-warning"></i>
+                                                    <i className="bx bxs-star text-warning"></i>
+                                                    <i className="bx bxs-star-half text-warning"></i>
+                                                </p>
                                             </div>
                                         </div>
-                                        <div className="col-md-5">                                            
+                                        <div className="flex-shrink-0 ms-2">
+                                            <ul className="list-inline mb-0 font-size-16">
+                                                <li className="list-inline-item">
+                                                    <a href="#" className="text-muted px-1">
+                                                        <i className="mdi mdi-trash-can-outline"></i>
+                                                    </a>
+                                                </li>
+                                                <li className="list-inline-item">
+                                                    <a href="#" className="text-muted px-1">
+                                                        <i className="mdi mdi-heart-outline"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className="row">
+                                            <div className="col-md-4">
+                                                <div className="mt-3">
+                                                    <p className="text-muted mb-2">Price</p>
+                                                    <h5>Rs. {item.price}</h5>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-5">
                                                 <div className="go-to-course">
                                                     <Link to={`/courses/${item.course_id}`}>View Course</Link>
-                                                </div>                                               
+                                                </div>
                                                 <button className="btn btn-danger" onClick={() => handleRemoveItem(item.course_id)}>
                                                     Remove Item
-                                                </button>                                            
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+
+                    <div className="col-xl-4">
+                        <div className="mt-5 mt-lg-0">
+                            <div className="card border shadow-none">
+                                <div className="card-header bg-transparent border-bottom py-3 px-4">
+                                    <h5 className="font-size-16 mb-0">Order Summary <span className="float-end"></span></h5>
+                                </div>
+                                <div className="card-body p-4 pt-2">
+                                    <div className="table-responsive">
+                                        <table className="table mb-0">
+                                            <tbody>
+                                                <tr className="bg-light">
+                                                    <th>Total :</th>
+                                                    <td className="text-end">
+                                                        <span className="fw-bold">
+                                                            Rs. {calculateTotal(cartItems)}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="row my-4">
+                                        <div className="col-sm-6">
+                                            <a href="/courses" className="btn btn-link text-muted">
+                                                <i className="mdi mdi-arrow-left me-1"></i> Back to courses </a>
+                                        </div>
+                                        <div className="col-sm-6">
+                                            <div className="text-sm-end mt-2 mt-sm-0">
+                                                <button onClick={handleCheckout} className="btn btn-success">
+                                                    <i className="mdi mdi-cart-outline me-1"></i> Checkout 
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-            
                             </div>
-                        </div>             
-                    </div>
-                    ))}
-                    
-            
-    
-            <div className="col-xl-4">
-                <div className="mt-5 mt-lg-0">
-                    <div className="card border shadow-none">
-                        <div className="card-header bg-transparent border-bottom py-3 px-4">
-                            <h5 className="font-size-16 mb-0">Order Summary <span className="float-end"></span></h5>
-                        </div>
-                        <div className="card-body p-4 pt-2">
-                            <div className="table-responsive">
-                                <table className="table mb-0">
-                                    <tbody>
-                                        <tr className="bg-light">
-                                            <th>Total :</th>
-                                            <td className="text-end">
-                                                <span className="fw-bold">
-                                                Rs. {calculateTotal(cartItems)}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="row my-4">
-                                <div className="col-sm-6">
-                                    <a href="/courses" className="btn btn-link text-muted">
-                                        <i className="mdi mdi-arrow-left me-1"></i> Back to courses </a>
-                                </div> 
-                                <div className="col-sm-6">
-                                    <div className="text-sm-end mt-2 mt-sm-0">
-                                        <a href="/" className="btn btn-success">
-                                            <i className="mdi mdi-cart-outline me-1"></i> Checkout </a>
-                                    </div>
-                                </div> 
-                            </div> 
                         </div>
                     </div>
-                
-                </div>
-            
-            </div>
-            <div className="col-md-5">                                                                                                           
-                <button className="btn btn-danger" onClick={() => clearCart()}>
-                    Clear Cart
-                </button>                                            
-            </div>
-        </div>
 
+                    <div className="col-md-5">
+                        <button className="btn btn-danger" onClick={() => clearCart()}>
+                            Clear Cart
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );
