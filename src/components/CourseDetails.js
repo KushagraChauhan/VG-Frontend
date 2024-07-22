@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import VideoJS from './VideoJS';
 import CourseReviewForm from './CourseReviewForm';
 import CourseReviewsList from './CourseReviewsList';
@@ -13,10 +13,11 @@ const CourseDetails = ({ course }) => {
     const [progressData, setProgressData] = useState({});
     const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(false);
-
+    
     const { id } = useParams();
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
+    const navigate = useNavigate();
 
     const checkEnrollmentStatus = async () => {
         if (!token) {
@@ -32,6 +33,23 @@ const CourseDetails = ({ course }) => {
             }
         } catch (error) {
             console.error('Error checking enrollment status:', error);
+        }
+    };
+
+    const checkPaymentStatus = async () => {
+        if (!token) {
+            return;
+        }
+        try {
+            const response = await axios.get(`https://dev.vibegurukul.in/api/v1/payments/check-payment-status`, {
+                params: { course_id: id },
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            if (response.status === 200) {
+                setPaymentStatus(true);
+            }
+        } catch (error) {
+            console.error('Error checking payment status:', error);
         }
     };
 
@@ -57,6 +75,7 @@ const CourseDetails = ({ course }) => {
 
     useEffect(() => {
         checkEnrollmentStatus();
+        checkPaymentStatus();
     }, []);
 
     useEffect(() => {
@@ -96,12 +115,11 @@ const CourseDetails = ({ course }) => {
     };
 
     const handlePayment = async () => {
-        // Add payment logic here. For now, let's simulate a successful payment.
-        console.log('Starting payment process...');
-        setTimeout(() => {
-            setPaymentStatus(true);
-            setEnrollmentStatus("Payment successful. You can now enroll in the course.");
-        }, 2000);
+        if (!token) {
+            setPaymentStatus("Please complete the payment first..");
+            return;
+        }
+        navigate('/cart');
     };
 
     const handleEnroll = async () => {
@@ -122,15 +140,13 @@ const CourseDetails = ({ course }) => {
                 }
             );
             if (response.status === 201) {
-                setEnrollmentStatus("You have successfully enrolled in the course!! Thanks");
+                setEnrollmentStatus("You have successfully enrolled in the course!! You can now view the sections!! Thanks");
                 setIsEnrolled(true);
             }
-
+        } catch (error) {
+            setEnrollmentStatus("Sorry, there was an error enrolling in the course. Please try again later");
         }
-        catch (error) {
-            setEnrollmentStatus("Sorry, there was an error enrolling in the course. Please try again later")
-        }
-    }
+    };
 
     const text = [course.description, course.learnings, course.usp];
     const headings = ['Description:', 'Learnings:', 'USP:'];
@@ -177,14 +193,14 @@ const CourseDetails = ({ course }) => {
             console.log('player will dispose');
         });
     };
-
+    
     return (
         <div className='course-details-container'>
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-md-8">
                         <h1 className="display-4">{course.title}</h1>
-                        {/* <img src={course.preview_image} className="img-fluid rounded mb-4" alt={course.title} />    */}
+                        {/* <img src={course.preview_image} className="img-fluid rounded mb-4" alt={course.title} /> */}
                         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
                         <br></br>
                         <div className="mb-4">
@@ -198,15 +214,19 @@ const CourseDetails = ({ course }) => {
                                 <h4>{enrollmentStatus && <p>{enrollmentStatus}</p>}</h4>
                                 {!isEnrolled && (
                                     <div>
-                                        <h5 className="card-title">Try the course now...</h5>
-                                        {!isAddedToCart ? (
-                                            <button className="btn-add-to-cart" onClick={handleAddToCart}>
-                                                Add to Cart
-                                            </button>
-                                        ) : !paymentStatus ? (
-                                            <button className="btn-payment" onClick={handlePayment}>
-                                                Proceed to Payment
-                                            </button>
+                                        {!paymentStatus ? (
+                                            <div>
+                                                <h5 className="card-title">Try the course now...</h5>
+                                                {!isAddedToCart ? (
+                                                    <button className="btn-add-to-cart" onClick={handleAddToCart}>
+                                                        Add to Cart
+                                                    </button>
+                                                ) : (
+                                                    <button className="btn-payment" onClick={handlePayment}>
+                                                        Proceed to Payment
+                                                    </button>
+                                                )}
+                                            </div>
                                         ) : (
                                             <button className="btn-enroll" onClick={handleEnroll}>
                                                 Enroll Now
