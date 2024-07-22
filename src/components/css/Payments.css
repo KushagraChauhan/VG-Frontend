@@ -23,7 +23,7 @@
 }
 
 .payments-container{
-    background: linear-gradient(to right, #c1c1c1 52%,#ffa500 53%,#ffa500 100%);
+    background: linear-gradient(to right,#fadbad, #FFA500) !important;
     font-family: 'Roboto', sans-serif;
     }
     

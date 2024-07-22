@@ -33,9 +33,9 @@
     color: #fff;
   }
 
-  .nav-link:hover {
-    /* color: #0056b3;  */
-    text-decoration: underline; 
+  .nav-item .nav-link:hover,
+  .nav-item .btn:hover {
+    color: #000 !important;
   }
 
   .btn-cart {

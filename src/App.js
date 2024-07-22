@@ -19,6 +19,7 @@ import TermsAndConditionsPage from './pages/TermsAndConditionsPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import Payments from './components/Payments';
+import AboutUsPage from './pages/AboutUsPage';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           
           <Route path="privacypolicy" element={<PrivacyPolicyPage />} />
           <Route path='termsconditions' element={<TermsAndConditionsPage />} />
+          <Route path='aboutus' element={<AboutUsPage />} />
           {/* Redirect to home if path is not recognized */}
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>

@@ -1,0 +1,48 @@
+.about-us {
+    max-width: 800px;
+    margin: 40px auto;
+    margin-top: 80px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-us h1 {
+    text-align: center;
+    color: #FFA500;
+  }
+  
+  .about-us h3 {
+    text-align: center;
+    align-self: center;
+    color: #FFA500;
+  }
+
+  .about-us h4 {
+    color: #FFA500;
+    margin-top: 30px;
+  }
+  
+  .about-us h5 {
+    color: #FFA500;
+    margin-top: 30px;
+  }
+
+  .about-us h6 {
+    color: #FF6F61;
+    margin-top: 30px;
+  }
+
+  .about-us p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .about-us ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+  
+  .about-us ul li {
+    margin-bottom: 10px;
+  }
