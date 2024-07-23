@@ -53,34 +53,34 @@ const LoginOrRegisterPage = () => {
 
   
   
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id: '106156762669-v00tgt7jmbpihh2c64id3fk0nqi41vjb.apps.googleusercontent.com',
-      callback: handleCredentialResponse
-    });
+  // useEffect(() => {
+  //   /* global google */
+  //   google.accounts.id.initialize({
+  //     client_id: '106156762669-v00tgt7jmbpihh2c64id3fk0nqi41vjb.apps.googleusercontent.com',
+  //     callback: handleCredentialResponse
+  //   });
 
-    google.accounts.id.renderButton(
-      document.getElementById('googleSignInBtn'),
-      { theme: 'outline', size: 'large' }  // customization attributes
-    );
-  }, []);
+  //   google.accounts.id.renderButton(
+  //     document.getElementById('googleSignInBtn'),
+  //     { theme: 'outline', size: 'large' }  // customization attributes
+  //   );
+  // }, []);
   
 
-  const handleCredentialResponse = async (response) => {
-    //Send the ID token to the backend for verification
-    const result = await axios.post('https://dev.vibegurukul.in/api/v1/auth/google', {
-      token: response.credential
-    }).then(result => {
-      if (result.data.token) {
-        localStorage.setItem('access_token', result.data.token);
-        localStorage.setItem('email', result.data.email);
-        navigate(`/home`);
-      }
-    }).catch(error => {
-      console.error('Login failed:', error);
-    });
-  };
+  // const handleCredentialResponse = async (response) => {
+  //   //Send the ID token to the backend for verification
+  //   const result = await axios.post('https://dev.vibegurukul.in/api/v1/auth/google', {
+  //     token: response.credential
+  //   }).then(result => {
+  //     if (result.data.token) {
+  //       localStorage.setItem('access_token', result.data.token);
+  //       localStorage.setItem('email', result.data.email);
+  //       navigate(`/home`);
+  //     }
+  //   }).catch(error => {
+  //     console.error('Login failed:', error);
+  //   });
+  // };
 
   const handleFacebookLogin = (userInfo) => {
     // console.log('User Info: ', userInfo);
@@ -90,14 +90,9 @@ const LoginOrRegisterPage = () => {
       <div className="welcome-page">
         <div className="welcome-container">
           <div className="welcome-header">
-            <h1>Login or Create an account</h1>
+            <h4>Welcome to VIBE GURUKUL</h4>
           </div>
-          <button className="btn btn-google" id="googleSignInBtn">
-            <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google logo" />
-            Login with Google
-          </button>
           <FacebookLoginButton onLogin={handleFacebookLogin} />
-          
           <div className="separator">
             <span>or Login with Email</span>
           </div>
@@ -115,13 +110,11 @@ const LoginOrRegisterPage = () => {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary" disabled={isLoading}>
+            <button type="submit" className="btn btn-outline-dark" disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Continue with Email'}
             </button>
           </form>    
-          <div className="login-image">
-            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
-          </div>    
+ 
         </div>
        
     </div>
