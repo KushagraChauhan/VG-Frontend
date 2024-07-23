@@ -69,6 +69,7 @@ const FacebookLoginButton = ({ onLogin }) => {
 
     const buttonStyle = {
         backgroundColor: '#4267B2',
+        alignSelf: 'center',
         color: '#fff',
         border: 'none',
         padding: '10px 20px',
@@ -88,10 +89,11 @@ const FacebookLoginButton = ({ onLogin }) => {
 
     return (
         <div id="fb-root">
-            <button style={buttonStyle} onClick={handleLogin}>
+            <a data-mdb-ripple-init className="btn btn-primary btn-lg btn-block" style={{backgroundColor: "#3b5998"}} href="#!"
+            role="button" onClick={handleLogin}>
                 <i className="fab fa-facebook" style={iconStyle}></i>
-                    Login with Facebook
-            </button>
+                    Continue with Facebook
+            </a>
         </div>
     );
 };

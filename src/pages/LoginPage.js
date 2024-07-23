@@ -58,7 +58,7 @@ const LoginPage = () => {
         <div className="login-page">
         <div className="login-container">
           <div className="login-header">
-            <h1>Login now</h1>
+            <h4>Login now</h4>
             <p>Hi, Welcome back 👋</p>
           </div>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
@@ -94,9 +94,6 @@ const LoginPage = () => {
               {isLoading ? 'Loading...' : 'Login'}
             </button>
           </form>
-          <div className="login-image">
-            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
-          </div>
         </div>
       </div>
     );
