@@ -1,5 +1,5 @@
 .welcome-page {
-    background-color: #FFA500;
+  background: linear-gradient(to right,#fadbad, #FFA500) !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,7 +12,7 @@
     margin-top: 80px;
     max-height: fit-content;
     padding: 20px 40px;
-    border-radius: 8px;
+    border-radius: 2px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 100%;
@@ -21,6 +21,10 @@
   
   .welcome-header h1 {
     margin-bottom: 20px;
+  }
+
+  .welcome-header h4{
+    color: #ff6f61
   }
   
   .btn-google {
@@ -88,5 +92,7 @@
       margin-right: 0;
     }
   }
+
+  
 
   
