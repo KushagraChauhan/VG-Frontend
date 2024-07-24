@@ -17,8 +17,10 @@ const ResetPasswordPage = () => {
     useEffect(() =>{
         const params = new URLSearchParams(location.search);
         const emailParam = params.get('email');
-        if (emailParam) {
+        const resetToken = params.get('token');
+        if (emailParam, resetToken ) {
             setEmail(emailParam);
+            setResetToken(resetToken);
         }
     }, [location]);
 
@@ -68,20 +70,20 @@ const ResetPasswordPage = () => {
                 value={email}
                 readOnly
               />
-              <div className="form-group">
-                <label htmlFor="">Token</label>
-                <input
-                    type="reset-token"
-                    className="form-control"
-                    id="reset-token"
-                    value={resetToken}
-                    onChange={(e) => setResetToken(e.target.value)}
-                    placeholder="Enter the token received on the email"
-                    required
-                    />
-            </div>
+            {/* <div className="form-group">
+              <label htmlFor="">Token</label>
+              <input
+                  type="reset-token"
+                  className="form-control"
+                  id="reset-token"
+                  value={resetToken}
+                  onChange={(e) => setResetToken(e.target.value)}
+                  placeholder="Enter the token received on the email"
+                  required
+                />
+          </div> */}
             <div className="form-group">
-                <label htmlFor="new-password">Password</label>
+                <label htmlFor="new-password">New Password</label>
                 <input
                     type="new-password"
                     className="form-control"
@@ -92,7 +94,7 @@ const ResetPasswordPage = () => {
                     required
                     />
             </div>
-            </div>
+          </div>
             
             <button type="submit" className="btn btn-primary" disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Reset Password'}
