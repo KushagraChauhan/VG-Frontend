@@ -65,9 +65,6 @@ const ForgotPasswordPage = () => {
               {isLoading ? 'Loading...' : 'Send Reset Email'}
             </button>
           </form>
-          <div className="login-image">
-            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
-          </div>
         </div>
       )}
     </div>

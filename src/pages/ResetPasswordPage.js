@@ -42,7 +42,7 @@ const ResetPasswordPage = () => {
               navigate(`/register?email=${email}`);
             }
           } catch(errorMessage){
-            setErrorMessage('Failed to Send Reset Email. Please try again later.');
+            setErrorMessage('Token expired. Please try again with new token.');
           } finally {
             setIsLoading(false);
           }
@@ -98,10 +98,7 @@ const ResetPasswordPage = () => {
               {isLoading ? 'Loading...' : 'Reset Password'}
             </button>
           </form>
-          <div className="login-image">
-            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
-          </div>
-        </div>
+       </div>
       </div>
     );
 }
