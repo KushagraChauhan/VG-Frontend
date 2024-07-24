@@ -9,6 +9,7 @@ const ForgotPasswordPage = () => {
     const [email, setEmail] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [status, setStatus] = useState('');
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -22,9 +23,9 @@ const ForgotPasswordPage = () => {
             const response = await axios.post(`https://dev.vibegurukul.in/api/v1/forgot-password`, {
                 email: email
             });
-            if(response.data.detail === "Success"){
+            if(response.status === 200){
               console.log("Password Reset Email Sent")
-              navigate(`/reset-password?email=${email}`);
+              setStatus('Please check your email');
             }
             else{
               console.log("Email not found")
@@ -50,6 +51,7 @@ const ForgotPasswordPage = () => {
             <p>Worry not, just click the button below <br /> We will handle the rest</p>
           </div>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
+          {status && <div className="error-message">{status}</div>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="email">Email</label>
@@ -65,9 +67,6 @@ const ForgotPasswordPage = () => {
               {isLoading ? 'Loading...' : 'Send Reset Email'}
             </button>
           </form>
-          <div className="login-image">
-            <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Login Illustration" />
-          </div>
         </div>
       )}
     </div>
