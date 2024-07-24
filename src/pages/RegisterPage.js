@@ -71,7 +71,7 @@ const RegisterPage = () => {
         <div className="register-page">
             <div className="register-container">
                 <div className="register-header">
-                    <h1>Join Us Now</h1>
+                    <h4>Join Us Now</h4>
                     <p>Hey There,👋</p>
                 </div>
                 {errorMessage && <div className="error-message">{errorMessage}</div>}
@@ -117,9 +117,6 @@ const RegisterPage = () => {
                         {isLoading ? 'Loading...' : 'Create an account'}
                     </button>
                 </form>
-                <div className="register-image">
-                    <img src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/form-image.png" alt="Register Illustration" />
-                </div>
             </div>
         </div>
     );

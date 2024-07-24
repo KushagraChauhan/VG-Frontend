@@ -1,5 +1,5 @@
 .login-page {
-    background-color: #FFA500;
+  background: linear-gradient(to right,#fadbad, #FFA500) !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
   .login-container {
     background-color: #fff;
     padding: 20px 40px;
-    border-radius: 8px;
+    border-radius: 2px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 100%;
@@ -18,6 +18,9 @@
   
   .login-header h1 {
     margin-bottom: 20px;
+  }
+  .login-header h4{
+    color: #ff6f61
   }
   
   .btn-google {
