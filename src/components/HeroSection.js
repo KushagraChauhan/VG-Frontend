@@ -1,12 +1,11 @@
 import React from "react";
 import './css/HeroSection.css';
-import 'animate.css';
 
 const HeroSection = () => {
     return(
         <section className="hero-section">
             <div className="container">
-                <h1 class="animate__animated animate__pulse">Come Learn With Us</h1>
+                <h1>Come Learn With Us</h1>
                 <p>Delve into the unkowns of Sanatan With Us</p>
                 <div className="hero-buttons">
                     <a className="btn btn-outline-primary" href="/courses">Learn More</a>
