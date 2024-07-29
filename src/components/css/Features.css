@@ -18,10 +18,52 @@
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .4rem;
     box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    transform: translateY(50px);
+    animation: cardFadeIn 0.8s ease-in-out forwards;
 }
 .card-body {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
+}
+
+.card:hover{
+    transform:scale(1.05);
+    box-shadow:10px 10px 10px #888888;
+    animation: changefontcolor 3s ease-in-out infinite;
+  }
+
+  .card:hover img{
+    animation: changeImageColor 2s infinite alternate;
+  }
+
+.card:hover img.bharat {
+    filter: brightness(0) saturate(100%) invert(64%) sepia(35%) saturate(641%) hue-rotate(4deg) brightness(103%) contrast(102%);
+}
+
+
+@keyframes cardFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes changefontcolor {
+    0%{
+      color:black;
+    }
+    50%{
+      color:#ffa500;
+    }
+    100%{
+      color:#ff6f61;
+    }
+  }
+
+  @keyframes changeImageColor {
+    0% { filter: grayscale(100%); }
+    50% { filter: sepia(100%); }
+    100% { filter: hue-rotate(180deg); }
 }
   
