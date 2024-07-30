@@ -24,6 +24,38 @@
   margin: 0 10px;
 }
 
+.btn-go-to-course {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.btn-go-to-course:hover {
+  background-color: #ff3b2f;
+  color: black;
+}
+
+.hero-section .welcome-text {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  font-size: 3rem;
+}
+
+.hero-section .long-name {
+  display: block;
+  white-space: normal;
+  word-wrap: break-word;
+  margin-top: 0.5rem; 
+  font-size: 1.5rem;
+}
+
+
 @keyframes fadeInScale {
   0% {
       opacity: 1;
