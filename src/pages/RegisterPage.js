@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import PhoneInput from 'react-phone-input-2';
 import './css/RegisterPage.css';
 
 const RegisterPage = () => {
@@ -10,6 +11,7 @@ const RegisterPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [fullName, setFullName] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -30,6 +32,10 @@ const RegisterPage = () => {
         setPassword(event.target.value);
     };
 
+    const handleMobileChange = (value) =>{
+        setMobileNumber(value);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -46,12 +52,15 @@ const RegisterPage = () => {
             const response = await axios.post(`https://dev.vibegurukul.in/api/v1/register`, {
                 email: email,
                 password: password,
-                full_name: fullName
+                full_name: fullName,
+                mobile_number: mobileNumber
             });
             if(response.data.token_type = 'bearer'){
               console.log("Login Success")
               localStorage.setItem('access_token', response.data.access_token);
               localStorage.setItem('email', response.data.email);
+              localStorage.setItem('full_name', response.data.full_name);
+              localStorage.setItem('mobile_number', mobileNumber);
               navigate(`/home`);
             }
             else{
@@ -97,6 +106,20 @@ const RegisterPage = () => {
                             required
                         />
                     </div>
+                    <div className="form-group">
+                        {/* <label htmlFor="mobile_number">Mobile</label> */}
+                        <PhoneInput
+                            country={'in'}
+                            value={mobileNumber}
+                            onChange={handleMobileChange}
+                            inputClass="form-control"
+                            inputProps={{
+                                name: 'mobile',
+                                required: true                                
+                            }}               
+                            required          
+                        />
+                    </div> 
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input

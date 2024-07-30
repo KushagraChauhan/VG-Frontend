@@ -54,6 +54,7 @@ const FacebookLoginButton = ({ onLogin }) => {
                             onLogin(apiResponse.data);
                             localStorage.setItem('access_token', apiResponse.data.token);
                             localStorage.setItem('email', apiResponse.data.email);
+                            localStorage.setItem('full_name', apiResponse.data.full_name);
                         } else {
                             console.error('Error logging in with Facebook: ', apiResponse);
                         }

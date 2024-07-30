@@ -38,7 +38,8 @@ const LoginPage = () => {
             if(response.data.token_type = 'bearer'){
               console.log("Login Success")
               localStorage.setItem('access_token', response.data.access_token);
-              localStorage.setItem('email', response.data.email)
+              localStorage.setItem('email', response.data.email);
+              localStorage.setItem('full_name', response.data.full_name);
               navigate(`/home`);
             }
             else{
