@@ -11,6 +11,7 @@ const UpdateMobile = () =>{
 
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
+    const mobile_number = localStorage.getItem('mobile_number')
 
     const handleUpdateMobile = async(e) => {
         e.preventDefault();
@@ -28,6 +29,7 @@ const UpdateMobile = () =>{
         if (response.status === 200) {
             setMessage('Mobile Number updated successfully!');
             setIsLoading(false);
+            localStorage.setItem('mobile_number', mobileNumber);
             setError('');
         }
         }catch(error){
@@ -43,6 +45,13 @@ const UpdateMobile = () =>{
         <div className="user-profile-container">
             <h3>Update Mobile Number</h3>
             <p>Email: {email}</p>
+            {
+                mobile_number ? (
+                <p>Current Mobile: {mobile_number}</p>
+                ) : (
+                    <p> Mobile number not present</p>
+                )
+            }
             {message && <p className="success-message">{message}</p>}
             {error && <p className="error-message">{error}</p>}
             {isLoading ? <LoadingSpinner /> : (
@@ -57,7 +66,7 @@ const UpdateMobile = () =>{
                         required
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Update Mobile</button>
+                <button type="submit" className="btn btn-outline-primary">Update Mobile</button>
             </form>
             )}
         </div>

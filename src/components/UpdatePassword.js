@@ -66,7 +66,7 @@ const UpdatePassword = () =>{
                         required
                     />
                 </div>           
-                <button type="submit" className="btn btn-primary">Update Password</button>
+                <button type="submit" className="btn btn-outline-primary">Update Password</button>
             </form>
             )}
         </div>
