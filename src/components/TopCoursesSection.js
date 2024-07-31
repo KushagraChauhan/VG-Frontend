@@ -1,16 +1,33 @@
-import React from 'react';
-//import TopCourses from './TopCourses';
+import React, {useEffect} from 'react';
 import './css/TopCoursesSection.css';
+import './css/ScrollAnimation.css';
 
 const TopCoursesSection = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.scroll-element');
+      elements.forEach((element) => {
+        if (element.getBoundingClientRect().top < window.innerHeight) {
+          element.classList.add('scroll-in-view');
+        } else {
+          element.classList.remove('scroll-in-view');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <section className="top-courses-section">
       <div className="container">
-        <div className="section-header">
+        <div className="section-header scroll-element scroll-slide-up">
           <h2>Make online education accessible</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
-        <div className="courses">
+        <div className="courses scroll-element scroll-slide-up">
           <div className="course-card">
             <div className="image-container">
               <img src="https://vibegurukul-frontend.s3.ap-southeast-2.amazonaws.com/itihas-of-bharat.svg" alt="Course 1" />

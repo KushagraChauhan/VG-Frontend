@@ -1,12 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './css/UserTestimonial.css';
+import './css/ScrollAnimation.css';
 
 const UserTestimonials = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.scroll-element');
+      elements.forEach((element) => {
+        if (element.getBoundingClientRect().top < window.innerHeight) {
+          element.classList.add('scroll-in-view');
+        } else {
+          element.classList.remove('scroll-in-view');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     
     <section className="bg-light py-5 py-xl-8">
       <div className="container">
-        <div className="row justify-content-md-center">
+        <div className="row justify-content-md-center  scroll-element scroll-slide-up">
           <div className="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
             <h2 className="fs-6 text-secondary mb-2 text-uppercase text-center">Happy Customers</h2>
             <p className="display-5 mb-4 mb-md-5 text-center">Lorem ipsum dolor sit amet</p>
@@ -15,7 +33,7 @@ const UserTestimonials = () => {
         </div>
       </div>
     
-      <div className="container overflow-hidden">
+      <div className="container overflow-hidden  scroll-element scroll-slide-up">
         <div className="row gy-4 gy-md-0 gx-xxl-5">
           <div className="col-12 col-md-4">
             <div className="card border-0 border-bottom border-primary shadow-sm">
