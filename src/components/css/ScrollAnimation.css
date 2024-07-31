@@ -1,0 +1,21 @@
+.scroll-element {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .scroll-element.scroll-in-view {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .scroll-slide-left {
+    transform: translateX(-50px);
+  }
+  
+  .scroll-slide-right {
+    transform: translateX(50px);
+  }
+  
+  .scroll-slide-up {
+    transform: translateY(50px);
+  }
