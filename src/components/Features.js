@@ -3,7 +3,7 @@ import './css/Features.css';
 
 const Features = () =>{
     return(
-        <section className="py-6 bg-light-primary">
+        <section className="features-section py-6 bg-light-primary">
     <div className="container">
         <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6 aos-init aos-animate" data-aos="fade-up">
             <div className="col my-3">

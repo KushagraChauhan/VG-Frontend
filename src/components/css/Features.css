@@ -7,7 +7,7 @@
 .hover-scale, .hover-scale:hover {
     transition: transform .2s ease-in;
 }
-.card {
+.features-section .card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -21,23 +21,23 @@
     transform: translateY(50px);
     animation: cardFadeIn 0.8s ease-in-out forwards;
 }
-.card-body {
+.features-section .card-body {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
 }
 
-.card:hover{
+.features-section .card:hover{
     transform:scale(1.05);
     box-shadow:10px 10px 10px #888888;
     animation: changefontcolor 3s ease-in-out infinite;
   }
 
-  .card:hover img{
+.features-section .card:hover img{
     animation: changeImageColor 2s infinite alternate;
   }
 
-.card:hover img.bharat {
+  .features-section .card:hover img.bharat {
     filter: brightness(0) saturate(100%) invert(64%) sepia(35%) saturate(641%) hue-rotate(4deg) brightness(103%) contrast(102%);
 }
 
