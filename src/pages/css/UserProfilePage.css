@@ -1,51 +1,44 @@
 .user-profile-container {
-    max-width: auto;
+    max-width: 800px;
+    margin: 40px auto;
     margin-top: 80px;
-    padding-top: 80px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 20px;
     background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .user-profile-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
+    color: #ff6f61;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.user-profile-container p {
+    margin-bottom: 2rem;
+    color: #666;
 }
 
 .btn-update {
-    text-decoration: none;
-    color: #fff;
-    background-color: #FFA500;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin-top: 20px;
-    justify-content: center;
-    margin-bottom: 40px;
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #ffa500;
+    color: white;
     border: none;
-    align-self: center;
-  }
-
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 .btn-update:hover {
     background-color: #da971a;
-  }
+}
+
+.update-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+}
 
 .success-message {
     color: green;
