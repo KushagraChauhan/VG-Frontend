@@ -25,9 +25,9 @@ const Home = () => {
     <div>
       <Header />
       <HeroSection />
-      <Features />
       <HomeCourses />
-      <TopCoursesSection />
+      <Features />    
+      {/* <TopCoursesSection /> */}
       <UserTestimonials />
       <Footer />
     </div>

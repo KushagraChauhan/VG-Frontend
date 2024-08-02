@@ -3,7 +3,6 @@ import UpdateMobile from '../components/UpdateMobile';
 import UpdatePassword from '../components/UpdatePassword';
 import './css/UserProfilePage.css';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -26,6 +25,7 @@ const UserProfilePage = () => {
     const [showUpdateMobile, setShowUpdateMobile] = useState(false);
     const [showUpdatePassword, setShowUpdatePassword] = useState(false);
     const { isAuthenticated, fullName } = useAuth();
+    const [message, setMessage] = useState('');
 
     const handleShowUpdateMobile = () => {
         setShowUpdateMobile(true);
@@ -37,6 +37,10 @@ const UserProfilePage = () => {
         setShowUpdateMobile(false);
     };
 
+    const handleMyCourses = () => {
+        setMessage('Coming soon! \n\n Until then, please go to Courses page and access your courses');
+    }
+
     return (
         <div>
             <Header />
@@ -45,8 +49,11 @@ const UserProfilePage = () => {
                     <>
                         <h3>User Profile</h3>
                         <h2>Hi, {fullName}</h2>
-                        <p>Here, you can update your mobile number, password, and see the courses you are enrolled in.</p>
+                        <p>Here, you can see the courses you are enrolled in.</p>
+                        <button className='btn-go-to-course' onClick={handleMyCourses}>My Courses</button>
+                        {message && <p className="success-message">{message}</p>}
                         <div className="update-section">
+                            <p>Here you can Update your mobile number or password</p>
                             <button className='btn-update' onClick={handleShowUpdateMobile}>Update Mobile Number</button>
                             <br></br>
                             <button className='btn-update' onClick={handleShowUpdatePassword}>Update Password</button>
