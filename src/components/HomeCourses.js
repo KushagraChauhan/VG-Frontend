@@ -9,8 +9,8 @@ const HomeCourses = () => {
         <div className="row align-items-center">
           <div className="col-md-6 mb-4 mb-md-0  animate__animated animate__fadeInUp">
             <img
-              src="https://mytrialbucket-kush.s3.ap-southeast-2.amazonaws.com/SampleCourses.png"
-              alt="Sample Course"
+              src="https://vibegurukul-frontend.s3.ap-southeast-2.amazonaws.com/home-image.jpeg"
+              alt="Home Image"
               className="img-fluid rounded"
             />
           </div>
