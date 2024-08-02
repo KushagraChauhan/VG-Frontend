@@ -41,6 +41,9 @@
     filter: brightness(0) saturate(100%) invert(64%) sepia(35%) saturate(641%) hue-rotate(4deg) brightness(103%) contrast(102%);
 }
 
+.features-section .h3{
+  text-align: center;
+}
 
 @keyframes cardFadeIn {
     to {
