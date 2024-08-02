@@ -12,7 +12,7 @@ const Footer = () => {
               <li><a href="/privacypolicy">Privacy Policy</a></li>
               <li><a href="/termsconditions">Terms and Conditions</a></li>
             </ul>
-            <p>© 2024 Vibe Indian. All rights reserved.</p>
+            <p style={{color:'#ffa500'}}>© 2024 Vibe Indian. All rights reserved.</p>
           </div>
           <div className="col-md-4">
             <h5>Quick Links</h5>
@@ -26,7 +26,7 @@ const Footer = () => {
           <div className="col-md-4">
             <h5>Contact Us</h5>
             <p>Have more topic suggestions?<br></br> Want to discuss with our team? <br></br>Want to join and vibe together? <br></br><strong>Oops! </strong>any mistakes done?</p>
-            <p>Email: contact@vibeindian.in</p>
+            <p style={{color:'#ffa500'}}>Email: contact@vibeindian.in</p>
             {/* <p>Phone: +1 234 567 890</p> */}
           </div>
         </div>
