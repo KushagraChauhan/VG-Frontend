@@ -25,10 +25,11 @@ const HeroSection = () => {
   return (
     <section className="hero-section">
       <div className="container">
+        
         {isAuthenticated ? (
           <>
             <h1 className="animate__animated animate__pulse" style={{ textTransform: 'uppercase' }}>
-              Welcome Back! {fullName.length > 20 ? <div className="long-name">{fullName}</div> : fullName}
+            नमस्ते {fullName.length > 20 ? <div className="long-name">{fullName}</div> : fullName}
             </h1>
             <p>Continue your journey into the unknowns of Sanatan with us.</p>
             <div className="hero-buttons">
