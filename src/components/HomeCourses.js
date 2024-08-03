@@ -24,7 +24,7 @@ const HomeCourses = () => {
         <div className="row align-items-center">
           <div className="col-md-6 mb-4 mb-md-0  animate__animated animate__fadeInUp">
             <img
-              src="home-image.jpeg"
+              src="home-image.png"
               alt="Home Image"
               className="img-fluid rounded"
             />
