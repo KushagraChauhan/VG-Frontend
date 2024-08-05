@@ -92,10 +92,10 @@ const FacebookLoginButton = ({ onLogin }) => {
         marginRight: '10px',
     };
 
-    if (isLoading) {
+    if (isloading) {
         return <LoadingSpinner />; 
     }
-    
+
     return (
         <div id="fb-root">
             <a data-mdb-ripple-init className="btn btn-primary btn-lg btn-block" style={{backgroundColor: "#3b5998"}} href="#!"
