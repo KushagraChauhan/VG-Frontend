@@ -3,10 +3,12 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import './css/LoginOrRegisterPage.css';
 import FacebookLoginButton from '../components/FBLoginButton';
+import LoadingSpinner from "../components/Loading";
 
 const LoginOrRegisterPage = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] =  useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -83,9 +85,12 @@ const LoginOrRegisterPage = () => {
   // };
 
   const handleFacebookLogin = (userInfo) => {
-    // console.log('User Info: ', userInfo);
+    setLoading(true);
     navigate(`/home`);
   };
+  
+  if (loading) return <LoadingSpinner />;
+
   return(
       <div className="welcome-page">
         <div className="welcome-container">
