@@ -83,9 +83,9 @@ const LoginOrRegisterPage = () => {
   // };
 
   const handleFacebookLogin = (userInfo) => {
-    // console.log('User Info: ', userInfo);
     navigate(`/home`);
   };
+
   return(
       <div className="welcome-page">
         <div className="welcome-container">

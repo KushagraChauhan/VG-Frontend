@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+import LoadingSpinner from "../components/Loading";
 
 const useFacebookSDK = () => {
     useEffect(() => {
@@ -32,10 +33,11 @@ const useFacebookSDK = () => {
 };
 
 const FacebookLoginButton = ({ onLogin }) => {
-    
+    const [isloading, setIsLoading] =  useState(false);
     useFacebookSDK();
 
     const handleLogin = () => {
+        setIsLoading(true);
         window.FB.login(function(response) {
             if (response.authResponse) {
                 console.log('Welcome! Fetching your information....');
@@ -60,10 +62,13 @@ const FacebookLoginButton = ({ onLogin }) => {
                         }
                     } catch (error) {
                         console.error('Error calling backend API: ', error);
+                    } finally {
+                        setIsLoading(false);
                     }
                 });
             } else {
                 console.log('User cancelled login or did not fully authorize.');
+                setIsLoading(false);
             }
         }, { scope: 'public_profile,email' });
     };
@@ -87,6 +92,9 @@ const FacebookLoginButton = ({ onLogin }) => {
         marginRight: '10px',
     };
 
+    if (isloading) {
+        return <LoadingSpinner />; 
+    }
 
     return (
         <div id="fb-root">
