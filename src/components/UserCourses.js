@@ -14,12 +14,17 @@ const UserCourses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/v1/users/me/courses', {
+        const response = await axios.get('https://dev.vibegurukul.in/api/v1/users/me/courses', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setCourses(response.data);
+        if(response.data.message === 'No enrollments found'){
+          setError('No Enrollments found!! Please go to courses and start your journey...')
+        }
+        else{
+          setCourses(response.data);
+        }
       } catch (err) {
         setError('Failed to fetch courses. Please try again.');
       } finally {
@@ -35,7 +40,7 @@ const UserCourses = () => {
 
   return (
     <div className="user-courses">
-      {courses.length === 0 ? (
+      {error ? (
         <p>You have not enrolled in any courses yet.</p>
       ) : (
         <div className="course-list">
