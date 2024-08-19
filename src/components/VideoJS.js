@@ -33,6 +33,11 @@ export const VideoJS = (props) => {
           localStorage.setItem(videoKey, currentTime);
           // videojs.log(`Saved time: ${currentTime}`);
         });
+
+        //Disable right-click context menu
+        videoElement.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+        });
       }));
     } else {
       // Update the existing player
