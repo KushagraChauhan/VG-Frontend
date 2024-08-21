@@ -39,7 +39,7 @@ const CourseSections = () => {
                     playbackRates: [0.5, 1, 1.5, 2],
                     sources: [{
                         src: section.videos[0].url,
-                        type: 'video/mp4'
+                        type: 'application/x-mpegURL'
                     }]
                 });
             }

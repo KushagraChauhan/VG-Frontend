@@ -176,8 +176,8 @@ const CourseDetails = ({ course }) => {
         fluid: true,
         playbackRates: [0.5, 1, 1.5, 2],
         sources: [{
-            src: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
-            type: 'video/mp4'
+            src: 'https://vibegurukul.s3.ap-south-1.amazonaws.com/Edited+videos+HLS/output.m3u8',
+            type: 'application/x-mpegURL'
         }]
     };
 
