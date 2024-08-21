@@ -84,6 +84,34 @@ const Cart = () => {
         return cartItems.reduce((total, cartItems) => total + parseFloat(cartItems.price), 0).toFixed(2);
     };
 
+    const calculateGST = (cartItems, gstRate = 18) => {
+        const total = calculateTotal(cartItems);
+        const gstDetails = cartItems.map(item => calculateGSTForItem(item.price, gstRate));
+        // Calculate total GST and course price excluding GST
+        const totalGST = gstDetails.reduce((total, details) => total + parseFloat(details.gst), 0).toFixed(2);
+        const totalCoursePriceExGST = gstDetails.reduce((total, details) => total + parseFloat(details.coursePrice), 0).toFixed(2);
+
+        return {
+            total,
+            coursePriceExGST: totalCoursePriceExGST,
+            gst: totalGST,
+        };
+    };
+
+    const calculateGSTForItem = (coursePrice, gstRate = 18) => {
+        const gstDecimal = gstRate / 100;
+        const basePrice = coursePrice / (1 + gstDecimal);
+        const gstAmount = coursePrice - basePrice;
+
+        return {
+            coursePrice: basePrice.toFixed(2),
+            gst: gstAmount.toFixed(2),
+        };
+    }
+
+    const gstDetails = calculateGST(cartItems);
+    const { total, coursePriceExGST, gst } = gstDetails;
+
     const courseTitles = cartItems.map(item => item.course_title);
 
     const handleCheckout = async () => {
@@ -131,29 +159,8 @@ const Cart = () => {
                                         <div className="flex-grow-1 align-self-center overflow-hidden">
                                             <div>
                                                 <h5 className="text-truncate font-size-18">{item.course_title}</h5>
-                                                <p className="text-muted mb-0">
-                                                    <i className="bx bxs-star text-warning"></i>
-                                                    <i className="bx bxs-star text-warning"></i>
-                                                    <i className="bx bxs-star text-warning"></i>
-                                                    <i className="bx bxs-star text-warning"></i>
-                                                    <i className="bx bxs-star-half text-warning"></i>
-                                                </p>
                                             </div>
-                                        </div>
-                                        <div className="flex-shrink-0 ms-2">
-                                            <ul className="list-inline mb-0 font-size-16">
-                                                <li className="list-inline-item">
-                                                    <a href="#" className="text-muted px-1">
-                                                        <i className="mdi mdi-trash-can-outline"></i>
-                                                    </a>
-                                                </li>
-                                                <li className="list-inline-item">
-                                                    <a href="#" className="text-muted px-1">
-                                                        <i className="mdi mdi-heart-outline"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        </div>                                        
                                     </div>
 
                                     <div>
@@ -189,12 +196,28 @@ const Cart = () => {
                                 <div className="card-body p-4 pt-2">
                                     <div className="table-responsive">
                                         <table className="table mb-0">
-                                            <tbody>
-                                                <tr className="bg-light">
-                                                    <th>Total :</th>
+                                            <tbody>                                                
+                                                <tr>
+                                                    <th>Course Price:</th>
                                                     <td className="text-end">
                                                         <span className="fw-bold">
-                                                            Rs. {calculateTotal(cartItems)}
+                                                        ₹ {coursePriceExGST}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>GST @ 18%:</th>
+                                                    <td className="text-end">
+                                                        <span className="fw-bold">
+                                                        ₹ {gst}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr className="bg-light">
+                                                    <th>Total:</th>
+                                                    <td className="text-end">
+                                                        <span className="fw-bold">
+                                                        ₹ {total}
                                                         </span>
                                                     </td>
                                                 </tr>

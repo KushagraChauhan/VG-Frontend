@@ -31,7 +31,7 @@ const CourseCard = ({ course }) => {
                     <h5 className="card-title">{course.title}</h5>
                     <p className="card-text">{course.description}</p>             
                     {formattedText(text)}
-                    <p className="card-text"><strong>Price: {course.price} </strong></p>
+                    <p className="card-text"><strong>Price: ₹ {course.price} </strong></p>
                     <div className="go-to-course">
                       <Link to={`/courses/${course._id}`}>View Course</Link>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UpdateMobile from '../components/UpdateMobile';
 import UpdatePassword from '../components/UpdatePassword';
+import UserCourses from '../components/UserCourses';
 import './css/UserProfilePage.css';
 import Header from '../components/Header';
 
@@ -24,6 +25,7 @@ const useAuth = () => {
 const UserProfilePage = () => {
     const [showUpdateMobile, setShowUpdateMobile] = useState(false);
     const [showUpdatePassword, setShowUpdatePassword] = useState(false);
+    const [showUserCourses, setShowUserCourses] = useState(false);
     const { isAuthenticated, fullName } = useAuth();
     const [message, setMessage] = useState('');
 
@@ -38,7 +40,7 @@ const UserProfilePage = () => {
     };
 
     const handleMyCourses = () => {
-        setMessage('Coming soon! \n\n Until then, please go to Courses page and access your courses');
+        setShowUserCourses(true);
     }
 
     return (
@@ -51,6 +53,7 @@ const UserProfilePage = () => {
                         <h2>Hi, {fullName}</h2>
                         <p>Here, you can see the courses you are enrolled in.</p>
                         <button className='btn-go-to-course' onClick={handleMyCourses}>My Courses</button>
+                        {showUserCourses && <UserCourses />}
                         {message && <p className="success-message">{message}</p>}
                         <div className="update-section">
                             <p>Here you can Update your mobile number or password</p>
