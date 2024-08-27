@@ -27,11 +27,12 @@ const AllCourses = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12">
-                        <a href="/home" className="back-link">&lt; Back</a>
-                        <h1 className="text-center my-4">All Courses</h1>
-                        <h6>All these courses cover facts with all the proofs. Ancient wisdom is brought from the knowledge of our Shastras, which includes proper Mantras, Shlokas, and story references. Bhartiya Itihas only shows the truth with references from Arab historians, Western historians, Eastern historians, and some Indians.
+                        <a href="/home" className="back-link">&lt; Back</a>      
+                        <h1 className="text-center my-4" style={{color: "#FF6F61"}}>All Courses</h1>
+                        <h6 className="text-center my-4">All these courses cover facts with all the proofs. Ancient wisdom is brought from the knowledge of our Shastras, which includes proper Mantras, Shlokas, and story references. Bhartiya Itihas only shows the truth with references from Arab historians, Western historians, Eastern historians, and some Indians.
                             We want the Indians to feel proud in Bharat. Vibe Gurukul welcomes all seekers of knowledge and we promise to enhance your thinking from the day you take our courses.
                         </h6>
+                        
                     </div>
                 </div>
                 <div className="row">
