@@ -1,38 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/Cart.css';
-import LoadingSpinner from "./Loading";
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS for styling
+import './css/Cart.css'; // Importing custom CSS for additional styling
+import LoadingSpinner from "./Loading"; // Importing a loading spinner component to show during data fetch
 
 const Cart = () => {
+    // State to store the cart items fetched from the API
     const [cartItems, setCartItems] = useState([]);
+    
+    // State to manage the loading state of the component
     const [loading, setLoading] = useState(true);
+    
+    // Hook to navigate programmatically
     const navigate = useNavigate();
 
+    // Retrieve token and email from localStorage
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
 
+    // Fetch cart items when the component mounts
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
+                // Fetch cart items from the server using the token for authentication
                 const response = await axios.get(`https://dev.vibegurukul.in/api/v1/users/cart`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
+                // Update the cart items state with the fetched data
                 setCartItems(response.data);
                 setLoading(false);
             } catch (error) {
+                // Handle errors during the fetch operation
                 console.error('Error fetching cart items:', error);
                 setLoading(false);
             }
         };
+
+        // Only fetch cart items if the token is available
         if (token) {
             fetchCartItems();
         } else {
             setLoading(false);
         }
-    }, [token]);
+    }, [token]); // Dependency array includes token to refetch cart items if the token changes
 
+    // Function to handle removing an item from the cart
     const handleRemoveItem = async (courseId) => {
         try {
             const response = await axios.post('https://dev.vibegurukul.in/api/v1/users/cart/remove',
@@ -41,14 +54,17 @@ const Cart = () => {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
+            // If the removal is successful, update the cart items state
             if (response.status === 200) {
                 setCartItems(cartItems.filter(item => item.course_id !== courseId));
             }
         } catch (error) {
+            // Handle errors during the item removal operation
             console.error('Error removing item from cart:', error);
         }
-    }
+    };
 
+    // Function to handle clearing all items from the cart
     const clearCart = async () => {
         try {
             const response = await axios.delete('https://dev.vibegurukul.in/api/v1/users/cart/clear',
@@ -56,34 +72,44 @@ const Cart = () => {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
+            // If the clear operation is successful, empty the cart items state
             if (response.status === 200) {
                 setCartItems([]);
             }
         } catch (error) {
+            // Handle errors during the clear cart operation
             console.error('Error clearing cart:', error);
         }
-    }
+    };
 
+    // Display a loading spinner if data is still being fetched
     if (loading) {
         return <LoadingSpinner />;
     }
 
+    // Prompt the user to log in if no token or email is found
     if (!token || !email) {
         return <div className="container mt-4">Please log in to view your cart.</div>;
     }
 
+    // Display a message if the cart is empty
     if (cartItems.length === 0) {
-        return <div className="cart-page container mt-4"><h1>Your cart is empty.</h1>
-            <div className="go-to-course">
-                <a href="/courses">View Courses</a>
+        return (
+            <div className="cart-page container mt-4">
+                <h1>Your cart is empty.</h1>
+                <div className="go-to-course">
+                    <a href="/courses">View Courses</a>
+                </div>
             </div>
-        </div>;
+        );
     }
 
+    // Function to calculate the total cost of the items in the cart
     const calculateTotal = (cartItems) => {
-        return cartItems.reduce((total, cartItems) => total + parseFloat(cartItems.price), 0).toFixed(2);
+        return cartItems.reduce((total, cartItem) => total + parseFloat(cartItem.price), 0).toFixed(2);
     };
 
+    // Function to calculate GST and total cost including GST
     const calculateGST = (cartItems, gstRate = 18) => {
         const total = calculateTotal(cartItems);
         const gstDetails = cartItems.map(item => calculateGSTForItem(item.price, gstRate));
@@ -98,6 +124,7 @@ const Cart = () => {
         };
     };
 
+    // Function to calculate GST for an individual item
     const calculateGSTForItem = (coursePrice, gstRate = 18) => {
         const gstDecimal = gstRate / 100;
         const basePrice = coursePrice / (1 + gstDecimal);
@@ -107,13 +134,16 @@ const Cart = () => {
             coursePrice: basePrice.toFixed(2),
             gst: gstAmount.toFixed(2),
         };
-    }
+    };
 
+    // Calculate the GST details for the cart items
     const gstDetails = calculateGST(cartItems);
     const { total, coursePriceExGST, gst } = gstDetails;
 
+    // Extract course titles from the cart items
     const courseTitles = cartItems.map(item => item.course_title);
 
+    // Handle the checkout process
     const handleCheckout = async () => {
         try {
             const courseIds = cartItems.map(item => item.course_id);
@@ -128,8 +158,9 @@ const Cart = () => {
                 }
             );
 
+            // If the order creation is successful, navigate to the payments page with the order details
             if (response.status === 200) {
-                const { order_id} = response.data;
+                const { order_id } = response.data;
                 const amount = calculateTotal(cartItems);
                 const currency = "INR";
                 const courseTitle = courseTitles;
@@ -138,20 +169,22 @@ const Cart = () => {
                 console.error('Error fetching order details:', response.status);
             }
         } catch (error) {
+            // Handle errors during the checkout process
             console.error('Error fetching order details:', error);
         }
     };
 
+    // Render the cart component
     return (
         <div className='cart-page'>
             <div className="container">
                 <h1>Your cart</h1>
                 <div className="row">
+                    {/* Map through the cart items and render each item */}
                     {cartItems.map((item) => (
                         <div className="col-xl-8" key={item.course_id}>
                             <div className="card border shadow-none">
                                 <div className="card-body">
-
                                     <div className="d-flex align-items-start border-bottom pb-3">
                                         <div className="me-4">
                                             <img src={item.preview_image} alt="Course-Preview-Image" className="avatar-lg rounded"></img>
@@ -162,7 +195,6 @@ const Cart = () => {
                                             </div>
                                         </div>                                        
                                     </div>
-
                                     <div>
                                         <div className="row">
                                             <div className="col-md-4">
@@ -181,12 +213,10 @@ const Cart = () => {
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     ))}
-
                     <div className="col-xl-4">
                         <div className="mt-5 mt-lg-0">
                             <div className="card border shadow-none">
@@ -227,7 +257,8 @@ const Cart = () => {
                                     <div className="row my-4">
                                         <div className="col-sm-6">
                                             <a href="/courses" className="btn btn-link text-muted">
-                                                <i className="mdi mdi-arrow-left me-1"></i> Back to courses </a>
+                                                <i className="mdi mdi-arrow-left me-1"></i> Back to courses 
+                                            </a>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="text-sm-end mt-2 mt-sm-0">
@@ -241,7 +272,6 @@ const Cart = () => {
                             </div>
                         </div>
                     </div>
-
                     <div className="col-md-5">
                         <button className="btn btn-danger" onClick={() => clearCart()}>
                             Clear Cart
@@ -252,4 +282,5 @@ const Cart = () => {
         </div>
     );
 }
+
 export default Cart;
