@@ -249,7 +249,6 @@ const CourseDetails = ({ course }) => {
                                     ) : (
                                         <span className='fw-bold'>{section.heading}</span>
                                     )}
-                                    <p className="text-muted">Duration: {section.duration} minutes</p>
                                     {isEnrolled && (
                                         <p>Progress: {progressData[section.id] || 0}%</p>
                                     )}
