@@ -41,7 +41,7 @@ const CourseCard = ({ course }) => {
                     {/* Course description */}
                     <p className="card-text">{course.description}</p>
                     {/* Render formatted learnings and USP */}
-                    {formattedText(text)}
+                    {/* {formattedText(text)} */}
                     {/* Course price */}
                     <p className="card-text"><strong>Price: ₹ {course.price} </strong></p>
                     {/* Link to view more details about the course */}
