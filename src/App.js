@@ -20,6 +20,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import Payments from './components/Payments';
 import AboutUsPage from './pages/AboutUsPage';
+import ComingSoon from './pages/ComingSoon';
 
 function App() {
   return (
@@ -28,7 +29,9 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<PublicRoute />}>
-            <Route index element={<LandingPage />} />
+            {/* Change before Soft Launch */}
+            {/* <Route index element={<LandingPage />} /> */}
+            <Route index element={<ComingSoon />} /> 
             <Route path="welcome" element={<LoginOrRegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
