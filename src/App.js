@@ -29,9 +29,7 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<PublicRoute />}>
-            {/* Change before Soft Launch */}
-            {/* <Route index element={<LandingPage />} /> */}
-            <Route index element={<ComingSoon />} /> 
+            <Route index element={<LandingPage />} />
             <Route path="welcome" element={<LoginOrRegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
