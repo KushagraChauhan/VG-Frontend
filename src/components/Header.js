@@ -8,6 +8,7 @@ const handleLogout = () => {
   localStorage.removeItem('access_token');
   localStorage.removeItem('email');
   localStorage.removeItem('full_name');
+  localStorage.removeItem('mobile_number');
 };
 
 const Header = () => {
