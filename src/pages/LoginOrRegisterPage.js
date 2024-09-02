@@ -110,7 +110,7 @@ const LoginOrRegisterPage = () => {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary" disabled={isLoading}>
+            <button type="submit" className="btn btn-outline-dark" disabled={isLoading}>
               {isLoading ? 'Loading...' : 'Continue with Email'}
             </button>
           </form>    
