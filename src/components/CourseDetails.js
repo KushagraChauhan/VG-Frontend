@@ -49,7 +49,11 @@ const CourseDetails = ({ course }) => {
                 setPaymentStatus(true);
             }
         } catch (error) {
-            console.error('Error checking payment status:', error);
+            if (error.response && error.response.status === 400) {
+                return;
+            } else {
+                console.log('An unexpected error occurred while fetching course payments.');
+            }
         }
     };
 
@@ -176,8 +180,8 @@ const CourseDetails = ({ course }) => {
         fluid: true,
         playbackRates: [0.5, 1, 1.5, 2],
         sources: [{
-            src: 'https://vibegurukul.s3.ap-south-1.amazonaws.com/Edited+videos+HLS/output.m3u8',
-            type: 'application/x-mpegURL'
+            src: 'https://vibegurukul.s3.ap-south-1.amazonaws.com/Women-Part-01/Preview-Video-Women-Part-01.mp4',
+            type: 'video/mp4'
         }]
     };
 
@@ -199,13 +203,13 @@ const CourseDetails = ({ course }) => {
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-md-8">
-                        <h1 className="display-4">{course.title}</h1>
+                        <h1>{course.title}</h1>
                         {/* <img src={course.preview_image} className="img-fluid rounded mb-4" alt={course.title} /> */}
                         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
                         <br></br>
-                        <div className="mb-4">
+                        {/* <div className="mb-4">
                             {formattedText(text)}
-                        </div>
+                        </div> */}
                     </div>
                     <div className="col-md-4">
                         <div className="card mb-4 sticky-card">
@@ -258,7 +262,7 @@ const CourseDetails = ({ course }) => {
                     </div>
                 </div>
                 <div className="row mt-4">
-                    <div className="col-12">
+                    <div className="col-16">
                         {isEnrolled && <CourseReviewForm courseId={id} token={token} onReviewSubmitted={fetchCourseProgress} />}
                         <CourseReviewsList courseId={id} />
                     </div>
