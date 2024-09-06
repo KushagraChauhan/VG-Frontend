@@ -7,7 +7,19 @@ import HomeCourses from '../components/HomeCourses';
 import TopCoursesSection from '../components/TopCoursesSection';
 import UserTestimonials from '../components/UserTestimonials'
 
+
+
 const LandingPage = () => {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const referralCode = params.get('referral');
+    
+    if (referralCode) {
+      // Store referral code in localStorage
+      localStorage.setItem('referral_code', referralCode);
+    }
+  }, []);
+
   return (
     <div>
       <LPHeader />

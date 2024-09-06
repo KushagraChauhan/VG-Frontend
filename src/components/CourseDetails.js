@@ -140,7 +140,7 @@ const CourseDetails = ({ course }) => {
                 }
             );
             if (response.status === 201) {
-                setEnrollmentStatus("You have successfully enrolled in the course!! You can now view the sections!! Thanks");
+                setEnrollmentStatus("You have successfully enrolled in the course!! You can now view the episodes!! Thanks");
                 setIsEnrolled(true);
             }
         } catch (error) {
@@ -240,7 +240,7 @@ const CourseDetails = ({ course }) => {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <h2>Sections</h2>
+                        <h2>Episodes</h2>
                         <ul className="list-group list-group-light">
                             {course.sections.map((section, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
