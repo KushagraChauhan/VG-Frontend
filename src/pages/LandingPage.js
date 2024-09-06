@@ -28,7 +28,7 @@ const LandingPage = () => {
       <Features />
       
       {/* <TopCoursesSection /> */}
-      <UserTestimonials />
+      {/* <UserTestimonials /> */}
       <Footer />
     </div>
   );

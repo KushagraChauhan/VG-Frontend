@@ -28,7 +28,7 @@ const Home = () => {
       <HomeCourses />
       <Features />    
       {/* <TopCoursesSection /> */}
-      <UserTestimonials />
+      {/* <UserTestimonials /> */}
       <Footer />
     </div>
   );
