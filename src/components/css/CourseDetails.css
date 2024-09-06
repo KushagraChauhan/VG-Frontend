@@ -2,10 +2,17 @@
     padding-top: 70px;
   }
   
-  .course-title {
+  .course-details-container h1 {
     font-size: 2.5rem;
-    color: #333;
+    color: #ff6f61;
     margin-bottom: 20px;
+  }
+
+  .course-details-container h2 {
+    font-size: 2.5rem;
+    color: #FFA500;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .sticky-card {
@@ -119,4 +126,5 @@
  .btn-payment:hover {
       background-color: #ff3b2f;
   }
+  
   
