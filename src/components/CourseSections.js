@@ -105,12 +105,29 @@ const CourseSections = () => {
       updateSectionProgress(100);
     });
   };
+  const text = [section.description];
+  const formattedText = (textArray) => {      
+    return textArray.map((content) => (
+      <div>
+        <p>
+          {/* Split content by newline and render each line separately */}
+          {content.split('\n').map((line, idx) => (
+            <span key={idx}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </p>
+      </div>
+    ));
+  };
 
   return (
     <div className='course-section-container'>
       <div className="container mt-4">
         <h1 className='course-section-heading'>{section.heading}</h1>
-        <p>Duration: {section.duration} minutes</p>
+        <h4>Episode Description</h4>
+        <p>{section.usp}</p>
         <div className="section-video-container">
           {videoJsOptions && (
             <VideoJS
@@ -123,7 +140,7 @@ const CourseSections = () => {
         </div>
         <div className="section-details">
           <h4>Section Details</h4>
-          <p>{section.description}</p>
+          <p>{formattedText(text)}</p>
         </div>
         <div className="back-to-course">
           <a href={`/courses/${id}`}>Back to Course Details</a>
