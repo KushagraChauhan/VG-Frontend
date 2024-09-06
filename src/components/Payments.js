@@ -48,11 +48,11 @@ const Payments = () => {
   
         // Configure Razorpay options
         const options = {
-            key: "rzp_test_3B2QrsVggR08X2",
+            key: "rzp_live_LF9VnUriAymn9W",
             amount: amount, // Amount in paise
             currency: currency,
             name: "Vibe Indian Pvt. Ltd.",
-            description: "Test Transaction",
+            description: "Course Transaction",
             image: 'vibeindian-logo.png',
             order_id: order_id, // Razorpay order_id
             handler: async function (response) {
