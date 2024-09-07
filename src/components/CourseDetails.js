@@ -13,7 +13,7 @@ const CourseDetails = ({ course }) => {
     const [progressData, setProgressData] = useState({});
     const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(false);
-    
+      
     const { id } = useParams();
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
@@ -180,7 +180,7 @@ const CourseDetails = ({ course }) => {
         fluid: true,
         playbackRates: [0.5, 1, 1.5, 2],
         sources: [{
-            src: "https://vibegurukul.s3.ap-south-1.amazonaws.com/Women-Part-01/Preview/master.m3u8",
+            src: course.videos[0].url,
             type: 'application/x-mpegURL'
         }]
     };
