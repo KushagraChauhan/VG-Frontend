@@ -48,7 +48,7 @@ const Payments = () => {
   
         // Configure Razorpay options
         const options = {
-            key: "rzp_live_LF9VnUriAymn9W",
+            key: "rzp_live_gYA13dbogY6Ai7",
             amount: amount, // Amount in paise
             currency: currency,
             name: "Vibe Indian Pvt. Ltd.",
@@ -91,7 +91,7 @@ const Payments = () => {
                 contact: mobile
             },
             notes: {
-                address: "Razorpay Corporate Office"
+                address: "VIBE INDIAN PRIVATE LIMITED, C/O Shakuntla D, near D.C. Office, Solan, Solan(T), Solan - 173212, Himachal Pradesh"
             },
             theme: {
                 color: "#3399cc"
