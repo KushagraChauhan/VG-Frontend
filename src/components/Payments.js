@@ -91,7 +91,7 @@ const Payments = () => {
                 contact: mobile
             },
             notes: {
-                address: "Razorpay Corporate Office"
+                address: "VIBE INDIAN PRIVATE LIMITED, C/O Shakuntla D, near D.C. Office, Solan, Solan(T), Solan - 173212, Himachal Pradesh"
             },
             theme: {
                 color: "#3399cc"
