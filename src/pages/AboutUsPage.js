@@ -53,9 +53,80 @@ const AboutUsPage = () => {
         <li><b>Ask Questions</b>: Dive deep into Sanatan Hindu Sanskriti and feel free to question – because true understanding comes from inquiry.</li></ul>
         <br></br>
         <h5 className="secondary">Join us at <b>VIBE GURUKUL</b> and embark on a journey to rediscover and embrace the profound wisdom of our ancestors.</h5>
-
-        <h3 className>Our Team</h3>
         </section>
+        <section id="team" className="team section-bg">
+            <div className="container">
+
+              <div className="section-title">
+                <h2 className="team-title">Team</h2>
+              </div>
+
+              <div className="row">
+
+                <div className="col-lg-6">
+                  <div className="member d-flex align-items-start">
+                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
+                    <div className="member-info">
+                      <h4>Avantika Singh</h4>
+                      {/* <span>Chief Executive Officer</span> */}
+                      <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-lg-6 mt-4 mt-lg-0">
+                  <div className="member d-flex align-items-start">
+                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
+                    <div className="member-info">
+                      <h4>Kushagra Chauhan</h4>
+                      {/* <span>Developer</span> */}
+                      <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-lg-6 mt-4">
+                  <div className="member d-flex align-items-start">
+                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
+                    <div className="member-info">
+                      <h4>Naveen Kumar</h4>
+                      {/* <span>CTO</span> */}
+                      <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-lg-6 mt-4" >
+                  <div className="member d-flex align-items-start">
+                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
+                    <div className="member-info">
+                      <h4>Ayush Agrawal</h4>
+                      {/* <span>Accountant</span> */}
+                      <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-lg-6 mt-4">
+                  <div className="member d-flex align-items-start">
+                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
+                    <div className="member-info">
+                      <h4>Shweta Singh Rajpoot</h4>
+                      {/* <span>Accountant</span> */}
+                      <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
+                      
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </section>
         <Footer />
     </div>
     );
