@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/icons/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#FFA500" />
     <meta
       name="description"
       content="Delve into the unknowns of Sanatan with us"
@@ -34,5 +34,11 @@
   <script async defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
 
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script> 
+  
   </body>
 </html>
