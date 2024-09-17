@@ -46,5 +46,19 @@
   ],
   "related_applications": [
   ],
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "lang": "en",
+  "dir": "ltr",
+  "scope_extensions": [
+    {
+      "origin": "https://vibegurukul.com"
+    }
+  ],
+  "handle_links": "preferred",
+  "display_override": ["window-controls-overlay"],
+  "window": {
+    "controls": {
+      "enabled": true
+    }
+  }
 }
