@@ -7,7 +7,8 @@ const FILES_TO_CACHE = [
   '/offline.html',
   '/icons/logo192.png',
   '/icons/logo512.png',
-  '/icons/favicon.ico'
+  '/icons/favicon.ico',
+  '/manifest.json'
 ];
 
 // Install Service Worker and Cache Assets
