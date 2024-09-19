@@ -35,11 +35,14 @@
   <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
 
   <script>
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('sw.js')
-    }
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+    .then(function(registration) {
+      console.log('Service worker registered with scope:', registration.scope);
+    }).catch(function(error) {
+      console.error('Service worker registration failed:', error);
+    });
   </script> 
-  <script src="index.js"></script>
+  <script src="/index.js"></script>
   
   </body>
 </html>
