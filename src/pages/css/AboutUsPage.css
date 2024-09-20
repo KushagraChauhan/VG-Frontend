@@ -46,3 +46,59 @@
   .about-us ul li {
     margin-bottom: 10px;
   }
+
+  .team-title{
+    text-align: center;
+    padding-bottom: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #FFA500;
+  }
+  
+  .team-title::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+  }
+  
+  .team-title::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #FF6F61;
+    bottom: 0;
+    left: calc(50% - 20px);
+  }
+
+.our-team{
+    text-align: center;
+}
+.our-team img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.our-team .title{
+    font-size: 28px;
+    font-style: italic;
+    color: #000;
+    text-transform: capitalize;
+    margin: -7px 0 15px;
+    opacity: 0.8;
+    transform: rotate(-3deg);
+}
+
+@media only screen and (max-width: 990px){
+    .our-team{ margin-bottom: 35px; }
+}

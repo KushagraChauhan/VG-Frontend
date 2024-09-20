@@ -53,8 +53,56 @@ const AboutUsPage = () => {
         <li><b>Ask Questions</b>: Dive deep into Sanatan Hindu Sanskriti and feel free to question – because true understanding comes from inquiry.</li></ul>
         <br></br>
         <h5 className="secondary">Join us at <b>VIBE GURUKUL</b> and embark on a journey to rediscover and embrace the profound wisdom of our ancestors.</h5>
+        </section>
+        <section id="team" className="team section-bg">
+          <h2 className="team-title">
+            Our Team
+          </h2>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                      <img src="team-images/avantika-photo.jpg" alt=""/>
+                      <h3 className="title">Avantika Singh</h3>                        
+                  </div>
+              </div>
+      
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/kushagra-photo.jpg" alt=""/>
+                  <h3 className="title">Kushagra Chauhan</h3>
+                  </div>
+              </div>
 
-        <h3 className>Our Team</h3>
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/naveen-photo.jpg" alt=""/>
+                  <h3 className="title">Naveen Kumar</h3>
+                  </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/ayush-photo.jpg" alt=""/>
+                  <h3 className="title">Ayush Agrawal</h3>
+                  </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/shweta-photo.jpg" alt=""/>
+                  <h3 className="title">Shweta Singh Rajpoot</h3>
+                  </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/samarth-photo.jpg" alt=""/>
+                  <h3 className="title">Samarth Seth</h3>
+                  </div>
+              </div>
+            </div>
+          </div>
         </section>
         <Footer />
     </div>
