@@ -55,78 +55,55 @@ const AboutUsPage = () => {
         <h5 className="secondary">Join us at <b>VIBE GURUKUL</b> and embark on a journey to rediscover and embrace the profound wisdom of our ancestors.</h5>
         </section>
         <section id="team" className="team section-bg">
-            <div className="container">
-
-              <div className="section-title">
-                <h2 className="team-title">Team</h2>
+          <h2 className="team-title">
+            Our Team
+          </h2>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                      <img src="team-images/avantika-photo.jpg" alt=""/>
+                      <h3 className="title">Avantika Singh</h3>                        
+                  </div>
+              </div>
+      
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/kushagra-photo.jpeg" alt=""/>
+                  <h3 className="title">Kushagra Chauhan</h3>
+                  </div>
               </div>
 
-              <div className="row">
-
-                <div className="col-lg-6">
-                  <div className="member d-flex align-items-start">
-                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
-                    <div className="member-info">
-                      <h4>Avantika Singh</h4>
-                      {/* <span>Chief Executive Officer</span> */}
-                      <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-                      
-                    </div>
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/naveen-photo.jpeg" alt=""/>
+                  <h3 className="title">Naveen Kumar</h3>
                   </div>
-                </div>
-
-                <div className="col-lg-6 mt-4 mt-lg-0">
-                  <div className="member d-flex align-items-start">
-                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
-                    <div className="member-info">
-                      <h4>Kushagra Chauhan</h4>
-                      {/* <span>Developer</span> */}
-                      <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                      
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 mt-4">
-                  <div className="member d-flex align-items-start">
-                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
-                    <div className="member-info">
-                      <h4>Naveen Kumar</h4>
-                      {/* <span>CTO</span> */}
-                      <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                      
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 mt-4" >
-                  <div className="member d-flex align-items-start">
-                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
-                    <div className="member-info">
-                      <h4>Ayush Agrawal</h4>
-                      {/* <span>Accountant</span> */}
-                      <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                      
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 mt-4">
-                  <div className="member d-flex align-items-start">
-                    <div className="pic"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" className="img-fluid" alt=""/></div>
-                    <div className="member-info">
-                      <h4>Shweta Singh Rajpoot</h4>
-                      {/* <span>Accountant</span> */}
-                      <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                      
-                    </div>
-                  </div>
-                </div>
-
               </div>
 
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/ayush-photo.jpg" alt=""/>
+                  <h3 className="title">Ayush Agrawal</h3>
+                  </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/shweta-photo.jpeg" alt=""/>
+                  <h3 className="title">Shweta Singh Rajpoot</h3>
+                  </div>
+              </div>
+
+              <div className="col-md-3 col-sm-6">
+                  <div className="our-team">
+                  <img src="team-images/samarth-photo.jpeg" alt=""/>
+                  <h3 className="title">Samarth Seth</h3>
+                  </div>
+              </div>
             </div>
-          </section>
+          </div>
+        </section>
         <Footer />
     </div>
     );
