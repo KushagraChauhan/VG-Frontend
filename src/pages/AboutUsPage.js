@@ -69,14 +69,14 @@ const AboutUsPage = () => {
       
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/kushagra-photo.jpeg" alt=""/>
+                  <img src="team-images/kushagra-photo.jpg" alt=""/>
                   <h3 className="title">Kushagra Chauhan</h3>
                   </div>
               </div>
 
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/naveen-photo.jpeg" alt=""/>
+                  <img src="team-images/naveen-photo.jpg" alt=""/>
                   <h3 className="title">Naveen Kumar</h3>
                   </div>
               </div>
@@ -90,14 +90,14 @@ const AboutUsPage = () => {
 
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/shweta-photo.jpeg" alt=""/>
+                  <img src="team-images/shweta-photo.jpg" alt=""/>
                   <h3 className="title">Shweta Singh Rajpoot</h3>
                   </div>
               </div>
 
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/samarth-photo.jpeg" alt=""/>
+                  <img src="team-images/samarth-photo.jpg" alt=""/>
                   <h3 className="title">Samarth Seth</h3>
                   </div>
               </div>
