@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const LoginForm = () => {
+const LoginForm = ({ onSuccess }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -11,50 +11,53 @@ const LoginForm = () => {
         event.preventDefault();
         setIsLoading(true);
         setErrorMessage('');
-    
-        try{
+
+        try {
             const response = await axios.post(`https://dev.vibegurukul.in/api/v1/login`, {
                 email: email,
                 password: password
             });
-            if(response.data.token_type = 'bearer'){
-              console.log("Login Success")
-              localStorage.setItem('access_token', response.data.access_token);
-              localStorage.setItem('email', response.data.email);
-              localStorage.setItem('full_name', response.data.full_name);
+            if (response.data.token_type === 'bearer') {
+                console.log("Login Success");
+                localStorage.setItem('access_token', response.data.access_token);
+                localStorage.setItem('email', response.data.email);
+                localStorage.setItem('full_name', response.data.full_name);
+                onSuccess();
+            } else {
+                setErrorMessage('Invalid email or password');
             }
-            else{
-              console.log("Email not found")
-            //   navigate(`/register?email=${email}`);
-            }
-          } catch(errorMessage){
-            setErrorMessage('Failed to Login. Please try again with correct password');
-          } finally {
+        } catch (error) {
+            setErrorMessage('Failed to Login. Please try again with correct credentials.');
+        } finally {
             setIsLoading(false);
-          }
-    
-        setIsLoading(false);
-      };
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit}>
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
+            <div className='form-group'>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+            </div>
+            <div className='form-group'>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+            </div>
             <button type="submit" className="btn btn-primary" disabled={isLoading}>
-              {isLoading ? 'Loading...' : 'Login'}
+                {isLoading ? 'Loading...' : 'Login'}
             </button>
+
+            {errorMessage && <p style={{ color: 'red', marginTop: '14px' }}>{errorMessage}</p>}
         </form>
     );
 };

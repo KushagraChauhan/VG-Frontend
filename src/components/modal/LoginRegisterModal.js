@@ -9,11 +9,8 @@ const LoginRegisterModal = ({ showModal, setShowModal, onLoginSuccess }) => {
 
     const handleModalClose = () => {
         setShowModal(false);
-        if (onLoginSuccess) {
-            onLoginSuccess();
-        }
     };
-    
+
     const switchToRegister = () => {
         setIsLogin(false);
     };
@@ -32,8 +29,13 @@ const LoginRegisterModal = ({ showModal, setShowModal, onLoginSuccess }) => {
                             <h2>{isLogin ? 'Login' : 'Register'}</h2>
                         </div>
                         <FacebookLoginButton />
+                        <br />
                         <div className="modal-body">
-                            {isLogin ? <LoginForm/> : <RegisterForm />}
+                            {isLogin ? (
+                                <LoginForm onSuccess={onLoginSuccess} /> 
+                            ) : (
+                                <RegisterForm onSuccess={onLoginSuccess} />
+                            )}
                         </div>
                         <div className="modal-footer">
                             {isLogin ? (
