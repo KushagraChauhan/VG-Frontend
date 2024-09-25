@@ -201,6 +201,7 @@ const CourseDetails = ({ course }) => {
     };
 
     const handleLoginSuccess = () => {
+        window.location.reload();
         setShowModal(false);
     };
     
