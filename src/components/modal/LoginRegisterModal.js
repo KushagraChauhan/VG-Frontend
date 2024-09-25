@@ -19,8 +19,9 @@ const LoginRegisterModal = ({ showModal, setShowModal, onLoginSuccess }) => {
         setIsLogin(true);
     };
 
-    const handleFacebookLogin = (userInfo) => {
+    const handleFacebookLogin = () => {
         showModal(false);
+        onLoginSuccess();
         window.location.reload();
       };
 
