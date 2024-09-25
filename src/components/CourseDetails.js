@@ -6,6 +6,7 @@ import CourseReviewForm from './CourseReviewForm';
 import CourseReviewsList from './CourseReviewsList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/CourseDetails.css';
+import LoginRegisterModal from './modal/LoginRegisterModal';
 
 const CourseDetails = ({ course }) => {
     const [enrollmentStatus, setEnrollmentStatus] = useState('');
@@ -13,7 +14,8 @@ const CourseDetails = ({ course }) => {
     const [progressData, setProgressData] = useState({});
     const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(false);
-      
+    const [showModal, setShowModal] = useState(false);
+
     const { id } = useParams();
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
@@ -98,6 +100,7 @@ const CourseDetails = ({ course }) => {
 
     const handleAddToCart = async () => {
         if (!token) {
+            setShowModal(true); // Ensures modal is triggered when not logged in
             setEnrollmentStatus('Please log in to add the course to your cart.');
             return;
         }
@@ -188,7 +191,6 @@ const CourseDetails = ({ course }) => {
     const handlePlayerReady = (player) => {
         playerRef.current = player;
 
-        // You can handle player events here, for example:
         player.on('waiting', () => {
             console.log('player is waiting');
         });
@@ -197,6 +199,10 @@ const CourseDetails = ({ course }) => {
             console.log('player will dispose');
         });
     };
+
+    const handleLoginSuccess = () => {
+        setShowModal(false);
+    };
     
     return (
         <div className='course-details-container'>
@@ -204,12 +210,8 @@ const CourseDetails = ({ course }) => {
                 <div className="row">
                     <div className="col-md-8">
                         <h1>{course.title}</h1>
-                        {/* <img src={course.preview_image} className="img-fluid rounded mb-4" alt={course.title} /> */}
                         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-                        <br></br>
-                        {/* <div className="mb-4">
-                            {formattedText(text)}
-                        </div> */}
+                        <br />
                     </div>
                     <div className="col-md-4">
                         <div className="card mb-4 sticky-card">
@@ -249,13 +251,13 @@ const CourseDetails = ({ course }) => {
                             {course.sections.map((section, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                                     {isEnrolled ? (
-                                        <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold' onClick={() => handleSectionClick(section.id)}>{section.heading}</Link>
+                                        <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold' onClick={() => handleSectionClick(section.id)}>
+                                            {section.heading}
+                                        </Link>
                                     ) : (
                                         <span className='fw-bold'>{section.heading}</span>
                                     )}
-                                    {isEnrolled && (
-                                        <p>Progress: {progressData[section.id] || 0}%</p>
-                                    )}
+                                    {isEnrolled && <p>Progress: {progressData[section.id] || 0}%</p>}
                                 </li>
                             ))}
                         </ul>
@@ -263,13 +265,22 @@ const CourseDetails = ({ course }) => {
                 </div>
                 <div className="row mt-4">
                     <div className="col-16">
-                        {isEnrolled && <CourseReviewForm courseId={id} token={token} onReviewSubmitted={fetchCourseProgress} />}
+                        {isEnrolled && (
+                            <CourseReviewForm courseId={id} token={token} onReviewSubmitted={fetchCourseProgress} />
+                        )}
                         <CourseReviewsList courseId={id} />
                     </div>
                 </div>
             </div>
+            <LoginRegisterModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                onClose={() => setShowModal(false)}
+                onLoginSuccess={handleLoginSuccess}
+            />
         </div>
     );
+    
 }
 
 export default CourseDetails;
