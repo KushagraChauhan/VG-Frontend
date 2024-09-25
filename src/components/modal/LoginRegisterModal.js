@@ -12,11 +12,11 @@ const LoginRegisterModal = ({ showModal, setShowModal, onLoginSuccess }) => {
     };
 
     const switchToRegister = () => {
-        setIsLogin(false);
+        setIsLogin(true);
     };
 
     const switchToLogin = () => {
-        setIsLogin(true);
+        setIsLogin(false);
     };
 
     const handleFacebookLogin = () => {
@@ -32,28 +32,28 @@ const LoginRegisterModal = ({ showModal, setShowModal, onLoginSuccess }) => {
                     <div className="modal-content">
                         <span className="close-btn" onClick={handleModalClose}>×</span>
                         <div className="modal-header">
-                            <h2>{isLogin ? 'Login' : 'Register'}</h2>
+                            <h2>{isLogin ? 'Register' : 'Login'}</h2>
                         </div>
                         <FacebookLoginButton onLogin={handleFacebookLogin} />
                         <br />
                         <div className="modal-body">
                             {isLogin ? (
-                                <LoginForm onSuccess={onLoginSuccess} /> 
+                                <RegisterForm onSuccess={onLoginSuccess} /> 
                             ) : (
-                                <RegisterForm onSuccess={onLoginSuccess} />
+                                <LoginForm onSuccess={onLoginSuccess} /> 
                             )}
                         </div>
                         <div className="modal-footer">
                             {isLogin ? (
                                 <p>
-                                    Don't have an account?{' '}
-                                    <span onClick={switchToRegister} className="switch-link">Register here</span>
-                                </p>
-                            ) : (
+                                Already have an account?{' '}
+                                <span onClick={switchToLogin} className="switch-link">Login here</span>
+                            </p>
+                            ) : (                               
                                 <p>
-                                    Already have an account?{' '}
-                                    <span onClick={switchToLogin} className="switch-link">Login here</span>
-                                </p>
+                                Don't have an account?{' '}
+                                <span onClick={switchToRegister} className="switch-link">Register here</span>
+                            </p>
                             )}
                         </div>
                     </div>
