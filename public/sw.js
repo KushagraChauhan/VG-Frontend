@@ -1,65 +1,65 @@
 const CACHE_NAME = 'vibe-gurukul-cache-v1';
 const OFFLINE_URL = '/offline.html';
 
-// Files to cache
-const FILES_TO_CACHE = [
-  '/',
-  '/offline.html',
-  '/icons/logo192.png',
-  '/icons/logo512.png',
-  '/icons/favicon.ico',
-  '/manifest.json'
-];
+// // Files to cache
+// const FILES_TO_CACHE = [
+//   '/',
+//   '/offline.html',
+//   '/icons/logo192.png',
+//   '/icons/logo512.png',
+//   '/icons/favicon.ico',
+//   '/manifest.json'
+// ];
 
-// Install Service Worker and Cache Assets
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(FILES_TO_CACHE);
-    })
-  );
-  self.skipWaiting();
-});
+// // Install Service Worker and Cache Assets
+// self.addEventListener('install', (event) => {
+//   event.waitUntil(
+//     caches.open(CACHE_NAME).then((cache) => {
+//       return cache.addAll(FILES_TO_CACHE);
+//     })
+//   );
+//   self.skipWaiting();
+// });
 
-// Activate the Service Worker
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keyList) => {
-      return Promise.all(
-        keyList.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
-      );
-    })
-  );
-  self.clients.claim();
-});
+// // Activate the Service Worker
+// self.addEventListener('activate', (event) => {
+//   event.waitUntil(
+//     caches.keys().then((keyList) => {
+//       return Promise.all(
+//         keyList.map((key) => {
+//           if (key !== CACHE_NAME) {
+//             return caches.delete(key);
+//           }
+//         })
+//       );
+//     })
+//   );
+//   self.clients.claim();
+// });
 
-// Fetch event handler for offline support
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request).then((response) => {
-        return caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request.url, response.clone());
-          return response;
-        });
-      }).catch(() => {
-        return caches.match(OFFLINE_URL);
-      })
-    );
-  } else {
-    event.respondWith(
-      caches.match(event.request).then((cachedResponse) => {
-        return cachedResponse || fetch(event.request);
-      }).catch((error) => {
-        console.error('[Service Worker] Fetch error: ', error);
-      })
-    );
-  }
-});
+// // Fetch event handler for offline support
+// self.addEventListener('fetch', (event) => {
+//   if (event.request.mode === 'navigate') {
+//     event.respondWith(
+//       fetch(event.request).then((response) => {
+//         return caches.open(CACHE_NAME).then((cache) => {
+//           cache.put(event.request.url, response.clone());
+//           return response;
+//         });
+//       }).catch(() => {
+//         return caches.match(OFFLINE_URL);
+//       })
+//     );
+//   } else {
+//     event.respondWith(
+//       caches.match(event.request).then((cachedResponse) => {
+//         return cachedResponse || fetch(event.request);
+//       }).catch((error) => {
+//         console.error('[Service Worker] Fetch error: ', error);
+//       })
+//     );
+//   }
+// });
 
 
 // Listen for push events
