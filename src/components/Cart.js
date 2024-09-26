@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS for styling
 import './css/Cart.css'; // Importing custom CSS for additional styling
 import LoadingSpinner from "./Loading"; // Importing a loading spinner component to show during data fetch
+import LoginRegisterModal from './modal/LoginRegisterModal';
 
 const Cart = () => {
     // State to store the cart items fetched from the API
@@ -12,6 +13,8 @@ const Cart = () => {
     // State to manage the loading state of the component
     const [loading, setLoading] = useState(true);
     
+    // State to show the login modal
+    const [showModal, setShowModal] = useState(false);
     // Hook to navigate programmatically
     const navigate = useNavigate();
 
@@ -22,31 +25,40 @@ const Cart = () => {
     // Fetch cart items when the component mounts
     useEffect(() => {
         const fetchCartItems = async () => {
+            if (!token) {
+                // Fetch from localStorage for logged-out users
+                const localCart = JSON.parse(localStorage.getItem('cart')) || [];
+                setCartItems(localCart);
+                setLoading(false);
+                return;
+            }
+            
             try {
-                // Fetch cart items from the server using the token for authentication
                 const response = await axios.get(`https://dev.vibegurukul.in/api/v1/users/cart`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
-                // Update the cart items state with the fetched data
                 setCartItems(response.data);
                 setLoading(false);
             } catch (error) {
-                // Handle errors during the fetch operation
                 console.error('Error fetching cart items:', error);
                 setLoading(false);
             }
         };
-
-        // Only fetch cart items if the token is available
-        if (token) {
-            fetchCartItems();
-        } else {
-            setLoading(false);
-        }
-    }, [token]); // Dependency array includes token to refetch cart items if the token changes
+    
+        fetchCartItems();
+    }, []); // Dependency array includes token to refetch cart items if the token changes
 
     // Function to handle removing an item from the cart
     const handleRemoveItem = async (courseId) => {
+        if (!token) {
+            // Remove from localStorage for logged-out users
+            const localCart = JSON.parse(localStorage.getItem('cart')) || [];
+            const updatedCart = localCart.filter(item => item.course_id !== courseId);
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            setCartItems(updatedCart);
+            return;
+        }
+    
         try {
             const response = await axios.post('https://dev.vibegurukul.in/api/v1/users/cart/remove',
                 { course_id: courseId },
@@ -66,6 +78,13 @@ const Cart = () => {
 
     // Function to handle clearing all items from the cart
     const clearCart = async () => {
+        if (!token) {
+            // Clear localStorage for logged-out users
+            localStorage.removeItem('cart');
+            setCartItems([]);
+            return;
+        }
+
         try {
             const response = await axios.delete('https://dev.vibegurukul.in/api/v1/users/cart/clear',
                 {
@@ -85,11 +104,6 @@ const Cart = () => {
     // Display a loading spinner if data is still being fetched
     if (loading) {
         return <LoadingSpinner />;
-    }
-
-    // Prompt the user to log in if no token or email is found
-    if (!token || !email) {
-        return <div className="container mt-4">Please log in to view your cart.</div>;
     }
 
     // Display a message if the cart is empty
@@ -145,6 +159,10 @@ const Cart = () => {
 
     // Handle the checkout process
     const handleCheckout = async () => {
+        if(!token){
+            setShowModal(true);
+            return;
+        }
         try {
             const courseIds = cartItems.map(item => item.course_id);
             const response = await axios.post('https://dev.vibegurukul.in/api/v1/payments/create-order', 
@@ -173,6 +191,36 @@ const Cart = () => {
             console.error('Error fetching order details:', error);
         }
     };
+
+    const handleLoginSuccess = async () => {
+        setShowModal(false);
+        
+        const new_token = localStorage.getItem('access_token');
+        // Retrieve cart items from localStorage
+        const localCart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        if (localCart.length > 0) {
+            try {
+                // Send local cart items to the server
+                for (const item of localCart) {
+                    await axios.post(
+                        'https://dev.vibegurukul.in/api/v1/users/cart/add',
+                        item,
+                        { headers: { Authorization: `Bearer ${new_token}`, 'Content-Type': 'application/json' } }
+                    );
+                }
+    
+                // Clear localStorage cart after syncing
+                localStorage.removeItem('cart');
+            } catch (error) {
+                console.error('Error syncing local cart with server:', error);
+            }
+        }
+    
+        // Reload the page after successful login and cart sync
+        window.location.reload();
+    };
+    
 
     // Render the cart component
     return (
@@ -279,6 +327,12 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
+            <LoginRegisterModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                onClose={() => setShowModal(false)}
+                onLoginSuccess={handleLoginSuccess}
+            />
         </div>
     );
 }

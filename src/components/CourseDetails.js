@@ -6,7 +6,6 @@ import CourseReviewForm from './CourseReviewForm';
 import CourseReviewsList from './CourseReviewsList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/CourseDetails.css';
-import LoginRegisterModal from './modal/LoginRegisterModal';
 
 const CourseDetails = ({ course }) => {
     const [enrollmentStatus, setEnrollmentStatus] = useState('');
@@ -14,7 +13,6 @@ const CourseDetails = ({ course }) => {
     const [progressData, setProgressData] = useState({});
     const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(false);
-    const [showModal, setShowModal] = useState(false);
 
     const { id } = useParams();
     const token = localStorage.getItem('access_token');
@@ -99,16 +97,21 @@ const CourseDetails = ({ course }) => {
     };
 
     const handleAddToCart = async () => {
+        const courseData = { course_id: id, price: course.price, course_title: course.title, preview_image: course.preview_image };
+    
         if (!token) {
-            setShowModal(true); // Ensures modal is triggered when not logged in
-            setEnrollmentStatus('Please log in to add the course to your cart.');
+            const localCart = JSON.parse(localStorage.getItem('cart')) || [];
+            localCart.push(courseData);
+            localStorage.setItem('cart', JSON.stringify(localCart));
+            setIsAddedToCart(true);
+            setEnrollmentStatus('Course added to cart!');
             return;
         }
-
+    
         try {
             const response = await axios.post(
                 'https://dev.vibegurukul.in/api/v1/users/cart/add',
-                { course_id: id, price: course.price, course_title: course.title, preview_image: course.preview_image },
+                courseData,
                 { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } }
             );
             if (response.status === 200) {
@@ -120,14 +123,11 @@ const CourseDetails = ({ course }) => {
             console.error('Error adding course to cart:', error);
         }
     };
-
+    
     const handlePayment = async () => {
-        if (!token) {
-            setPaymentStatus("Please complete the payment first..");
-            return;
-        }
         navigate('/cart');
     };
+    
 
     const handleEnroll = async () => {
         if (!token) {
@@ -200,11 +200,6 @@ const CourseDetails = ({ course }) => {
         });
     };
 
-    const handleLoginSuccess = () => {
-        setShowModal(false);
-        window.location.reload();
-    };
-    
     return (
         <div className='course-details-container'>
             <div className="container mt-4">
@@ -221,6 +216,8 @@ const CourseDetails = ({ course }) => {
                                 <h4>{enrollmentStatus && <p>{enrollmentStatus}</p>}</h4>
                                 {!isEnrolled && (
                                     <div>
+                                        <h5 style={{color: '#FFA500'}}><strong>Price: ₹{course.price}/-</strong></h5>
+                                        <p>(Including GST)</p>
                                         {!paymentStatus ? (
                                             <div>
                                                 <h5 className="card-title">Try the course now...</h5>
@@ -273,12 +270,6 @@ const CourseDetails = ({ course }) => {
                     </div>
                 </div>
             </div>
-            <LoginRegisterModal
-                showModal={showModal}
-                setShowModal={setShowModal}
-                onClose={() => setShowModal(false)}
-                onLoginSuccess={handleLoginSuccess}
-            />
         </div>
     );
     
