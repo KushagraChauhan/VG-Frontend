@@ -20,7 +20,6 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import Payments from './components/Payments';
 import AboutUsPage from './pages/AboutUsPage';
-import ComingSoon from './pages/ComingSoon';
 
 function App() {
   return (
@@ -41,13 +40,12 @@ function App() {
             <Route path="home" element={<Home />} />
             <Route path="profile" element={<UserProfilePage/>} />
             <Route path="courses/:id/section/:sectionId" element={<CourseSectionsPage />} />
-            <Route path="cart" element={<CartPage />} />
             <Route path='payments' element={<Payments />} />
           </Route>
           {/* All Courses Page Route */}
           <Route path="courses" element={<AllCoursesPage />} />
           <Route path="courses/:id/*" element={<CourseDetailsPage />} />
-          
+          <Route path="cart" element={<CartPage />} />
           <Route path="privacypolicy" element={<PrivacyPolicyPage />} />
           <Route path='termsconditions' element={<TermsAndConditionsPage />} />
           <Route path='aboutus' element={<AboutUsPage />} />
