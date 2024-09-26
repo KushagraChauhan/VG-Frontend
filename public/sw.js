@@ -61,7 +61,6 @@ const OFFLINE_URL = '/offline.html';
 //   }
 // });
 
-
 // Listen for push events
 self.addEventListener('push', (event) => {
   let data = {};
