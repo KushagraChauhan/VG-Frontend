@@ -19,11 +19,11 @@ const LoginRegisterModal = ({ showModal, setShowModal, onLoginSuccess }) => {
         setIsLogin(false);
     };
 
-    const handleFacebookLogin = () => {
-        showModal(false);
-        onLoginSuccess();
-        window.location.reload();
-      };
+    // const handleFacebookLogin = () => {
+    //     showModal(false);
+    //     onLoginSuccess();
+    //     window.location.reload();
+    //   };
 
     return (
         <>
@@ -34,7 +34,7 @@ const LoginRegisterModal = ({ showModal, setShowModal, onLoginSuccess }) => {
                         <div className="modal-header">
                             <h2>{isLogin ? 'Register' : 'Login'}</h2>
                         </div>
-                        <FacebookLoginButton onLogin={handleFacebookLogin} />
+                        {/* <FacebookLoginButton onLogin={handleFacebookLogin} /> */}
                         <br />
                         <div className="modal-body">
                             {isLogin ? (

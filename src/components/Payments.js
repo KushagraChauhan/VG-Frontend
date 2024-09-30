@@ -129,16 +129,6 @@ const Payments = () => {
                             <p className="heading-payment">PAYMENT DETAILS</p>
                             <form className="payment-details">             
                                 <div className="form-group">
-                                    <p className="text-warning mb-0">Full Name</p> 
-                                    <input
-                                        className="form-control"
-                                        id="name"
-                                        value={fullName}
-                                        onChange={handleNameChange}
-                                        placeholder="Name"
-                                        size="17"
-                                        required
-                                    />
                                     <p className="text-warning mb-0">Mobile Number</p> 
                                     <PhoneInput
                                         country={'in'}
@@ -163,6 +153,14 @@ const Payments = () => {
                                 </div>                           
                             </form>
                             <button className="payments-button" onClick={handlePayment}>Pay Now: ₹{amount}</button>
+                            <p style={{ color: '#3399cc' }}>
+                                Powered by 
+                                <img 
+                                    src="icons/razorpay.svg" 
+                                    alt="Razorpay" 
+                                    style={{ height: '20px', marginLeft: '5px' }} 
+                                />
+                            </p>
                         </div>
                     </div>
                 </div>
