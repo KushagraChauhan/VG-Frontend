@@ -200,6 +200,14 @@ const CourseDetails = ({ course }) => {
         });
     };
 
+    const handleClick = (sectionId) => {
+        if (isEnrolled) {
+          handleSectionClick(sectionId);
+        } else {
+          alert("Please enroll first to see the episode!");
+        }
+      };
+
     return (
         <div className='course-details-container'>
             <div className="container mt-4">
@@ -243,13 +251,13 @@ const CourseDetails = ({ course }) => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12">
-                        <h2>Episodes</h2>
+                    <div className="episode-list">
+                        <h3 className='fw-bold'>Episodes</h3>
                         <ul className="list-group list-group-light">
                             {course.sections.map((section, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                                     {isEnrolled ? (
-                                        <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold' onClick={() => handleSectionClick(section.id)}>
+                                        <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold' style={{color:'#FFF'}} onClick={() => handleSectionClick(section.id)}>
                                             {section.heading}
                                         </Link>
                                     ) : (

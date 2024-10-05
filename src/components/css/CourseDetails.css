@@ -127,4 +127,44 @@
       background-color: #ff3b2f;
   }
   
-  
+  .episode-list ul li{
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin: 1.5em;
+    cursor: pointer;
+    padding: 1em;
+    background: #FF6F61;
+    position: relative;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .episode-list ul li::before,
+  .episode-list ul li::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 5px;
+    width: 105%;
+    transition: all 0.4s;
+}
+.episode-list ul li::before {
+    left: 0%;
+    height: 130%;
+    background: linear-gradient(to right, #fadbad, #FFA500);
+}
+.episode-list ul li::after {
+    left: -10%;
+    height: 120%;
+    background: #ffffff56;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.164);
+}
+ .episode-list ul li:hover::before {
+    transform: translateX(-2.5%);
+}
+.episode-list ul li:hover::after {
+    transform: translateX(15%);
+}
