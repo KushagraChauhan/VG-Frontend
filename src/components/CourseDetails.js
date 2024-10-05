@@ -240,8 +240,8 @@ const CourseDetails = ({ course }) => {
                                                 )}
                                             </div>
                                         ) : (
-                                            <button className="btn-enroll" onClick={handleEnroll}>
-                                                Enroll Now
+                                            <button className="btn btn-primary" onClick={handleEnroll}>
+                                                WATCH Now
                                             </button>
                                         )}
                                     </div>
