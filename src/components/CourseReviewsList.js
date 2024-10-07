@@ -32,7 +32,7 @@ const ReviewsList = ({ courseId }) => {
 
     return (
         <div className="reviews-list container">
-            <h3>Course Reviews</h3>
+            <h3 className="font-weight-bold mb-3" style={{ textAlign: 'center' }}>Course Ratings</h3>
             {fetchError && <p className="error">{fetchError}</p>}
             {/* <div className="card mb-4">
                 <div className="card-body">
@@ -53,7 +53,7 @@ const ReviewsList = ({ courseId }) => {
                 <div className="card l-bg-orange-dark">
                     <div className="card-rating-3 p-4">
                         <div className="mb-4">
-                            <h5 className="card-title mb-0">Average Rating: {averageRating.toFixed(1)}</h5>
+                            <h5 className="card-title mb-0">Average Rating: {averageRating.toFixed(2)}</h5>
                         </div>
                         <div className="row align-items-center mb-2 d-flex">
                             <div className="col-8">
@@ -65,7 +65,9 @@ const ReviewsList = ({ courseId }) => {
                     </div>
                 </div>
             </div>
-            {reviews.length > 0 ? (
+
+            {/* Course Review Form */}
+            {/* {reviews.length > 0 ? (
                 reviews.map((review, index) => (
                     <div className="col-xl-12 col-lg-6">
                         <div key={index} className="card mb-3">
@@ -83,7 +85,7 @@ const ReviewsList = ({ courseId }) => {
                 ))
             ) : (
                 <p>No reviews yet. Be the first to review this course!</p>
-            )}
+            )} */}
         </div>
     );
 };
