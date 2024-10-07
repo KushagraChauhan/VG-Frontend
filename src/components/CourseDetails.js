@@ -6,6 +6,7 @@ import CourseReviewForm from './CourseReviewForm';
 import CourseReviewsList from './CourseReviewsList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/CourseDetails.css';
+import UserTestimonials from './UserTestimonials';
 
 const CourseDetails = ({ course }) => {
     const [enrollmentStatus, setEnrollmentStatus] = useState('');
@@ -252,7 +253,7 @@ const CourseDetails = ({ course }) => {
                 </div>
                 <div className="row">
                     <div className="episode-list">
-                        <h3 className='fw-bold'>Episodes</h3>
+                    <h3 className="font-weight-bold mb-3" style={{ textAlign: 'center' }}>Episodes</h3>
                         <ul className="list-group list-group-light">
                             {course.sections.map((section, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
@@ -269,6 +270,7 @@ const CourseDetails = ({ course }) => {
                         </ul>
                     </div>
                 </div>
+                <UserTestimonials />
                 <div className="row mt-4">
                     <div className="col-16">
                         {isEnrolled && (
