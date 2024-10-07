@@ -28,7 +28,9 @@ const LandingPage = () => {
       <Features />
       
       {/* <TopCoursesSection /> */}
-      {/* <UserTestimonials /> */}
+      <div className='container mt-4'>
+        <UserTestimonials />
+      </div>
       <Footer />
     </div>
   );
