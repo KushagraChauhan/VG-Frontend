@@ -36,21 +36,21 @@ const CourseReviewForm = ({ courseId, token, onReviewSubmitted }) => {
                 { headers: { Authorization: `Bearer ${token}` } } // Include the token for authentication
             );
             // Update submission status and reset form fields on successful submission
-            setSubmissionStatus('Review submitted successfully!');
+            setSubmissionStatus('Rating submitted successfully!');
             onReviewSubmitted(); // Callback to refresh reviews after submission
             setRating(0); // Reset rating to 0
             setComment(''); // Clear the comment field
         } catch (error) {
             // Handle errors during the review submission
-            console.error('Error submitting review:', error);
-            setSubmissionStatus('Failed to submit review. Please try again.');
+            console.error('Error submitting ratng:', error);
+            setSubmissionStatus('Failed to submit rating. Please try again.');
         }
     };
 
     // Render the review form
     return (
         <div className="review-form">
-            <h3>Leave a Review</h3>
+            <h3>Leave a Rating</h3>
             {/* Display submission status message if available */}
             {submissionStatus && <p>{submissionStatus}</p>}
             <form onSubmit={handleSubmit}>
@@ -69,17 +69,17 @@ const CourseReviewForm = ({ courseId, token, onReviewSubmitted }) => {
                         ))}
                     </div>
                 </div>
-                <div className="form-group">
+                {/* Course Review Form */}
+                {/* <div className="form-group">
                     <label htmlFor="comment">Comment:</label>
-                    {/* Textarea for user to input their comment */}
                     <textarea
                         id="comment"
                         value={comment}
                         onChange={handleCommentChange}
                     ></textarea>
-                </div>
+                </div> */}
                 {/* Submit button to submit the review */}
-                <button type="submit" className="btn btn-primary">Submit Review</button>
+                <button type="submit" className="btn btn-primary">Submit Rating</button>
             </form>
         </div>
     );
