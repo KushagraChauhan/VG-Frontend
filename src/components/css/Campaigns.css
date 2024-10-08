@@ -1,0 +1,122 @@
+#pageHeaderTitle {
+	margin: 2rem 0;
+    margin-top: 80px;
+	text-align: center;
+	font-size: 2.5rem;
+    color: #FF6F61;
+}
+
+/* Cards */
+.campaign {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #333; 
+}
+
+.campaign-title {
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.campaign-img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.campaign-bar {
+  width: 50px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #FF6F61;
+  align-self: center;
+  transition: width 0.2s ease;
+}
+
+.campaign-text {
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.campaign-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  height: 100%;
+}
+
+.campaign-pledge{
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.campaign:hover .campaign-title {
+	color: #FF6F61;
+}
+
+.campaign:hover .campaign-pledge{
+    color: #FF6F61;
+}
+
+.campaign:hover .campaign-bar{
+	background-color: #ffa500;
+    width: 100px;
+}
+
+.campaign::before {
+	background-image: linear-gradient(-30deg, #bdbb49, transparent 50%);
+}
+
+.btn-pledge {
+    text-decoration: none;
+    color: #fff;
+    background-color: #FFA500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    justify-content: center;
+    border: none;
+  }
+
+
+ .btn-pledge:hover {
+      background-color: #da971a;
+  }
+
+  /* Disabled state */
+.btn-pledge.disabled,
+.btn-pledge[disabled] {
+    background-color: #333; 
+    color: #fff; 
+    cursor: not-allowed; 
+    opacity: 0.6; 
+}
+
+/* Prevent hover effects when disabled */
+.btn-pledge.disabled:hover,
+.btn-pledge[disabled]:hover {
+    background-color: #cccccc;
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    .campaign-img {
+      height: 180px; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .campaign-img {
+      height: 150px; 
+    }
+  }
