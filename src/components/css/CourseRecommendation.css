@@ -1,0 +1,71 @@
+/* Course recommendation container styling */
+.course-recommendation {
+    margin: 20px 0;
+    text-align: left;
+  }
+  
+  .course-recommendation h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  /* Default card layout for larger screens */
+  .course-recommendation-card {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+    margin-bottom: 20px;
+  }
+  
+  .course-recommendation-image {
+    width: 250px;
+    height: 100%;
+    object-fit: cover;
+    border-right: 1px solid #ddd;
+  }
+  
+  .course-recommendation-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+ 
+  .course-recommendation-info p {
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 10px;
+  }
+   
+  /* Responsive layout for smaller screens */
+  @media (max-width: 768px) {
+    .course-recommendation-card {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .course-recommendation-image {
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    .course-recommendation-info {
+      padding: 10px;
+      text-align: center;
+    }
+  
+    /* .course-recommendation-info h3 {
+      font-size: 20px;
+    }
+  
+    .course-recommendation-info p {
+      font-size: 16px;
+    } */
+  }
+  
