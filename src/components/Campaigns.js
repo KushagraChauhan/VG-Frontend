@@ -40,6 +40,26 @@ const Campaigns = () => {
     }
   };
 
+  const formattedText = (text) => {
+    return (
+      <div className="campaign-content">
+        <p>
+          {text.split(/(\.|\n)/).map((segment, idx) => (
+            <span key={idx}>
+              {segment}
+              {segment === '.' || segment === '\n' ? <br /> : ''}
+            </span>
+          ))}
+        </p>
+      </div>
+    );
+  };
+  
+  
+  
+  
+  
+
   return (
     <section className="light">
       <div className="container py-2">
@@ -50,7 +70,7 @@ const Campaigns = () => {
             <div className="campaign-text">
               <h1 className="campaign-title fw-bold">{campaign.campaign_name}</h1>
               <div className="campaign-bar"/>
-              <div className="campaign-content">{campaign.campaign_content}</div>
+              {formattedText(campaign.campaign_content)}
               <div className="campaign-bar"/>
               <h1 className="campaign-pledge fw-bold" >No. of Pledges taken: {campaign.pledge_counter}</h1>
                   <button
