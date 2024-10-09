@@ -36,7 +36,7 @@ const Campaigns = () => {
         console.error('Error while pledging:', error);
       }
     } else {
-      alert('You have already pledged for this campaign.');
+      console.error('You have already pledged for this campaign.');
     }
   };
 
@@ -48,11 +48,11 @@ const Campaigns = () => {
           <div className="campaign" key={campaign._id}>
             <img className="campaign-img" src={campaign.image_url} alt={campaign.campaign_name} />
             <div className="campaign-text">
-              <h1 className="campaign-title">{campaign.campaign_name}</h1>
+              <h1 className="campaign-title fw-bold">{campaign.campaign_name}</h1>
               <div className="campaign-bar"/>
               <div className="campaign-content">{campaign.campaign_content}</div>
               <div className="campaign-bar"/>
-              <h1 className="campaign-pledge" >No. of Pledges taken: {campaign.pledge_counter}</h1>
+              <h1 className="campaign-pledge fw-bold" >No. of Pledges taken: {campaign.pledge_counter}</h1>
                   <button
                     className="btn-pledge"
                     onClick={() => handlePledge(campaign._id)}
