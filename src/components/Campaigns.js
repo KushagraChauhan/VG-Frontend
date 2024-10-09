@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import LoadingSpinner from "./Loading";
 import './css/Campaigns.css'; 
 
 const Campaigns = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [pledgeStatus, setPledgeStatus] = useState({});
+  // State to manage the loading state of the component
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch campaigns from API
   useEffect(() => {
@@ -12,6 +15,7 @@ const Campaigns = () => {
       try {
         const response = await axios.get('https://dev.vibegurukul.in/api/v1/campaign');
         setCampaigns(response.data);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching campaigns:', error);
       }
@@ -40,6 +44,8 @@ const Campaigns = () => {
     }
   };
 
+  if (isLoading) return <LoadingSpinner />;
+  
   const formattedText = (text) => {
     return (
       <div className="campaign-content">
