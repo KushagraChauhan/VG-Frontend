@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginOrRegisterPage from './pages/LoginOrRegisterPage';
@@ -21,8 +21,12 @@ import ResetPasswordPage from './pages/ResetPasswordPage';
 import Payments from './components/Payments';
 import AboutUsPage from './pages/AboutUsPage';
 import CampaignPage from './pages/CampaignPage';
+import useCheckLoginExpiration from './hooks/useCheckLoginExpiration';
 
 function App() {
+  
+  useCheckLoginExpiration();
+
   return (
     <div className="App">
       <Router>
