@@ -36,6 +36,8 @@ const FacebookLoginButton = ({ onLogin }) => {
     const [isloading, setIsLoading] =  useState(false);
     useFacebookSDK();
 
+    const loginTime = new Date().getTime(); // For logout functionality after 28 days
+
     const handleLogin = () => {
         setIsLoading(true);
         window.FB.login(function(response) {
@@ -57,6 +59,7 @@ const FacebookLoginButton = ({ onLogin }) => {
                             localStorage.setItem('access_token', apiResponse.data.token);
                             localStorage.setItem('email', apiResponse.data.email);
                             localStorage.setItem('full_name', apiResponse.data.full_name);
+                            localStorage.setItem('login_time', loginTime);
                         } else {
                             console.error('Error logging in with Facebook: ', apiResponse);
                         }

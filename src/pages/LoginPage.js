@@ -13,6 +13,8 @@ const LoginPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const loginTime = new Date().getTime(); // For logout functionality after 28 days
+
     useEffect(() =>{
         const params = new URLSearchParams(location.search);
         const emailParam = params.get('email');
@@ -40,6 +42,7 @@ const LoginPage = () => {
               localStorage.setItem('access_token', response.data.access_token);
               localStorage.setItem('email', response.data.email);
               localStorage.setItem('full_name', response.data.full_name);
+              localStorage.setItem('login_time', loginTime);
               navigate(`/home`);
             }
             else{

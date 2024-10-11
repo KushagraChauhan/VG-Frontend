@@ -225,14 +225,17 @@ const CourseDetails = ({ course }) => {
                                 <h4>{enrollmentStatus && <p>{enrollmentStatus}</p>}</h4>
                                 {!isEnrolled && (
                                     <div>
-                                        <h5 style={{color: '#FFA500'}}><strong>Price: ₹{course.price}/-</strong></h5>
+                                        <h5 style={{color: '#FFA500'}}><strong>Introductory Price: ₹{course.price}/-</strong></h5>
                                         <p>(Including GST)</p>
+                                        <p className="card-text" style={{ textDecoration: "line-through", color: "#333" }}>
+                                            Original Price: ₹ {course.original_price}/-
+                                        </p>
                                         {!paymentStatus ? (
                                             <div>
                                                 <h5 className="card-title">Try the course now...</h5>
                                                 {!isAddedToCart ? (
                                                     <button className="btn-add-to-cart" onClick={handleAddToCart}>
-                                                        Add to Cart
+                                                        Enroll Now
                                                     </button>
                                                 ) : (
                                                     <button className="btn-payment" onClick={handlePayment}>
@@ -271,6 +274,34 @@ const CourseDetails = ({ course }) => {
                     </div>
                 </div>
                 <UserTestimonials />
+                {!isEnrolled && (
+                    <div>
+                        {!paymentStatus ? (
+                            <div className='text-center'>
+                                <h5 className="fw-bold">Try the course now...</h5>
+                                {!isAddedToCart ? (
+                                    <div class="d-grid gap-2 col-4 mx-auto">
+                                        <button className="btn btn-danger btn-lg" onClick={handleAddToCart}>
+                                            Enroll Now
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div class="d-grid gap-2 col-4 mx-auto">
+                                        <button className="btn btn-warning btn-lg" onClick={handlePayment}>
+                                            Proceed to Payment
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div class="d-grid gap-2 col-4 mx-auto">
+                                <button className="btn btn-primary" onClick={handleEnroll}>
+                                    WATCH Now
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                                )}
                 <div className="row mt-4">
                     <div className="col-16">
                         {isEnrolled && (
