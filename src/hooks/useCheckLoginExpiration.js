@@ -18,12 +18,8 @@ const useCheckLoginExpiration = () => {
             const loginTimestamp = parseInt(loginTime, 10); // Convert the string to a number
             const currentTime = new Date().getTime();
             const timeElapsed = currentTime - loginTimestamp;
-            const maxTime = 1 * 24 * 60 * 60 * 1000; // 7 days in milliseconds - 1 for testing
-            
-            console.log('current:', currentTime);
-            console.log('max:', maxTime);
-            console.log('timeElapsed:', timeElapsed);
-    
+            const maxTime = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds 
+             
             // Log out user if 7 days have passed
             if (timeElapsed > maxTime) {
                 logoutUser(); 
