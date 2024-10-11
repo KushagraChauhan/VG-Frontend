@@ -4,31 +4,7 @@ import './css/CourseCard.css'; // Importing custom CSS for additional styling
 import { Link } from "react-router-dom"; // Importing Link for navigation between routes
 
 // CourseCard component to display individual course cards
-const CourseCard = ({ course }) => {
-    // Array containing the learnings and unique selling points (USP) of the course
-    const text = [course.learnings, course.usp];
-    
-    // Corresponding headings for the learnings and USP sections
-    const headings = ['Learnings:', 'USP:'];
-
-    // Function to format and render the learnings and USP text with line breaks
-    const formattedText = (textArray) => {      
-        return textArray.map((content, index) => (
-          <div key={index} className="card-text">
-            <h5 className='card-heading'>{headings[index]}</h5>
-            <p>
-              {/* Split content by newline and render each line separately */}
-              {content.split('\n').map((line, idx) => (
-                <span key={idx}>
-                  {line}
-                  <br />
-                </span>
-              ))}
-            </p>
-          </div>
-        ));
-      };
-
+const CourseCard = ({ course }) => {   
     // Rendering the course card with course details
     return(
       <div className='col-md-4 mb-4'>
@@ -45,7 +21,14 @@ const CourseCard = ({ course }) => {
                     <h4 style={{color: "#FFA500"}}><strong>Coming Soon</strong></h4>
                 ) : (
                     <>
-                        <p className="card-text"><strong>Price: ₹ {course.price} </strong></p>
+                        <p className="card-text" style={{color:'#FF6F61'}}>
+                            <strong>
+                                Introductory Price: ₹ {course.price}/- 
+                            </strong>
+                        </p>
+                        <p className="card-text" style={{ textDecoration: "line-through", color: "#333" }}>
+                            Original Price: ₹ {course.original_price}/-
+                        </p>
                         {/* Link to view more details about the course */}
                         <div className="go-to-course">
                             <Link to={`/courses/${course._id}`}>View Course</Link>
