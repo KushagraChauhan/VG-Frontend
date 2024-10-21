@@ -31,7 +31,7 @@ const CourseCard = ({ course }) => {
                         </p>
                         {/* Link to view more details about the course */}
                         <div className="go-to-course">
-                            <Link to={`/courses/${course._id}`}>View Course</Link>
+                            <Link to={`/courses/${course.short_title}`}>View Course</Link>
                         </div>
                     </>
                 )}
