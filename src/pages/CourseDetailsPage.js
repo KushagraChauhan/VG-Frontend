@@ -24,29 +24,38 @@ const useAuth = () => {
   
 
 const CourseDetailsPage = () => {
-    const {id} = useParams();
+    const { shortTitle } = useParams();
     const [course, setCourse] = useState(null);
+    const [id, setId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const isAuthenticated = useAuth();
 
-    useEffect(() =>{
-        axios.get(`https://dev.vibegurukul.in/api/v1/courses/${id}`)
-            .then(response => {
-                setCourse(response.data);
+    useEffect(() => {
+        const fetchCourseByShortTitle = async () => {
+            try {
+                //Resolve the shortTitle to courseId
+                const response = await axios.get(`https://dev.vibegurukul.in/api/v1/courses/${shortTitle}/resolve`);
+                const courseId = response.data.id;
+                setId(response.data.id);
+                // Fetch course details by the resolved courseId
+                const courseResponse = await axios.get(`https://dev.vibegurukul.in/api/v1/courses/${courseId}`);
+                setCourse(courseResponse.data);
                 setIsLoading(false);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error("There was an error fetching the data!!", error);
                 setIsLoading(true);
-            });
-    }, [id]);
+            }
+        };
+
+        fetchCourseByShortTitle();
+    }, [shortTitle]);
 
     if (isLoading) return <LoadingSpinner />;
 
     return(
         <div>
             {isAuthenticated ? <Header /> : <LPHeader />}
-            <CourseDetails course={course} />
+            <CourseDetails course={course} id={id} />
             <Footer />
         </div>
     );

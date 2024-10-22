@@ -44,12 +44,12 @@ function App() {
           <Route path="/" element={<PrivateRoute />}>
             <Route path="home" element={<Home />} />
             <Route path="profile" element={<UserProfilePage/>} />
-            <Route path="courses/:id/section/:sectionId" element={<CourseSectionsPage />} />
+            <Route path="courses/:shortTitle/section/:sectionId" element={<CourseSectionsPage />} />
             <Route path='payments' element={<Payments />} />
           </Route>
           {/* All Courses Page Route */}
           <Route path="courses" element={<AllCoursesPage />} />
-          <Route path="courses/:id/*" element={<CourseDetailsPage />} />
+          <Route path="courses/:shortTitle/*" element={<CourseDetailsPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="privacypolicy" element={<PrivacyPolicyPage />} />
           <Route path='termsconditions' element={<TermsAndConditionsPage />} />

@@ -6,7 +6,9 @@ import './css/CourseSections.css';
 import LoadingSpinner from './Loading';
 
 const CourseSections = () => {
-  const { id, sectionId } = useParams();
+  const { shortTitle, sectionId } = useParams();
+  const [id, setId] = useState(null);
+  
   const [course, setCourse] = useState(null);
   const [videoJsOptions, setVideoJsOptions] = useState(null);
   const [timestamps, setTimestamps] = useState([]); 
@@ -14,19 +16,24 @@ const CourseSections = () => {
   const playerRef = React.useRef(null);
 
   useEffect(() => {
-    const fetchCourse = async () => {
+    const fetchCourseByShortTitle = async () => {
       try {
-        const response = await axios.get(`https://dev.vibegurukul.in/api/v1/courses/${id}`);
-        setCourse(response.data);
-        setIsLoading(false);
+          //Resolve the shortTitle to courseId
+          const response = await axios.get(`https://dev.vibegurukul.in/api/v1/courses/${shortTitle}/resolve`);
+          const courseId = response.data.id;
+          setId(response.data.id);
+          // Fetch course details by the resolved courseId
+          const courseResponse = await axios.get(`https://dev.vibegurukul.in/api/v1/courses/${courseId}`);
+          setCourse(courseResponse.data);
+          setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching course data:', error);
-        setIsLoading(false);
+          console.error("There was an error fetching the data!!", error);
+          setIsLoading(true);
       }
-    };
+  };
 
-    fetchCourse();
-  }, [id]);
+  fetchCourseByShortTitle();
+}, [shortTitle]);
 
   useEffect(() => {
     if (course) {
@@ -143,7 +150,7 @@ const CourseSections = () => {
           <p>{formattedText(text)}</p>
         </div>
         <div className="back-to-course">
-          <a href={`/courses/${id}`}>Back to Course Details</a>
+          <a href={`/courses/${shortTitle}`}>Back to Course Details</a>
         </div>
       </div>
     </div>
