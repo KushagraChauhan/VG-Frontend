@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import VideoJS from './VideoJS';
 import CourseReviewForm from './CourseReviewForm';
 import CourseReviewsList from './CourseReviewsList';
@@ -8,15 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/CourseDetails.css';
 import UserTestimonials from './UserTestimonials';
 
-const CourseDetails = ({ course, id }) => {
+const CourseDetails = ({ course }) => {
     const [enrollmentStatus, setEnrollmentStatus] = useState('');
     const [isEnrolled, setIsEnrolled] = useState(false);
     const [progressData, setProgressData] = useState({});
     const [isAddedToCart, setIsAddedToCart] = useState(false);
     const [paymentStatus, setPaymentStatus] = useState(false);
 
-    const { shortTitle } = useParams();
-
+    const { id } = useParams();
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
     const navigate = useNavigate();
@@ -262,7 +261,7 @@ const CourseDetails = ({ course, id }) => {
                             {course.sections.map((section, index) => (
                                 <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                                     {isEnrolled ? (
-                                        <Link to={`/courses/${shortTitle}/section/${section.id}`} className='fw-bold' style={{color:'#FFF'}} onClick={() => handleSectionClick(section.id)}>
+                                        <Link to={`/courses/${id}/section/${section.id}`} className='fw-bold' style={{color:'#FFF'}} onClick={() => handleSectionClick(section.id)}>
                                             {section.heading}
                                         </Link>
                                     ) : (

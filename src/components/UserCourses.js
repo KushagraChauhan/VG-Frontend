@@ -6,7 +6,7 @@ import './css/UserProfile.css';
 
 const UserCourses = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [courses, setCourses] = useState(null);
+  const [courses, setCourses] = useState([]);
   const [error, setError] = useState('');
 
   const token = localStorage.getItem('access_token');
@@ -49,7 +49,7 @@ const UserCourses = () => {
               <h3>{course.title}</h3>
               <p>{course.description}</p>
               <div className="go-to-course">
-                      <Link to={`/courses/${course.short_title}`}>View Course</Link>
+                      <Link to={`/courses/${course._id}`}>View Course</Link>
               </div>
             </div>
           ))}
