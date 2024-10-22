@@ -16,7 +16,7 @@ const CourseRecommendation = ({ course }) => {
                 <h4 style={{textAlign: 'center', color: '#FF6F61'}}>{course.description}</h4>
                 {/* <h5 style={{textAlign: 'center'}}>{course.learnings}</h5> */}
                 <div className="go-to-course">
-                    <Link to={`/courses/women-in-sanatan-part-1`}>View Course</Link>
+                    <Link to={`/courses/women-in-sanatan-1`}>View Course</Link>
                 </div>
             </div>
         </div>
