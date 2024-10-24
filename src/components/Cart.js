@@ -253,7 +253,7 @@ const Cart = () => {
                                             </div>
                                             <div className="col-md-5">
                                                 <div className="go-to-course">
-                                                    <Link to={`/courses/${item.course_id}`}>View Course</Link>
+                                                    <Link to={`/courses/${item.short_title}`}>View Course</Link>
                                                 </div>
                                                 <button className="btn btn-danger" onClick={() => handleRemoveItem(item.course_id)}>
                                                     Remove Item
