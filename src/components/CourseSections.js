@@ -147,7 +147,7 @@ const CourseSections = () => {
         </div>
         <div className="section-details">
           <h4>Section Details</h4>
-          <p>{formattedText(text)}</p>
+          <div>{formattedText(text)}</div>
         </div>
         <div className="back-to-course">
           <a href={`/courses/${shortTitle}`}>Back to Course Details</a>
