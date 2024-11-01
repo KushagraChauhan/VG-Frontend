@@ -281,13 +281,13 @@ const CourseDetails = ({ course, id }) => {
                             <div className='text-center'>
                                 <h5 className="fw-bold">Try the course now...</h5>
                                 {!isAddedToCart ? (
-                                    <div class="d-grid gap-2 col-4 mx-auto">
+                                    <div className="d-grid gap-2 col-4 mx-auto">
                                         <button className="btn btn-danger btn-lg" onClick={handleAddToCart}>
                                             Enroll Now
                                         </button>
                                     </div>
                                 ) : (
-                                    <div class="d-grid gap-2 col-4 mx-auto">
+                                    <div className="d-grid gap-2 col-4 mx-auto">
                                         <button className="btn btn-warning btn-lg" onClick={handlePayment}>
                                             Proceed to Payment
                                         </button>
@@ -295,7 +295,7 @@ const CourseDetails = ({ course, id }) => {
                                 )}
                             </div>
                         ) : (
-                            <div class="d-grid gap-2 col-4 mx-auto">
+                            <div className="d-grid gap-2 col-4 mx-auto">
                                 <button className="btn btn-primary" onClick={handleEnroll}>
                                     WATCH Now
                                 </button>
