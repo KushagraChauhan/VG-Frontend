@@ -10,6 +10,8 @@ const RegisterForm = ({ onSuccess }) => {
     const [fullName, setFullName] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
 
+    const loginTime = new Date().getTime();
+
     const handleMobileChange = (value) =>{
         setMobileNumber(value);
     };
@@ -38,10 +40,11 @@ const RegisterForm = ({ onSuccess }) => {
               localStorage.setItem('email', response.data.email);
               localStorage.setItem('full_name', response.data.full_name);
               localStorage.setItem('mobile_number', mobileNumber);
+              localStorage.setItem('login_time', loginTime);
               onSuccess();
             }
             else{
-                setErrorMessage('User already exists');
+                setErrorMessage('Failed to Create Account. Please try again.');
             }
           } catch(errorMessage){
             setErrorMessage('Failed to Create Account. Please try again.');
