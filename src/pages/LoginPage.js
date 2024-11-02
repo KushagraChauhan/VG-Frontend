@@ -37,7 +37,7 @@ const LoginPage = () => {
                 email: email,
                 password: password
             });
-            if(response.data.token_type = 'bearer'){
+            if(response.data.access_token){
               console.log("Login Success")
               localStorage.setItem('access_token', response.data.access_token);
               localStorage.setItem('email', response.data.email);
@@ -46,8 +46,7 @@ const LoginPage = () => {
               navigate(`/home`);
             }
             else{
-              console.log("Email not found")
-              navigate(`/register?email=${email}`);
+              setErrorMessage('Failed to Login. Please try again with correct password');
             }
           } catch(errorMessage){
             setErrorMessage('Failed to Login. Please try again with correct password');
