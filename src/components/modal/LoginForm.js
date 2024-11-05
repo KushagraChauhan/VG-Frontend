@@ -7,6 +7,8 @@ const LoginForm = ({ onSuccess }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
+    const loginTime = new Date().getTime();
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -17,11 +19,12 @@ const LoginForm = ({ onSuccess }) => {
                 email: email,
                 password: password
             });
-            if (response.data.token_type === 'bearer') {
+            if (response.data.access_token) {
                 console.log("Login Success");
                 localStorage.setItem('access_token', response.data.access_token);
                 localStorage.setItem('email', response.data.email);
                 localStorage.setItem('full_name', response.data.full_name);
+                localStorage.setItem('login_time', loginTime);
                 onSuccess();
             } else {
                 setErrorMessage('Invalid email or password');
