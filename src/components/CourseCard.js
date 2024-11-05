@@ -5,12 +5,22 @@ import { Link } from "react-router-dom"; // Importing Link for navigation betwee
 
 // CourseCard component to display individual course cards
 const CourseCard = ({ course }) => {   
-    // Rendering the course card with course details
     return(
       <div className='col-md-4 mb-4'>
-        <div className='card'>
+        <div className='card position-relative'>
+            {/* Conditional rendering for stamp */}
+            {course.short_title === 'women-in-sanatan-1' && (
+                <div className="stamp text-white position-absolute top-0 end-0 p-2 m-2 rounded" style={{background: "#FFA500"}}>
+                    100+ Enrollments
+                </div>
+            )}
+            {course.short_title === 'bal-kand' && (
+                <div className="stamp text-white position-absolute top-0 end-0 p-2 m-2 rounded" style={{background: "#FF6F61"}}>
+                    50+ Enrollments
+                </div>
+            )}
             {/* Course preview image */}
-            <img src={course.preview_image} className='card-img-top preview-image' alt={course.title}></img>
+            <img src={course.preview_image} className='card-img-top preview-image' alt={course.title} />
             <div className="card-body">
                 {/* Course title */}
                 <h5 className="card-title">{course.title}</h5>
@@ -38,7 +48,6 @@ const CourseCard = ({ course }) => {
             </div>
         </div>
     </div>
-  
     );
 }
 
