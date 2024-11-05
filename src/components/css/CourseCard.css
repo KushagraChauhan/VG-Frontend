@@ -47,7 +47,14 @@
 .go-to-course a:hover {
     background-color: #da971a;
 }
-  
+
+.stamp {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
   @media (max-width: 768px) {
     .card {
       margin-bottom: 20px;
