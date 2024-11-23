@@ -155,7 +155,7 @@ const Cart = () => {
     const { total, coursePriceExGST, gst } = gstDetails;
 
     // Extract course titles from the cart items
-    const courseTitles = cartItems.map(item => item.course_title);
+    const courseTitles = cartItems.map(item => item.title);
 
     // Handle the checkout process
     const handleCheckout = async () => {
@@ -239,7 +239,7 @@ const Cart = () => {
                                         </div>
                                         <div className="flex-grow-1 align-self-center overflow-hidden">
                                             <div>
-                                                <h5 className="text-truncate font-size-18">{item.course_title}</h5>
+                                                <h5 className="text-truncate font-size-18">{item.title}</h5>
                                             </div>
                                         </div>                                        
                                     </div>
