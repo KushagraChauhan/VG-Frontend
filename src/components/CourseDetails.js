@@ -99,7 +99,7 @@ const CourseDetails = ({ course, id }) => {
     };
 
     const handleAddToCart = async () => {
-        const courseData = { course_id: id, price: course.price, course_title: course.title, preview_image: course.preview_image, short_title: course.short_title };
+        const courseData = { course_id: id, price: course.price, title: course.title, preview_image: course.preview_image, short_title: course.short_title };
     
         if (!token) {
             const localCart = JSON.parse(localStorage.getItem('cart')) || [];
