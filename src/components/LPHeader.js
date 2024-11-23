@@ -21,11 +21,11 @@ const Header = () => {
               <a className="nav-link" href="/courses">Courses</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/pledge">Pledge</a>
+              <a className="nav-link" href="/workshops">Workshops</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/aboutus">About Us</a>
-            </li>
+              <a className="nav-link" href="/pledge">Pledge</a>
+            </li>            
             <li className="nav-item">
               <Link className="nav-link" to="/welcome">Login</Link>
             </li>
