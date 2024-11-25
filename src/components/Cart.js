@@ -49,32 +49,43 @@ const Cart = () => {
     }, []); // Dependency array includes token to refetch cart items if the token changes
 
     // Function to handle removing an item from the cart
-    const handleRemoveItem = async (courseId) => {
+    const handleRemoveItem = async (itemId, isWorkshop = false) => {
         if (!token) {
             // Remove from localStorage for logged-out users
             const localCart = JSON.parse(localStorage.getItem('cart')) || [];
-            const updatedCart = localCart.filter(item => item.course_id !== courseId);
+            const updatedCart = localCart.filter(item =>
+                isWorkshop ? item.workshop_id !== itemId : item.course_id !== itemId
+            );
             localStorage.setItem('cart', JSON.stringify(updatedCart));
             setCartItems(updatedCart);
             return;
         }
-    
+
         try {
-            const response = await axios.post('https://dev.vibegurukul.in/api/v1/users/cart/remove',
-                { course_id: courseId },
+            const payload = isWorkshop ? { workshop_id: itemId } : { course_id: itemId };
+
+            const response = await axios.post(
+                'https://dev.vibegurukul.in/api/v1/users/cart/remove',
+                payload,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
+
             // If the removal is successful, update the cart items state
             if (response.status === 200) {
-                setCartItems(cartItems.filter(item => item.course_id !== courseId));
+                setCartItems(
+                    cartItems.filter(item =>
+                        isWorkshop ? item.workshop_id !== itemId : item.course_id !== itemId
+                    )
+                );
             }
         } catch (error) {
             // Handle errors during the item removal operation
             console.error('Error removing item from cart:', error);
         }
     };
+
 
     // Function to handle clearing all items from the cart
     const clearCart = async () => {
@@ -159,30 +170,42 @@ const Cart = () => {
 
     // Handle the checkout process
     const handleCheckout = async () => {
-        if(!token){
-            setShowModal(true);
+        if (!token) {
+            setShowModal(true); // Show login modal if the user is not logged in
             return;
         }
+    
         try {
-            const courseIds = cartItems.map(item => item.course_id);
-            const response = await axios.post('https://dev.vibegurukul.in/api/v1/payments/create-order', 
-                {  
-                    "amount": calculateTotal(cartItems),
-                    "currency": "INR",
-                    "course_id": courseIds
-                },
+            // Separate course and workshop IDs
+            const courseIds = cartItems.filter(item => item.course_id).map(item => item.course_id);
+            const workshopIds = cartItems.filter(item => item.workshop_id).map(item => item.workshop_id);
+    
+            // Prepare the payload dynamically
+            const payload = {
+                amount: calculateTotal(cartItems),
+                currency: "INR",
+                ...(courseIds.length > 0 && { course_id: courseIds }),
+                ...(workshopIds.length > 0 && { workshop_id: workshopIds })
+            };
+    
+            const response = await axios.post(
+                'https://dev.vibegurukul.in/api/v1/payments/create-order',
+                payload,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
-
+    
             // If the order creation is successful, navigate to the payments page with the order details
             if (response.status === 200) {
                 const { order_id } = response.data;
                 const amount = calculateTotal(cartItems);
                 const currency = "INR";
-                const courseTitle = courseTitles;
-                navigate('/payments', { state: { order_id, amount, currency, courseTitle } });
+                const courseTitle = courseTitles; // Combine course/workshop titles for display -> This is not used in the Payments page
+    
+                navigate('/payments', {
+                    state: { order_id, amount, currency, courseTitle }
+                });
             } else {
                 console.error('Error fetching order details:', response.status);
             }
@@ -191,6 +214,7 @@ const Cart = () => {
             console.error('Error fetching order details:', error);
         }
     };
+    
 
     const handleLoginSuccess = async () => {
         setShowModal(false);
@@ -252,12 +276,36 @@ const Cart = () => {
                                                 </div>
                                             </div>
                                             <div className="col-md-5">
-                                                <div className="go-to-course">
-                                                    <Link to={`/courses/${item.short_title}`}>View Course</Link>
-                                                </div>
-                                                <button className="btn btn-danger" onClick={() => handleRemoveItem(item.course_id)}>
-                                                    Remove Item
-                                                </button>
+                                                {item.course_id ? (
+                                                    // Content for courses
+                                                    <div>
+                                                        <div className="go-to-course">
+                                                            <Link to={`/courses/${item.short_title}`}>View Course</Link>
+                                                        </div>
+                                                        <button
+                                                            className="btn btn-danger"
+                                                            onClick={() => handleRemoveItem(item.course_id, false)}
+                                                        >
+                                                            Remove Item
+                                                        </button>
+                                                    </div>
+                                                ) : item.workshop_id ? (
+                                                    // Content for workshops
+                                                    <div>
+                                                        <div className="go-to-course">
+                                                            <Link to={`/workshops`}>View Workshop</Link>
+                                                        </div>
+                                                        <button
+                                                            className="btn btn-danger"
+                                                            onClick={() => handleRemoveItem(item.workshop_id, true)}
+                                                        >
+                                                            Remove Item
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    // Fallback content in case neither `course_id` nor `workshop_id` exists
+                                                    <p className="text-muted">Invalid item data</p>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
