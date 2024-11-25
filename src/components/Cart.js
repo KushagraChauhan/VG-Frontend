@@ -120,14 +120,26 @@ const Cart = () => {
     // Display a message if the cart is empty
     if (cartItems.length === 0) {
         return (
-            <div className="cart-page container mt-4">
-                <h1>Your cart is empty.</h1>
-                <div className="go-to-course">
-                    <a href="/courses">View Courses</a>
+            <div className="cart-page container mt-5 text-center">
+                <h1 className="fw-bold mb-4" style={{ color: "#FF6F61" }}>Your Cart is Empty</h1>
+                <p className="mb-3" style={{ fontSize: "1.2rem", color: "#555" }}>
+                    If you purchased a course, click the <strong>WATCH NOW</strong> button on the course page to begin learning.
+                </p>
+                <p className="mb-4" style={{ fontSize: "1.2rem", color: "#555" }}>
+                    If you purchased a workshop, please check your registered email for further details.
+                </p>
+                <div className="d-flex justify-content-center gap-4">
+                    <div className="go-to-course">
+                        <a href='/courses'>View Courses</a>
+                    </div>
+                    <div className="go-to-course">
+                        <a href='/workshops'>View Workshops</a>
+                    </div>
                 </div>
             </div>
         );
     }
+
 
     // Function to calculate the total cost of the items in the cart
     const calculateTotal = (cartItems) => {
