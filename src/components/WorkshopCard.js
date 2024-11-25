@@ -1,9 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS for styling
 import './css/WorkshopCard.css'; // Custom CSS for workshop card styling
-import { Link } from "react-router-dom"; // Importing Link for navigation between routes
 
-const WorkshopCard = ({ workshop }) => {
+const WorkshopCard = ({ workshop, handleAddToCart }) => {
     return (
         <div className="col-md-4 mb-4">
             <div className="workshop-card">
@@ -21,14 +20,17 @@ const WorkshopCard = ({ workshop }) => {
                         </h4>
                     ) : (
                         <p className="workshop-price">
-                            <strong>Price: ₹ {workshop.price}/-</strong>
+                            <strong>Price: ₹ {workshop.price}/session</strong>
                         </p>
                     )}
-                    {/* Link to enroll */}
+                    {/* Add to Cart button */}
                     <div className="workshop-action">
-                        <Link to={`/workshops/${workshop.short_title}`} className="enroll-btn">
-                            Enroll Now
-                        </Link>
+                        <button
+                            className="enroll-btn"
+                            onClick={() => handleAddToCart(workshop)}
+                        >
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
