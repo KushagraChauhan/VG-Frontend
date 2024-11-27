@@ -13,7 +13,7 @@
   
   .navbar-light .navbar-brand {
     font-weight: bold;
-    color: #fff;
+    color: #000;
   }
 
   .navbar-brand{
@@ -21,7 +21,7 @@
   }
   
   .nav-link {
-    color: #fff !important;
+    color: #000 !important;
   }
   
   .btn-primary {
@@ -39,7 +39,7 @@
 
   .nav-item .nav-link:hover,
   .nav-item .btn:hover {
-    color: #000 !important;
+    color: #fff !important;
   }
 
   .btn-cart {
