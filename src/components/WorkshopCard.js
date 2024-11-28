@@ -2,7 +2,9 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS for styling
 import './css/WorkshopCard.css'; // Custom CSS for workshop card styling
 
-const WorkshopCard = ({ workshop, handleAddToCart }) => {
+const WorkshopCard = ({ workshop, handleAddToCart, purchasedWorkshops }) => {
+    const isPurchased = purchasedWorkshops.includes(workshop._id);
+
     return (
         <div className="col-md-4 mb-4">
             <div className="workshop-card">
@@ -19,19 +21,27 @@ const WorkshopCard = ({ workshop, handleAddToCart }) => {
                             <strong>Coming Soon</strong>
                         </h4>
                     ) : (
-                        <p className="workshop-price">
-                            <strong>Price: ₹ {workshop.price}/session</strong>
-                        </p>
+                        <>
+                            <p className="workshop-price">
+                                <strong>Price: ₹ {workshop.price}/session</strong>
+                            </p>
+                            {/* Conditionally render Add to Cart button */}
+                            {!isPurchased ? (
+                                <div className="workshop-action">
+                                    <button
+                                        className="enroll-btn"
+                                        onClick={() => handleAddToCart(workshop)}
+                                    >
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            ) : (
+                                <p className="text-success">
+                                    <strong>Already Purchased</strong>
+                                </p>
+                            )}
+                        </>
                     )}
-                    {/* Add to Cart button */}
-                    <div className="workshop-action">
-                        <button
-                            className="enroll-btn"
-                            onClick={() => handleAddToCart(workshop)}
-                        >
-                            Add to Cart
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>

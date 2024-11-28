@@ -4,13 +4,14 @@ import axios from "axios"; // Importing axios for making HTTP requests
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap for styling
 import './css/AllCourses.css'; // Importing custom CSS for additional styling
 import LoadingSpinner from "./Loading"; // Importing a loading spinner component to show during data fetch
-import {useParams, Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 const AllWorkshops = () => {
     const [workshops, setWorkshops] = useState([]); // State to store workshops data
     const [isLoading, setIsLoading] = useState(true); // State to manage loading state
     const token = localStorage.getItem('access_token'); // Retrieve token from localStorage for authentication
     const [enrollmentStatus, setEnrollmentStatus] = useState(""); // State to display status messages
+    const [purchasedWorkshops, setPurchasedWorkshops] = useState([]);
 
     const navigate = useNavigate();
 
@@ -27,6 +28,24 @@ const AllWorkshops = () => {
                 setIsLoading(false); // Set loading to false even if there is an error
             });
     }, []);
+
+    useEffect(() => {
+        // Fetch purchased workshops
+        if (!token) return;
+        const fetchPurchasedWorkshops = async () => {
+            try {
+                const response = await axios.get("https://dev.vibegurukul.in/api/v1/payments/check-payment-status-workshop", {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                if (response.status === 200) {
+                    setPurchasedWorkshops(response.data.workshop_ids);
+                }
+            } catch (error) {
+                console.error('Error fetching purchased workshops:', error);
+            }
+        };
+        fetchPurchasedWorkshops();
+    }, [token]);
 
     // Method to handle adding a workshop to the cart
     const handleAddToCart = async (workshop) => {
@@ -96,6 +115,7 @@ const AllWorkshops = () => {
                             key={workshop._id}
                             workshop={workshop}
                             handleAddToCart={handleAddToCart}
+                            purchasedWorkshops={purchasedWorkshops}
                         />
                     ))}
                 </div>
