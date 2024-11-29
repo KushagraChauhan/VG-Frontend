@@ -22,6 +22,9 @@ const Cart = () => {
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
 
+    // Number of sessions in the workshop
+    const sessionNumber = 3;
+
     // Fetch cart items when the component mounts
     useEffect(() => {
         const fetchCartItems = async () => {
@@ -141,18 +144,36 @@ const Cart = () => {
     }
 
 
-    // Function to calculate the total cost of the items in the cart
+    // Updated calculateTotal to handle workshop session multiplication
     const calculateTotal = (cartItems) => {
-        return cartItems.reduce((total, cartItem) => total + parseFloat(cartItem.price), 0).toFixed(2);
+        return cartItems.reduce((total, cartItem) => {
+            // Multiply workshop price by sessionNumber
+            const itemPrice = cartItem.workshop_id
+                ? parseFloat(cartItem.price) * sessionNumber
+                : parseFloat(cartItem.price);
+            return total + itemPrice;
+        }, 0).toFixed(2);
     };
 
     // Function to calculate GST and total cost including GST
     const calculateGST = (cartItems, gstRate = 18) => {
-        const total = calculateTotal(cartItems);
-        const gstDetails = cartItems.map(item => calculateGSTForItem(item.price, gstRate));
+        const gstDetails = cartItems.map((item) => {
+            const price = item.workshop_id
+                ? parseFloat(item.price) * sessionNumber
+                : parseFloat(item.price);
+            return calculateGSTForItem(price, gstRate);
+        });
+
         // Calculate total GST and course price excluding GST
         const totalGST = gstDetails.reduce((total, details) => total + parseFloat(details.gst), 0).toFixed(2);
         const totalCoursePriceExGST = gstDetails.reduce((total, details) => total + parseFloat(details.coursePrice), 0).toFixed(2);
+
+        const total = cartItems.reduce((sum, item) => {
+            const itemPrice = item.workshop_id
+                ? parseFloat(item.price) * sessionNumber
+                : parseFloat(item.price);
+            return sum + itemPrice;
+        }, 0).toFixed(2);
 
         return {
             total,
@@ -262,7 +283,7 @@ const Cart = () => {
     return (
         <div className='cart-page'>
             <div className="container">
-                <h1>Your cart</h1>
+                <h2 className='text-center fw-bold'>Your cart</h2>
                 <div className="row">
                     {/* Map through the cart items and render each item */}
                     {cartItems.map((item) => (
@@ -283,8 +304,15 @@ const Cart = () => {
                                         <div className="row">
                                             <div className="col-md-4">
                                                 <div className="mt-3">
-                                                    <p className="text-muted mb-2">Price</p>
-                                                    <h5>Rs. {item.price}</h5>
+                                                    <p className="text-muted mb-2">
+                                                        {item.workshop_id ? "Price for 3 sessions" : "Price"}
+                                                    </p>
+                                                    <h5>
+                                                        ₹ {" "}
+                                                        {item.workshop_id
+                                                            ? (item.price * sessionNumber).toFixed(2)
+                                                            : item.price}
+                                                    </h5>
                                                 </div>
                                             </div>
                                             <div className="col-md-5">
@@ -336,7 +364,7 @@ const Cart = () => {
                                         <table className="table mb-0">
                                             <tbody>                                                
                                                 <tr>
-                                                    <th>Course Price:</th>
+                                                    <th>Course/Workshop Price:</th>
                                                     <td className="text-end">
                                                         <span className="fw-bold">
                                                         ₹ {coursePriceExGST}
