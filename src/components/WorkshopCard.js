@@ -15,7 +15,10 @@ const WorkshopCard = ({ workshop, handleAddToCart, purchasedWorkshops }) => {
                 {/* Workshop details */}
                 <div className="workshop-details">
                     <h5 className="workshop-title">{workshop.title}</h5>
-                    <p className='workshop-age'>Age:{workshop.age}</p>
+                    <div className="workshop-header">
+                        <p className="workshop-age me-3">Age: {workshop.age}</p>
+                        <div className="workshop-tag">3-day Workshop</div>
+                    </div>
                     <p className="workshop-description">{workshop.description}</p>
                     {workshop.price === "Coming Soon" ? (
                         <h4 style={{ color: "#FFA500" }}>

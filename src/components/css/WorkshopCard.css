@@ -43,11 +43,28 @@
     margin-bottom: 0.5rem;
 }
 
+.workshop-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligns Age to the left and Workshop box to the right */
+    margin-bottom: 0.5rem;
+}
+
 .workshop-age {
     font-size: 1.00rem;
     color: #FF6F61;
     font-weight: bold;
     margin-bottom: 0.5rem;
+}
+
+.workshop-tag {
+    background-color: #f8d7da; 
+    color: #721c24; 
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 .workshop-description {
