@@ -139,8 +139,7 @@ const AllWorkshops = () => {
                                 <WorkshopCard
                                     key={workshop._id}
                                     workshop={workshop}
-                                    handleAddToCart={(workshop) =>console.log(`Added to cart: ${workshop.title}`)
-                                    }
+                                    handleAddToCart={handleAddToCart}
                                     purchasedWorkshops={purchasedWorkshops}
                                 />
                             ))}
