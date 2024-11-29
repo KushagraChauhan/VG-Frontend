@@ -22,6 +22,9 @@ const Cart = () => {
     const token = localStorage.getItem('access_token');
     const email = localStorage.getItem('email');
 
+    // Number of sessions in the workshop
+    const sessionNumber = 3;
+
     // Fetch cart items when the component mounts
     useEffect(() => {
         const fetchCartItems = async () => {
@@ -49,32 +52,43 @@ const Cart = () => {
     }, []); // Dependency array includes token to refetch cart items if the token changes
 
     // Function to handle removing an item from the cart
-    const handleRemoveItem = async (courseId) => {
+    const handleRemoveItem = async (itemId, isWorkshop = false) => {
         if (!token) {
             // Remove from localStorage for logged-out users
             const localCart = JSON.parse(localStorage.getItem('cart')) || [];
-            const updatedCart = localCart.filter(item => item.course_id !== courseId);
+            const updatedCart = localCart.filter(item =>
+                isWorkshop ? item.workshop_id !== itemId : item.course_id !== itemId
+            );
             localStorage.setItem('cart', JSON.stringify(updatedCart));
             setCartItems(updatedCart);
             return;
         }
-    
+
         try {
-            const response = await axios.post('https://dev.vibegurukul.in/api/v1/users/cart/remove',
-                { course_id: courseId },
+            const payload = isWorkshop ? { workshop_id: itemId } : { course_id: itemId };
+
+            const response = await axios.post(
+                'https://dev.vibegurukul.in/api/v1/users/cart/remove',
+                payload,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
+
             // If the removal is successful, update the cart items state
             if (response.status === 200) {
-                setCartItems(cartItems.filter(item => item.course_id !== courseId));
+                setCartItems(
+                    cartItems.filter(item =>
+                        isWorkshop ? item.workshop_id !== itemId : item.course_id !== itemId
+                    )
+                );
             }
         } catch (error) {
             // Handle errors during the item removal operation
             console.error('Error removing item from cart:', error);
         }
     };
+
 
     // Function to handle clearing all items from the cart
     const clearCart = async () => {
@@ -109,27 +123,57 @@ const Cart = () => {
     // Display a message if the cart is empty
     if (cartItems.length === 0) {
         return (
-            <div className="cart-page container mt-4">
-                <h1>Your cart is empty.</h1>
-                <div className="go-to-course">
-                    <a href="/courses">View Courses</a>
+            <div className="cart-page container mt-5 text-center">
+                <h1 className="fw-bold mb-4" style={{ color: "#FF6F61" }}>Your Cart is Empty</h1>
+                <p className="mb-3" style={{ fontSize: "1.2rem", color: "#555" }}>
+                    If you purchased a course, click the <strong>WATCH NOW</strong> button on the course page to begin learning.
+                </p>
+                <p className="mb-4" style={{ fontSize: "1.2rem", color: "#555" }}>
+                    If you purchased a workshop, please check your registered email for further details.
+                </p>
+                <div className="d-flex justify-content-center gap-4">
+                    <div className="go-to-course">
+                        <a href='/courses'>View Courses</a>
+                    </div>
+                    <div className="go-to-course">
+                        <a href='/workshops'>View Workshops</a>
+                    </div>
                 </div>
             </div>
         );
     }
 
-    // Function to calculate the total cost of the items in the cart
+
+    // Updated calculateTotal to handle workshop session multiplication
     const calculateTotal = (cartItems) => {
-        return cartItems.reduce((total, cartItem) => total + parseFloat(cartItem.price), 0).toFixed(2);
+        return cartItems.reduce((total, cartItem) => {
+            // Multiply workshop price by sessionNumber
+            const itemPrice = cartItem.workshop_id
+                ? parseFloat(cartItem.price) * sessionNumber
+                : parseFloat(cartItem.price);
+            return total + itemPrice;
+        }, 0).toFixed(2);
     };
 
     // Function to calculate GST and total cost including GST
     const calculateGST = (cartItems, gstRate = 18) => {
-        const total = calculateTotal(cartItems);
-        const gstDetails = cartItems.map(item => calculateGSTForItem(item.price, gstRate));
+        const gstDetails = cartItems.map((item) => {
+            const price = item.workshop_id
+                ? parseFloat(item.price) * sessionNumber
+                : parseFloat(item.price);
+            return calculateGSTForItem(price, gstRate);
+        });
+
         // Calculate total GST and course price excluding GST
         const totalGST = gstDetails.reduce((total, details) => total + parseFloat(details.gst), 0).toFixed(2);
         const totalCoursePriceExGST = gstDetails.reduce((total, details) => total + parseFloat(details.coursePrice), 0).toFixed(2);
+
+        const total = cartItems.reduce((sum, item) => {
+            const itemPrice = item.workshop_id
+                ? parseFloat(item.price) * sessionNumber
+                : parseFloat(item.price);
+            return sum + itemPrice;
+        }, 0).toFixed(2);
 
         return {
             total,
@@ -159,30 +203,42 @@ const Cart = () => {
 
     // Handle the checkout process
     const handleCheckout = async () => {
-        if(!token){
-            setShowModal(true);
+        if (!token) {
+            setShowModal(true); // Show login modal if the user is not logged in
             return;
         }
+    
         try {
-            const courseIds = cartItems.map(item => item.course_id);
-            const response = await axios.post('https://dev.vibegurukul.in/api/v1/payments/create-order', 
-                {  
-                    "amount": calculateTotal(cartItems),
-                    "currency": "INR",
-                    "course_id": courseIds
-                },
+            // Separate course and workshop IDs
+            const courseIds = cartItems.filter(item => item.course_id).map(item => item.course_id);
+            const workshopIds = cartItems.filter(item => item.workshop_id).map(item => item.workshop_id);
+    
+            // Prepare the payload dynamically
+            const payload = {
+                amount: calculateTotal(cartItems),
+                currency: "INR",
+                ...(courseIds.length > 0 && { course_id: courseIds }),
+                ...(workshopIds.length > 0 && { workshop_id: workshopIds })
+            };
+    
+            const response = await axios.post(
+                'https://dev.vibegurukul.in/api/v1/payments/create-order',
+                payload,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
-
+    
             // If the order creation is successful, navigate to the payments page with the order details
             if (response.status === 200) {
                 const { order_id } = response.data;
                 const amount = calculateTotal(cartItems);
                 const currency = "INR";
-                const courseTitle = courseTitles;
-                navigate('/payments', { state: { order_id, amount, currency, courseTitle } });
+                const courseTitle = courseTitles; // Combine course/workshop titles for display -> This is not used in the Payments page
+    
+                navigate('/payments', {
+                    state: { order_id, amount, currency, courseTitle }
+                });
             } else {
                 console.error('Error fetching order details:', response.status);
             }
@@ -191,6 +247,7 @@ const Cart = () => {
             console.error('Error fetching order details:', error);
         }
     };
+    
 
     const handleLoginSuccess = async () => {
         setShowModal(false);
@@ -226,7 +283,7 @@ const Cart = () => {
     return (
         <div className='cart-page'>
             <div className="container">
-                <h1>Your cart</h1>
+                <h2 className='text-center fw-bold'>Your cart</h2>
                 <div className="row">
                     {/* Map through the cart items and render each item */}
                     {cartItems.map((item) => (
@@ -247,17 +304,48 @@ const Cart = () => {
                                         <div className="row">
                                             <div className="col-md-4">
                                                 <div className="mt-3">
-                                                    <p className="text-muted mb-2">Price</p>
-                                                    <h5>Rs. {item.price}</h5>
+                                                    <p className="text-muted mb-2">
+                                                        {item.workshop_id ? "Price for 3 sessions" : "Price"}
+                                                    </p>
+                                                    <h5>
+                                                        ₹ {" "}
+                                                        {item.workshop_id
+                                                            ? (item.price * sessionNumber).toFixed(2)
+                                                            : item.price}
+                                                    </h5>
                                                 </div>
                                             </div>
                                             <div className="col-md-5">
-                                                <div className="go-to-course">
-                                                    <Link to={`/courses/${item.short_title}`}>View Course</Link>
-                                                </div>
-                                                <button className="btn btn-danger" onClick={() => handleRemoveItem(item.course_id)}>
-                                                    Remove Item
-                                                </button>
+                                                {item.course_id ? (
+                                                    // Content for courses
+                                                    <div>
+                                                        <div className="go-to-course">
+                                                            <Link to={`/courses/${item.short_title}`}>View Course</Link>
+                                                        </div>
+                                                        <button
+                                                            className="btn btn-danger"
+                                                            onClick={() => handleRemoveItem(item.course_id, false)}
+                                                        >
+                                                            Remove Item
+                                                        </button>
+                                                    </div>
+                                                ) : item.workshop_id ? (
+                                                    // Content for workshops
+                                                    <div>
+                                                        <div className="go-to-course">
+                                                            <Link to={`/workshops`}>View Workshop</Link>
+                                                        </div>
+                                                        <button
+                                                            className="btn btn-danger"
+                                                            onClick={() => handleRemoveItem(item.workshop_id, true)}
+                                                        >
+                                                            Remove Item
+                                                        </button>
+                                                    </div>
+                                                ) : (
+                                                    // Fallback content in case neither `course_id` nor `workshop_id` exists
+                                                    <p className="text-muted">Invalid item data</p>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -276,7 +364,7 @@ const Cart = () => {
                                         <table className="table mb-0">
                                             <tbody>                                                
                                                 <tr>
-                                                    <th>Course Price:</th>
+                                                    <th>Course/Workshop Price:</th>
                                                     <td className="text-end">
                                                         <span className="fw-bold">
                                                         ₹ {coursePriceExGST}

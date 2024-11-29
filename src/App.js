@@ -22,6 +22,7 @@ import Payments from './components/Payments';
 import AboutUsPage from './pages/AboutUsPage';
 import CampaignPage from './pages/CampaignPage';
 import useCheckLoginExpiration from './hooks/useCheckLoginExpiration';
+import AllWorkshopsPage from './pages/AllWorkshopsPage';
 
 function App() {
   
@@ -55,6 +56,7 @@ function App() {
           <Route path='termsconditions' element={<TermsAndConditionsPage />} />
           <Route path='aboutus' element={<AboutUsPage />} />
           <Route path='pledge' element={<CampaignPage />} />
+          <Route path='workshops' element={<AllWorkshopsPage />} />
           {/* Redirect to home if path is not recognized */}
           {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Routes>

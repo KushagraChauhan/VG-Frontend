@@ -1,0 +1,97 @@
+/* WorkshopCard container */
+.workshop-card {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    cursor: pointer;
+}
+
+.workshop-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Workshop image section */
+.workshop-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+}
+
+.workshop-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.workshop-card:hover .workshop-image img {
+    transform: scale(1.1);
+}
+
+/* Workshop details */
+.workshop-details {
+    padding: 1rem;
+    text-align: center;
+}
+
+.workshop-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.workshop-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligns Age to the left and Workshop box to the right */
+    margin-bottom: 0.5rem;
+}
+
+.workshop-age {
+    font-size: 1.00rem;
+    color: #FF6F61;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.workshop-tag {
+    background-color: #f8d7da; 
+    color: #721c24; 
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.workshop-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.workshop-price {
+    font-size: 1.1rem;
+    color: #FF6F61;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Enroll button */
+.enroll-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #FFA500;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.enroll-btn:hover {
+    background: #FF6F61;
+    color: #FFF;
+}
