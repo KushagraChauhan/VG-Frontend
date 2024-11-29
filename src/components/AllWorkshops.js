@@ -92,6 +92,25 @@ const AllWorkshops = () => {
     // Show loading spinner while data is being fetched
     if (isLoading) return <LoadingSpinner />;
 
+    // Format and group workshops by date range
+    const groupedWorkshops = workshops.reduce((acc, workshop) => {
+        const startDate = new Date(workshop.dates[0]).toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        });
+        const endDate = new Date(workshop.dates[1]).toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        });
+        const dateRange = startDate === endDate ? startDate : `${startDate} - ${endDate}`;
+
+        if (!acc[dateRange]) acc[dateRange] = [];
+        acc[dateRange].push(workshop);
+        return acc;
+    }, {});
+
     return (
         <div className="all-courses">
             <div className="container">
@@ -109,16 +128,25 @@ const AllWorkshops = () => {
                         )}
                     </div>
                 </div>
-                <div className="row">
-                    {workshops.map((workshop) => (
-                        <WorkshopCard
-                            key={workshop._id}
-                            workshop={workshop}
-                            handleAddToCart={handleAddToCart}
-                            purchasedWorkshops={purchasedWorkshops}
-                        />
-                    ))}
-                </div>
+                {/* Render grouped workshops */}
+                {Object.keys(groupedWorkshops).map((dateRange, index) => (
+                    <div key={index} className="mb-5">
+                        {/* Date Range Header */}
+                        <h5 className="text-center mb-3" style={{color: '#FFA500'}}>{dateRange}</h5>
+                        {/* Workshops for this date range */}
+                        <div className="row">
+                            {groupedWorkshops[dateRange].map((workshop) => (
+                                <WorkshopCard
+                                    key={workshop._id}
+                                    workshop={workshop}
+                                    handleAddToCart={(workshop) =>console.log(`Added to cart: ${workshop.title}`)
+                                    }
+                                    purchasedWorkshops={purchasedWorkshops}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
