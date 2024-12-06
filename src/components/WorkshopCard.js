@@ -24,6 +24,10 @@ const WorkshopCard = ({ workshop, handleAddToCart, purchasedWorkshops }) => {
                         <h4 style={{ color: "#FFA500" }}>
                             <strong>Coming Soon</strong>
                         </h4>
+                    ) : workshop.price === "Registrations Closed" ? (
+                        <h4 style={{ color: "red" }}>
+                            <strong>Registrations Closed</strong>
+                        </h4>
                     ) : (
                         <>
                             <p className="workshop-price">
