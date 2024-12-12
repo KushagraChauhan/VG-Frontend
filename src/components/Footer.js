@@ -20,7 +20,7 @@ const Footer = () => {
               <li><a href="/home">Home</a></li>
               <li><a href="/courses">Courses</a></li>
               <li><a href="/aboutus">About Us</a></li>
-              <li><a href="#">Join Us</a></li>
+              <li><a href="https://wellfound.com/company/vibe-gurukul">Join Us</a></li>
             </ul>
           </div>
           <div className="col-md-4">
