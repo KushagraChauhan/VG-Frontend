@@ -104,6 +104,38 @@ const AboutUsPage = () => {
             </div>
           </div>
         </section>
+        <section id="brand-value-pillars" className="brand-value-pillars">
+          <div className="container">
+            <h2 className="pillars-title">Brand Value Pillars (PRAI)</h2>
+            <div className="row">
+              <div className="col-md-3">
+                <div className="pillar-card pride">
+                  <h3 className="pillar-title">Pride</h3>
+                  <p><strong>गौरव: भारतस्य - Respect in Bharat.</strong></p>
+                  <p>Respect for Sanatan Sanskriti and acceptance for past and inclusivity of all the sects and communities.</p>
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="pillar-card responsibility">
+                  <h3 className="pillar-title">Responsibility</h3>
+                  <p>Respect for all sections of society without any bias or prejudice. Clearing myths and showing the actual values beheld.</p>
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="pillar-card authenticity">
+                  <h3 className="pillar-title">Authenticity</h3>
+                  <p>Proper proofs from our scriptures and facts from written sources for topics on Dharm, Sanskriti, and Bhartiya Itihas.</p>
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="pillar-card innovation">
+                  <h3 className="pillar-title">Innovation</h3>
+                  <p>Combining technology with the knowledge of our Sanskriti to make it more accessible and understandable.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <Footer />
     </div>
     );
