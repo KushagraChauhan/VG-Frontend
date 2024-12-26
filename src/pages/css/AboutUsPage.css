@@ -84,17 +84,20 @@
 .our-team{
     text-align: center;
 }
-.our-team img{
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
+
+.our-team img {
+  width: 150px; 
+  height: 150px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+  margin: 0 auto; 
 }
 .our-team .title{
-    font-size: 28px;
+    font-size: 25px;
     font-style: italic;
-    color: #000;
+    color: #1c1c1c;
     text-transform: capitalize;
-    margin: -7px 0 15px;
+    margin: -1px 0 15px;
     opacity: 0.8;
     transform: rotate(-3deg);
 }
