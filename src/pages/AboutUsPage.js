@@ -62,42 +62,42 @@ const AboutUsPage = () => {
             <div className="row">
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                      <img src="team-images/avantika-photo.jpg" alt=""/>
+                      <img src="https://vibegurukul.s3.ap-south-1.amazonaws.com/team-images/avantika-photo.jpg" alt="Avantika Singh"/>
                       <h3 className="title">Avantika Singh</h3>                        
                   </div>
               </div>
       
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/kushagra-photo.jpg" alt=""/>
+                  <img src="https://vibegurukul.s3.ap-south-1.amazonaws.com/team-images/kushagra-photo.jpg" alt="Kushagra Chauhan"/>
                   <h3 className="title">Kushagra Chauhan</h3>
                   </div>
               </div>
 
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/naveen-photo.jpg" alt=""/>
+                  <img src="https://vibegurukul.s3.ap-south-1.amazonaws.com/team-images/naveen-photo.jpg" alt="Naveen Kumar"/>
                   <h3 className="title">Naveen Kumar</h3>
                   </div>
               </div>
 
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/ayush-photo.jpg" alt=""/>
+                  <img src="https://vibegurukul.s3.ap-south-1.amazonaws.com/team-images/ayush-photo.jpg" alt="Ayush Agrawal"/>
                   <h3 className="title">Ayush Agrawal</h3>
                   </div>
               </div>
 
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/shweta-photo.jpg" alt=""/>
+                  <img src="https://vibegurukul.s3.ap-south-1.amazonaws.com/team-images/shweta-photo.jpg" alt="Shweta Singh"/>
                   <h3 className="title">Shweta Singh Rajpoot</h3>
                   </div>
               </div>
 
               <div className="col-md-3 col-sm-6">
                   <div className="our-team">
-                  <img src="team-images/samarth-photo.jpg" alt=""/>
+                  <img src="https://vibegurukul.s3.ap-south-1.amazonaws.com/team-images/samarth-photo.jpg" alt="Samarth Seth"/>
                   <h3 className="title">Samarth Seth</h3>
                   </div>
               </div>
