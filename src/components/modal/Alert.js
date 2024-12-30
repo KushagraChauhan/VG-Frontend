@@ -5,10 +5,10 @@ const Alert = ({ show, message, onClose }) => {
   if (!show) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2>{message}</h2>
-        <button onClick={onClose}>Close</button>
+    <div className="alert-modal-overlay" onClick={onClose}>
+      <div className="alert-modal-content" onClick={(e) => e.stopPropagation()}>
+        <h3>{message}</h3>
+        <button className='alert-close-btn' onClick={onClose}>Close</button>
       </div>
     </div>
   );
