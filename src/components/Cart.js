@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS for st
 import './css/Cart.css'; // Importing custom CSS for additional styling
 import LoadingSpinner from "./Loading"; // Importing a loading spinner component to show during data fetch
 import LoginRegisterModal from './modal/LoginRegisterModal';
+import Alert from './modal/Alert';
 
 const Cart = () => {
     // State to store the cart items fetched from the API
@@ -15,6 +16,12 @@ const Cart = () => {
     
     // State to show the login modal
     const [showModal, setShowModal] = useState(false);
+
+    // State to show the Alert modal
+    const [showAlertMdoal, setShowAlertModal] = useState(false);
+    // Message for the alert modal
+    const [modalMessage, setModalMessage] = useState('');
+
     // Hook to navigate programmatically
     const navigate = useNavigate();
 
@@ -129,7 +136,7 @@ const Cart = () => {
                     If you purchased a course, click the <strong>WATCH NOW</strong> button on the course page to begin learning.
                 </p>
                 <p className="mb-4" style={{ fontSize: "1.2rem", color: "#555" }}>
-                    If you purchased a workshop, please check your registered email for further details.
+                    If you purchased a workshop, please check your registered email (spam/promotion) for further details.
                 </p>
                 <div className="d-flex justify-content-center gap-4">
                     <div className="go-to-course">
@@ -278,27 +285,71 @@ const Cart = () => {
         window.location.reload();
     };
     
+    const handleEnroll = async () => {
+        if (!token) {
+            setShowModal(true); // Show login modal if the user is not logged in
+            return;
+        }
+        const payload = {
+            user_email: email,
+            workshop_id: '677231da05a974ca2809c697', // Hard-coded coz only 1 workshop
+        };
+        try {
+            const response = await axios.post(
+                'https://dev.vibegurukul.in/api/v1/enroll/workshop',
+                payload, 
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+            setModalMessage('You have enrolled in this workshop. Thanks!');
+            setShowAlertModal(true);
+            clearCart();
+            return response.data; // Return the response data if needed
+        } catch (error) {
+            if (error.response) {
+                // Handle specific error for user already enrolled
+                if (error.response.data?.detail === 'User is already enrolled in this workshop') {
+                    // Show an alert if the user is already enrolled
+                    setModalMessage('You are already enrolled in this workshop.');
+                    setShowAlertModal(true);
+                    return; // Stop further execution if the user is already enrolled
+                }
+            } else if (error.request) {
+                // Request was made but no response received
+                console.error('No response from server:', error.request);
+            } else {
+                // Something else caused an error
+                console.error('Error setting up request:', error.message);
+            }
+        }
+    };
+    
 
     // Render the cart component
     return (
-        <div className='cart-page'>
+        <div className="cart-page">
             <div className="container">
-                <h2 className='text-center fw-bold'>Your cart</h2>
+                <h2 className="text-center fw-bold">Your cart</h2>
                 <div className="row">
                     {/* Map through the cart items and render each item */}
                     {cartItems.map((item) => (
-                        <div className="col-xl-8" key={item.course_id}>
+                        <div className="col-xl-8" key={item.course_id || item.workshop_id}>
                             <div className="card border shadow-none">
                                 <div className="card-body">
                                     <div className="d-flex align-items-start border-bottom pb-3">
                                         <div className="me-4">
-                                            <img src={item.preview_image} alt="Course-Preview-Image" className="avatar-lg rounded"></img>
+                                            <img
+                                                src={item.preview_image}
+                                                alt="Course-Preview-Image"
+                                                className="avatar-lg rounded"
+                                            />
                                         </div>
                                         <div className="flex-grow-1 align-self-center overflow-hidden">
                                             <div>
                                                 <h5 className="text-truncate font-size-18">{item.title}</h5>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                     <div>
                                         <div className="row">
@@ -308,7 +359,7 @@ const Cart = () => {
                                                         {item.workshop_id ? "Price for 3 sessions" : "Price"}
                                                     </p>
                                                     <h5>
-                                                        ₹ {" "}
+                                                        ₹{" "}
                                                         {item.workshop_id
                                                             ? (item.price * sessionNumber).toFixed(2)
                                                             : item.price}
@@ -357,34 +408,28 @@ const Cart = () => {
                         <div className="mt-5 mt-lg-0">
                             <div className="card border shadow-none">
                                 <div className="card-header bg-transparent border-bottom py-3 px-4">
-                                    <h5 className="font-size-16 mb-0">Order Summary <span className="float-end"></span></h5>
+                                    <h5 className="font-size-16 mb-0">Order Summary</h5>
                                 </div>
                                 <div className="card-body p-4 pt-2">
                                     <div className="table-responsive">
                                         <table className="table mb-0">
-                                            <tbody>                                                
+                                            <tbody>
                                                 <tr>
                                                     <th>Course/Workshop Price:</th>
                                                     <td className="text-end">
-                                                        <span className="fw-bold">
-                                                        ₹ {coursePriceExGST}
-                                                        </span>
+                                                        <span className="fw-bold">₹ {coursePriceExGST}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>GST @ 18%:</th>
                                                     <td className="text-end">
-                                                        <span className="fw-bold">
-                                                        ₹ {gst}
-                                                        </span>
+                                                        <span className="fw-bold">₹ {gst}</span>
                                                     </td>
                                                 </tr>
                                                 <tr className="bg-light">
                                                     <th>Total:</th>
                                                     <td className="text-end">
-                                                        <span className="fw-bold">
-                                                        ₹ {total}
-                                                        </span>
+                                                        <span className="fw-bold">₹ {total}</span>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -393,14 +438,28 @@ const Cart = () => {
                                     <div className="row my-4">
                                         <div className="col-sm-6">
                                             <a href="/courses" className="btn btn-link text-muted">
-                                                <i className="mdi mdi-arrow-left me-1"></i> Back to courses 
+                                                <i className="mdi mdi-arrow-left me-1"></i> Back to courses
                                             </a>
                                         </div>
                                         <div className="col-sm-6">
                                             <div className="text-sm-end mt-2 mt-sm-0">
-                                                <button onClick={handleCheckout} className="btn btn-success">
-                                                    <i className="mdi mdi-cart-outline me-1"></i> Checkout 
-                                                </button>
+                                                {/* Conditionally render enroll button when total is 0 */}
+                                                
+                                                {total === '0.00' ? (
+                                                    <button
+                                                        className="btn btn-success"
+                                                        onClick={handleEnroll}
+                                                    >
+                                                       <i className="mdi mdi-cart-outline me-1"></i> Enroll Now
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        onClick={handleCheckout}
+                                                        className="btn btn-success"
+                                                    >
+                                                        <i className="mdi mdi-cart-outline me-1"></i> Checkout
+                                                    </button>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -421,8 +480,12 @@ const Cart = () => {
                 onClose={() => setShowModal(false)}
                 onLoginSuccess={handleLoginSuccess}
             />
+            <Alert show={showAlertMdoal}
+                message={modalMessage}
+                onClose={() => setShowAlertModal(false)}
+            />
         </div>
     );
-}
+};    
 
 export default Cart;
