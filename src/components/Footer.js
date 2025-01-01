@@ -18,7 +18,6 @@ const Footer = () => {
             <h5>Quick Links</h5>
             <ul>
               <li><a href="/home">Home</a></li>
-              <li><a href="/courses">Courses</a></li>
               <li><a href="/aboutus">About Us</a></li>
               <li><a href="https://wellfound.com/company/vibe-gurukul">Join Us</a></li>
             </ul>
