@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AllWorkshops from '../components/AllWorkshops';
+import AllWorkshops from '../components/workshops/AllWorkshops';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import LPHeader from '../components/LPHeader';
