@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS for styling
-import './css/WorkshopCard.css'; // Custom CSS for workshop card styling
+import '../css/WorkshopCard.css'; // Custom CSS for workshop card styling
 
 const WorkshopCard = ({ workshop, handleAddToCart, purchasedWorkshops }) => {
     const isPurchased = purchasedWorkshops.includes(workshop._id);
