@@ -105,8 +105,8 @@ const AboutUsPage = () => {
           </div>
         </section>
         <section id="brand-value-pillars" className="brand-value-pillars">
+        <h2 className="pillars-title">Brand Value Pillars (PRAI)</h2>
           <div className="container">
-            <h2 className="pillars-title">Brand Value Pillars (PRAI)</h2>
             <div className="row">
               <div className="col-md-3">
                 <div className="pillar-card pride">
