@@ -9,7 +9,35 @@
   
   .about-us h1 {
     text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
     color: #FFA500;
+  }
+
+  .about-us h1::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+  }
+  
+  .about-us h1::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #FF6F61;
+    bottom: 0;
+    left: calc(50% - 20px);
   }
   
   .about-us h3 {
@@ -109,9 +137,37 @@
 }
 
 .pillars-title {
-  font-size: 2rem;
+  text-align: center;
+  padding-bottom: 30px;
+  font-size: 32px;
   font-weight: bold;
-  margin-bottom: 2rem;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #FFA500;
+}
+
+.pillars-title::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.pillars-title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #FF6F61;
+  bottom: 0;
+  left: calc(50% - 20px);
 }
 
 .pillar-card {
