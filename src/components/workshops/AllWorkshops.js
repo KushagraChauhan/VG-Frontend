@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import WorkshopCard from "./WorkshopCard";
 import axios from "axios"; // Importing axios for making HTTP requests
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap for styling
-import './css/AllCourses.css'; // Importing custom CSS for additional styling
-import LoadingSpinner from "./Loading"; // Importing a loading spinner component to show during data fetch
+import '../css/AllCourses.css'; // Importing custom CSS for additional styling
+import LoadingSpinner from "../Loading"; // Importing a loading spinner component to show during data fetch
 import {useNavigate } from "react-router-dom";
 
 const AllWorkshops = () => {
