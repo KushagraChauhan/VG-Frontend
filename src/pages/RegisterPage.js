@@ -89,7 +89,6 @@ const RegisterPage = () => {
                 {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
                         <input 
                             type="email"
                             className="form-control"
@@ -99,7 +98,6 @@ const RegisterPage = () => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="fullName">Full Name</label>
                         <input
                             className="form-control"
                             id="fullName"
@@ -112,8 +110,9 @@ const RegisterPage = () => {
                     <div className="form-group">
                         {/* <label htmlFor="mobile_number">Mobile</label> */}
                         <PhoneInput
-                            country={'in'}
+                            // country={'in'}
                             value={mobileNumber}
+                            placeholder="Enter your Mobile"
                             onChange={handleMobileChange}
                             inputClass="form-control"
                             inputProps={{
@@ -124,7 +123,6 @@ const RegisterPage = () => {
                         />
                     </div> 
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
                         <input
                             type="password"
                             className="form-control"
@@ -135,10 +133,10 @@ const RegisterPage = () => {
                             required
                         />
                     </div>                    
-                    <div className="form-group form-check">
+                    {/* <div className="form-group form-check">
                         <input type="checkbox" className="form-check" id="rememberMe" />
                         <label className="form-check-label" htmlFor="rememberMe">Remember Me</label>
-                    </div>
+                    </div> */}
                     <button type="submit" className="btn btn-primary" disabled={isLoading}>
                         {isLoading ? 'Loading...' : 'Create an account'}
                     </button>

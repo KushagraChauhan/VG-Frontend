@@ -99,7 +99,6 @@ const LoginOrRegisterPage = () => {
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 className="form-control"
