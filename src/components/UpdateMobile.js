@@ -61,33 +61,35 @@ const UpdateMobile = () => {
     };
 
     return (
-        <div className="user-profile-container">
-            <h3>Update Mobile Number</h3>
-            <p>Email: {email}</p>
-            {
-                currentMobileNumber ? (
-                    <p>Current Mobile: {currentMobileNumber}</p>
-                ) : (
-                    <p>Mobile number not present</p>
-                )
-            }
-            {message && <p className="success-message">{message}</p>}
-            {error && <p className="error-message">{error}</p>}
-            {isLoading ? <LoadingSpinner /> : (
-                <form onSubmit={handleUpdateMobile}>
-                    <div className="form-group">
-                        <label>Mobile Number</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={mobileNumber}
-                            onChange={(e) => setMobileNumber(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-outline-primary">Update Mobile</button>
-                </form>
-            )}
+        <div className='update-container'>
+            <div className="user-profile-container">
+                <h3>Update Mobile Number</h3>
+                <p>Email: {email}</p>
+                {
+                    currentMobileNumber ? (
+                        <p>Current Mobile: {currentMobileNumber}</p>
+                    ) : (
+                        <p>Mobile number not present</p>
+                    )
+                }
+                {message && <p className="success-message">{message}</p>}
+                {error && <p className="error-message">{error}</p>}
+                {isLoading ? <LoadingSpinner /> : (
+                    <form onSubmit={handleUpdateMobile}>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder='Enter your mobile number'
+                                value={mobileNumber}
+                                onChange={(e) => setMobileNumber(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <button type="submit" className="btn btn-outline-primary">Update Mobile</button>
+                    </form>
+                )}
+            </div>
         </div>
     );
 };
