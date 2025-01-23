@@ -67,7 +67,6 @@ const LoginPage = () => {
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 className="form-control"
@@ -77,7 +76,6 @@ const LoginPage = () => {
               />
             </div>
             <div className="form-group">
-                <label htmlFor="password">Password</label>
                 <input
                     type="password"
                     className="form-control"
@@ -89,8 +87,6 @@ const LoginPage = () => {
                     />
             </div>
             <div className="form-group form-check">
-              <input type="checkbox" className="form-check" id="rememberMe" />
-              <label className="form-check-label" htmlFor="rememberMe">Remember Me</label>
               <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
             </div>
             <button type="submit" className="btn btn-primary" disabled={isLoading}>
