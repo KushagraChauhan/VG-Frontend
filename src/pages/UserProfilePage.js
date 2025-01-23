@@ -44,31 +44,43 @@ const UserProfilePage = () => {
     }
 
     return (
-        <div>
+        <div className="user-profile">
             <Header />
-            <div className="user-profile-container">
-                {isAuthenticated ? (
-                    <>
-                        <h3>User Profile</h3>
-                        <h2>Hi, {fullName}</h2>
-                        <p>Here, you can see the courses you are enrolled in.</p>
-                        <button className='btn-go-to-course' onClick={handleMyCourses}>My Courses</button>
-                        {showUserCourses && <UserCourses />}
-                        {message && <p className="success-message">{message}</p>}
-                        <div className="update-section">
-                            <p>Here you can Update your mobile number or password</p>
-                            <button className='btn-update' onClick={handleShowUpdateMobile}>Update Mobile Number</button>
-                            <br></br>
-                            <button className='btn-update' onClick={handleShowUpdatePassword}>Update Password</button>
-                            {showUpdateMobile && <UpdateMobile />}
-                            {showUpdatePassword && <UpdatePassword />}
+            {isAuthenticated ? (
+                <div className="profile-banner">
+                    <div className="profile-info">
+                        <div>
+                            <h2 className="profile-name">{fullName}</h2>
+                            <p className="profile-username">@{fullName.toLowerCase().replace(/\s/g, '')}</p>
                         </div>
-                    </>
-                ) : (
-                    <div className="update-section">
-                        <h2>Welcome to Your Profile</h2>
-                        <p>Please log in to update your details and view your courses.</p>
                     </div>
+                    <button className="btn-go-to-course" onClick={handleMyCourses}>
+                        My Courses
+                    </button>
+                </div>
+            ) : (
+                <div className="welcome-banner">
+                    <h2>Welcome to Your Profile</h2>
+                    <p>Please log in to update your details and view your courses.</p>
+                </div>
+            )}
+
+            <div className="action-section">
+                {isAuthenticated && (
+                    <>
+                        {message && <p className="success-message">{message}</p>}
+                        {showUserCourses && <UserCourses />}
+                        <div className="update-buttons">
+                            <button className="btn-update" onClick={handleShowUpdateMobile}>
+                                Update Mobile Number
+                            </button>
+                            <button className="btn-update" onClick={handleShowUpdatePassword}>
+                                Update Password
+                            </button>
+                        </div>
+                        {showUpdateMobile && <UpdateMobile />}
+                        {showUpdatePassword && <UpdatePassword />}
+                    </>
                 )}
             </div>
         </div>
