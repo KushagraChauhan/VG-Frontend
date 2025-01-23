@@ -1,5 +1,15 @@
+.update-container{
+    padding: 20px;
+    background-color: #1e1e2f;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .user-profile-container {
-    max-width: 600px;
+    /* max-width: 600px; */
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -12,20 +22,28 @@
     margin-bottom: 20px;
 }
 
+
 .form-group {
-    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px; 
 }
 
 .form-group label {
-    display: block;
+    display: flex;
     margin-bottom: 5px;
 }
 
 .form-group input {
     width: 100%;
+    max-width: 400px;
+    text-align: center;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box; 
 }
 
 .btn-primary {
@@ -50,10 +68,12 @@
 
 .user-courses {
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #1e1e2f;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .user-courses h2 {
@@ -106,4 +126,9 @@
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+}
+
+.error-message{
+    margin-bottom: 20px;
+    color: #FFF;
 }
