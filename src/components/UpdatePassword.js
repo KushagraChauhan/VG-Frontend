@@ -28,7 +28,7 @@ const UpdatePassword = () =>{
                 new_password: newPassword
         });
         if (response.status === 200) {
-            setMessage('password updated successfully!');
+            setMessage('Password Updated Successfully!');
             setError('');
             setIsLoading(false);
         }
@@ -39,36 +39,38 @@ const UpdatePassword = () =>{
         }
     };
     return (
-        <div className="user-profile-container">           
-            <h3>Update Password</h3>
-            <p>Email: {email}</p>
-            {message && <p className="success-message">{message}</p>}
-            {error && <p className="error-message">{error}</p>}
-            {isLoading ? <LoadingSpinner /> : (
-            <form onSubmit={handleUpdatePassword}>
-                <div className="form-group">
-                    <label>Current Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        value={currentPassword}
-                        onChange={(e) => setCurrentPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>New Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        required
-                    />
-                </div>           
-                <button type="submit" className="btn btn-outline-primary">Update Password</button>
-            </form>
-            )}
+        <div className='update-container'>
+            <div className="user-profile-container">           
+                <h3>Update Password</h3>
+                <p>Email: {email}</p>
+                {message && <p className="success-message">{message}</p>}
+                {error && <p className="error-message">{error}</p>}
+                {isLoading ? <LoadingSpinner /> : (
+                <form onSubmit={handleUpdatePassword}>
+                    <div className="form-group">
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder='Current Password'
+                            value={currentPassword}
+                            onChange={(e) => setCurrentPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder='New Password'
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            required
+                        />
+                    </div>           
+                    <button type="submit" className="btn btn-outline-primary">Update Password</button>
+                </form>
+                )}
+            </div>
         </div>
     );
 };

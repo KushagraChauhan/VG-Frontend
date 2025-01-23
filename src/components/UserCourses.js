@@ -36,7 +36,13 @@ const UserCourses = () => {
   }, [token]);
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <div className="error-message">{error}</div>;
+  if (error) return <div className='user-courses'>
+  <div className="error-message">{error}
+      <div className="go-to-course">
+      <Link to={`/courses/`}>View Courses</Link>
+      </div>
+    </div>
+  </div>;
 
   return (
     <div className="user-courses">
@@ -49,7 +55,7 @@ const UserCourses = () => {
               <h3>{course.title}</h3>
               <p>{course.description}</p>
               <div className="go-to-course">
-                      <Link to={`/courses/${course.short_title}`}>View Course</Link>
+                <Link to={`/courses/${course.short_title}`}>View Course</Link>
               </div>
             </div>
           ))}
