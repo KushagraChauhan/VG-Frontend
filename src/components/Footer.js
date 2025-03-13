@@ -12,7 +12,7 @@ const Footer = () => {
               <li><a href="/privacypolicy">Privacy Policy</a></li>
               <li><a href="/termsconditions">Terms and Conditions</a></li>
             </ul>
-            <p style={{color:'#ffa500'}}>© 2024 Vibe Indian. All rights reserved.</p>
+            <p style={{color:'#ffa500'}}>© 2025 Vibe Indian. All rights reserved.</p>
           </div>
           <div className="col-md-4">
             <h5>Quick Links</h5>
