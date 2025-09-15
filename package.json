@@ -10,7 +10,7 @@
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "animate.css": "^4.1.1",
-    "axios": "^1.7.7",
+    "axios": "^1.12.0",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
     "mdb-react-ui-kit": "^9.0.0",
